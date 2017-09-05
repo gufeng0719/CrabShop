@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+  <meta name="screen-orientation" content="portrait" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="full-screen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <title>高淳大闸蟹</title>
+  <link rel="stylesheet" type="text/css" href="style/common.css" />
+  <link rel="stylesheet" type="text/css" href="style/css.css" />
+  <link rel="stylesheet" type="text/css" href="style/index.css" />
+  <link rel="stylesheet" type="text/css" href="style/swiper.min.css" />
+  <link rel="stylesheet" type="text/css" href="style/font-awesome.min.css" />
+</head>
+
+<body style="width:98%;">
+  <div id="app">
+    <!--top开始图片-->
+    <div class="banner">
+      <img src="images/header.png">
+    </div>
+    <!-- /top图片-->
+    <div class="main">
+      <div class="title">
+        今日蟹价<a class="btn" href="shop.html">立即购买</a>
+      </div>
+      <div class="priceDate">
+        {{priceDate}}
+      </div>
+      <div class="list">
+        <header>
+          <span>大宗采购价</span>
+        </header>
+        <table>
+          <thead>
+            <tr>
+              <td>
+                规格(母/两)
+              </td>
+              <td>
+                价格(元/斤)
+              </td>
+              <td>
+                规格(公/两)
+              </td>
+              <td>
+                价格(元/斤)
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in priceList1">
+              <td>{{item.pn2}}</td>
+              <td>{{item.pv2}}</td>
+              <td>{{item.pn1}}</td>
+              <td>{{item.pv1}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="list">
+        <header>
+          <span>蟹塘直采价</span></header>
+        <table>
+          <thead>
+            <tr>
+              <td>
+                规格(母/两)
+              </td>
+              <td>
+                价格(元/斤)
+              </td>
+              <td>
+                规格(公/两)
+              </td>
+              <td>
+                价格(元/斤)
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in priceList2">
+              <td>{{item.pn2}}</td>
+              <td>{{item.pv2}}</td>
+              <td>{{item.pn1}}</td>
+              <td>{{item.pv1}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="title">
+        服务价格表<a href="#" class="link">查看说明</a>
+        <ul>
+          <li>
+            <p class="fl">电商代发</p>
+            <p class="fr">5元/斤</p>
+          </li>
+          <li>
+            <p class="fl">大宗批发自提</p>
+            <p class="fr">3-10元/斤</p>
+          </li>
+        </ul>
+      </div>
+      <div class="clear">
+      </div>
+      <div class="title">
+        顺丰惠农云仓专享优惠
+        <br />
+        <a class="link2">查看具体报价</a>
+      </div>
+      <div class="list">
+        <header>代发货配件价格</header>
+        <table>
+          <thead>
+            <tr>
+              <td>必选 </td>
+              <td>价格(元)</td>
+              <td>可选</td>
+              <td>价格(元)</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in partsList">
+              <td>{{item.pr1}}</td>
+              <td>{{item.pv1}}</td>
+              <td>{{item.pr2}}</td>
+              <td>{{item.pv2}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <footer>
+        <div id="indexFooterBox">
+          <ul id="indexFooter">
+            <li><a href="index.html"><i class="fa fa-file-text-o fa-2x"></i>我的订单</a></li>
+            <li><a href="huodong.html"><i class="fa fa-folder-open-o fa-2x"></i>我的返利</a></li>
+            <li><a href="shop.html"><i class="fa fa-cart-plus fa-2x"></i>立即购买</a></li>
+          </ul>
+        </div>
+      </footer>
+    
+  </div>
+  <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/vue.js"></script>
+  <script src="scripts/vue-resource.js"></script>
+  <script src="pulgins/swiper.min.js"></script>
+  <script src="service/index.js"></script>
+
+</body>
+
+</html>

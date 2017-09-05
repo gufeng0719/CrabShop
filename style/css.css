@@ -1,0 +1,163 @@
+﻿/* CSS Document */
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+input[type="button"], input[type="submit"], input[type="reset"] {
+    -webkit-appearance: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    background: #eeeeee;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    min-width: 320px;
+}
+
+.banner {
+    width: 100%;    
+}
+
+    .banner img {
+        width: 100%;
+        max-width: 640px;
+        margin: 0 auto;
+    }
+
+.main {
+    margin-top: 2%;
+    width: 100%;
+    max-width: 640px;
+}
+
+.header {
+    margin-top: 5%;
+    margin-right: 4%;
+    margin-bottom: 4%;
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid #d2d2d2;
+    margin-bottom: 28px;
+}
+
+    .header .crile {
+        position: relative;
+        top: -8px;
+        width: 15px;
+        height: 15px;
+        background-color: Red;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .header .text {
+        position: relative;
+        top: -10px;
+        display: inline-block;
+        background-color: #eeeeee;
+        padding-right: 1%;
+        margin-left: 4%;
+        padding-left: 1%;
+    }
+
+.main ul {
+}
+
+    .main ul li {
+        float: left;
+        width: 33%;
+        max-width: 230px;
+        margin: 0 auto;
+        padding: 4% 0; /*margin-top:5%; 	margin-left:8%;*/
+    }
+
+.border {
+    border-bottom: 1px solid #d2d2d2;
+    border-right: 1px solid #d2d2d2;
+}
+
+.border_bottom {
+    border-bottom: 1px solid #d2d2d2;
+}
+
+.border_right {
+    border-right: 1px solid #d2d2d2;
+}
+
+.main ul li img {
+    width: 70%;
+}
+
+.main ul li p {
+    text-align: center;
+    color: #5b595a;
+}
+
+    .main ul li p span {
+        clear: both;
+        display: block;
+        padding: 0px 10px;
+        line-height: 30px;
+        font-size: 16px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+.foot {
+    color: #838383;
+    line-height: 130px; /*margin-top:95%;*/ /*width:100%; 	margin:0 auto;*/
+    text-align: center;
+}
+
+.btn {
+    background: #16a0d3;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Microsoft Yahei";
+    font-size: 12px;
+    height: 32px;
+    line-height: 32px;
+    margin: 0 1px 0 0;
+    padding: 0 20px;
+    height: 45px;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.box{
+    width:64px;
+    height: 64px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+.more {
+    float: left;
+    margin-right: 5%;
+}
+.box img{
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: 64px;
+}

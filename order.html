@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="screen-orientation" content="portrait" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>订单页</title>
+    <link href="style/amazeui.min.css" type="text/css" rel="stylesheet" />
+    <link href="style/style.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="style/font-awesome.min.css" />
+</head>
+
+<body style="background-color:#eee;">
+    <div id="app">
+        <!--top开始图片-->
+        <div class="banner">
+            <img src="images/header.png">
+        </div>
+
+        <!-- /top图片-->
+        <div class="content-list" id="outer">
+            <div class="title">
+                提交订单
+            </div>
+            <ul class="order-list">
+                <li>
+                    <div class="title">发货信息</div>
+                </li>
+                <li v-if="blHaveSend">
+                    <div class="send">
+                        {{send.person}}--{{send.telphone}}
+                    </div>
+                </li>
+                <li v-else>
+                    <div class="am-form">
+                        <div class="am-form-group" style="margin-bottom:0;">
+                            <label for="person">发货人:</label>
+                            <input type="text" id="person" v-model="send.person" placeholder="请输入发货人姓名">
+                        </div>
+                        <div class="am-form-group" style="margin-bottom:0;">
+                            <label for="">联系方式</label>
+                        </div>
+                        <input type="text" v-model="send.telphone" placeholder="请输入发货人联系方式">
+                    </div>
+                </li>
+                <li>
+                    <div class="title">收货信息</div>
+                </li>
+                <li v-if="!address">
+                    <div>
+                        <i class="fa fa-plus-square-o fa-3x"></i><span style="font-size:2rem;font-weight:bold; position:relative;left:10%;top:-10px;">填写收货地址</span>
+                    </div>
+                </li>
+                <li v-else>
+                    <div class="address">
+                        <div class="info">
+                            <span>{{address.province}}省</span><span>{{address.city}}市</span><span v-show="address.district">{{address.district}}区</span><span>{{address.details}}</span>
+                        </div>
+                        <div class="person">
+                            <span>{{address.consignee}}</span><span>{{address.consex}}</span><span>{{address.telphone}}</span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="title">商品清单</div>
+                </li>
+                <li v-for="(cart,index) in cartFoodList ">
+                    <img :src="imgBaseUrl+cart.image" class="list-pic" />
+                    <div class="shop-list-mid">
+                        <div class="tit">{{cart.name}} ({{cart.tname}})</div>
+                        <div class="weight1">{{cart.weight}} kg</div>
+                        <div class="price" style="position:absolute; right:10px;top:32px;"><span>￥{{(cart.price*cart.weight*2).toFixed(2)}}元/只</span></div>
+                        <div class="total">X {{cart.num}} 只</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="title">必选配件</div>
+                </li>
+                <li class="partli" v-for="(part,index) in partList">
+                    <span>{{part.PartName}}</span>
+                    <span>X{{part.PartId!=10004?1:totalNum}}</span>
+                    <span>{{part.PartWeight}} kg</span>
+                    <span>￥{{part.PartPrice}}</span>
+                </li>
+                <li>
+                    <div class="title">可选配件</div>
+                </li>
+                <li class="partli" v-for="(part,index) in partNumList">
+                    <span>{{part.name}}</span>
+                    <span>X{{part.id!=10009?1:totalNum}}</span>
+                    <span>{{part.weight}} kg</span>
+                    <span>￥{{part.price}}</span>
+                </li>
+                <li>
+                    <div class="title">订单小计</div>
+                </li>
+                <li class="totalpartli">
+                    <span>螃蟹</span>
+                    <span>{{totalProductWeight}}kg</span>
+                    <span>￥{{totalProductPrice}}元</span>
+                </li>
+                <li class="totalpartli">
+                    <span>必选配件</span>
+                    <span>{{totalPartWeight}} kg</span>
+                    <span>￥{{totalPartPrice}}元</span>
+                </li>
+                <li class="totalpartli">
+                    <span>可选配件</span>
+                    <span>{{totalPart1Weight}} kg</span>
+                    <span>￥{{totalPart1Price}}元</span>
+                </li>
+                <li>
+                    <span style="float:right;">￥{{(totalProductPrice+totalPart1Price+totalPartPrice).toFixed(2)}}</span>
+                    <span style="float:right;">小计: </span>
+                </li>
+                <li class="partli">
+                    <div class="title">快递</div>
+                    <div class="express">
+                        <span>顺丰 惠农云仓专享9折优惠</span> <span>{{totalProductWeight+totalPart1Weight+totalPartWeight}}kg</span>                        <span>￥{{expressPrice}} 元</span>
+                    </div>
+                </li>
+                <li class="partli">
+                    <div class="title">商城服务费</div>
+                    <div class="service">
+                        <span> 服务费</span> <span>{{totalProductWeight}}kg</span> <span> ￥{{shopPrice}} 元</span>
+                    </div>
+                </li>
+                <li class="partli">
+                    <div class="title">返利账户余额 {{balance}} 元
+                        <p style="float:right;"><input type="checkbox" checked v-model="blChoseBalance" style="width:2rem;height:2rem;line-height:2rem;">优先使用</p>
+                    </div>
+                    <div class="clear:both;"></div>
+                </li>
+            </ul>
+        </div>
+        <div style="height: 60px;"></div>
+        <!--底部-->
+        <div class="fix-bot">
+            <div class="fix-bot-cart" style="float:left;width:70%;margin-left:0%;">
+                <p style="position:initial;line-height:4.5rem;height:454.5rempx;"><span style="font-size:18px;font-weight:bolder;">共计</span> <span style="font-size:1.5rem;font-weight:bolder;color:#f60;">￥{{finalPrice}}</span>                    元
+                    <span style="margin-left:5px;">来多份?</span>
+                    <a v-show="totalNumber>1" class="fa fa-minus-circle" style="color:#3f3f3f; font-size:20px; margin-left:3px;" @click="ResponseNumber()"></a>
+                    <span style="margin:0 3px;">{{totalNumber}}</span>
+                    <a class="fa fa-plus-circle" style="color:#39b867; font-size:20px;" @click="AddNumber()"></a>
+                </p>
+            </div>
+            <div class="fix-bot-jsk" style="width:27%;">
+                <a href="javascript:void(0)" class="list-jsk" onclick="SubmitPlay()">立即支付</a>
+            </div>
+        </div>
+        <div class="am-modal am-modal-prompt" tabindex="-1" id="myprompt">
+            <div class="am-modal-dialog">
+                <div class="am-modal-hd">快速关联</div>
+                <div class="am-modal-bd">
+                    <form action="" class="am-form am-form-horizontal" id="doc-vld-msg" data-am-validator>
+                        <div class="am-form-group ">
+                            <label class="am-u-sm-3 am-form-label" for="name">姓名:</label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="am-form-field" id="username" name="username" minlength="2" required v-model="user.UserName" placeholder="输入姓名（至少 2 个汉字）"
+                                />
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-form-label" for="phone">联系方式:</label>
+                            <div class="am-u-sm-9">
+                                <input type="text" id="phone" name="phone" class="js-pattern-mobile am-form-field " minlength="11" placeholder="输入手机号" required
+                                    v-model="user.UserPhone" />
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-form-label" for="">性别:</label>
+                            <div class="am-u-sm-9">
+                                <label class="am-radio-inline">
+                                            <input type="radio" id="one" value="先生" checked name="sex" v-model="user.UserSex">先生
+                                        </label>
+                                <label class="am-radio-inline">
+                                            <input type="radio" id="two" value="女士" name="sex" v-model="user.UserSex">女士
+                                        </label>
+                            </div>
+                        </div>
+                        <button class="am-btn am-btn-secondary" type="button" id="btnSub">提交</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="scripts/amazeui.min.js" type="text/javascript"></script>
+    <script src="scripts/vue.js"></script>
+    <script src="service/load.js" type="text/javascript"></script>
+    <script src="scripts/lodash.min.js" type="text/javascript"></script>
+    <script src="service/order.js" type="text/javascript"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script>
+        if ($.AMUI && $.AMUI.validator) {
+            // 增加单个正则
+            $.AMUI.validator.patterns.mobile = /^1((3|5|8){1}\d{1}|70)\d{8}$/;
+        }
+        $(function () {
+            $("#btnSub").click(function () {
+                var length = $("#doc-vld-msg :invalid").length;
+                if (length == 0) {
+                    $.ajax({
+                        type: 'post',
+                        url: 'http://test.osintell.cn/api/WebApi/AddUser',
+                        data: {
+                            UserName: vm.user.UserName,
+                            UserPhone: vm.user.UserPhone,
+                            UserSex: vm.user.UserSex,
+                            OpenId: vm.openId
+                        },
+                        success: function (msg) {
+                            if (msg && msg.status) {
+                                vm.user.UserId = msg.userid;
+                                window.localStorage.setItem("userid", msg.userid);
+                                $("#myprompt").modal('close');
+                            }
+                        }
+                    });
+                }
+            });
+            //生产JSAPI配置
+            $.ajax({
+                url: 'http://test.osintell.cn/WeChatApi/GetJsApiConfig',
+                type: 'post',
+                data: {
+                    currentPage: window.location.href
+                },
+                complete: function (d) {
+                    var data = JSON.parse(d.responseText)
+                    wx.config({
+                        debug: false,
+                        appId: data.appId,
+                        timestamp: data.timestamp,
+                        nonceStr: data.nonceStr,
+                        signature: data.signature,
+                        jsApiList: data.jsApiList
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="screen-orientation" content="portrait" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>我的订单</title>
+    <link href="style/amazeui.min.css" type="text/css" rel="stylesheet" />
+    <link href="style/style.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="style/font-awesome.min.css" />
+</head>
+
+<body style="background-color:#eee;">
+    <div id="app">
+        <!--top开始图片-->
+        <div class="banner">
+            <img src="images/header.png">
+        </div>
+        <button id="btnTest">测试</button>
+    </div>
+    <script src="scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="scripts/amazeui.min.js" type="text/javascript"></script>
+    <script src="scripts/vue.js"></script>
+    <script src="service/load.js" type="text/javascript"></script>
+    <script src="scripts/lodash.min.js" type="text/javascript"></script>
+    <script>
+        $(function () {
+            $("#btnTest").click(function () {
+                $.post('http://localhost:56703/api/WebApi/UpdateOrderState', { OrderId: 23405,OrderState: 2, PrepaymentId:'wx2sfdsfsa43fsdsfs' }, function (msg) {
+                    if (msg && msg.status) {
+                        console.info(msg);
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+
+</html>
