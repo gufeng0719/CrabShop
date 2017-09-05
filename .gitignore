@@ -1,0 +1,6 @@
+.vscode/
+*.vue
+components/
+router/
+store/
+pulgins/fonts/
