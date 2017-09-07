@@ -37,7 +37,7 @@ function submitClick(){
                 ConSex:vm.consex
             },
             success:function(msg){
-                if(msg&&msg.status){
+                if(msg&&msg.status){                    
                     let addressinfo=[{                        
                         firstPrice:vm.address.firstPrice,//首重单价
                         fllowPrice:vm.address.fllowPrice,//续重单价
@@ -49,7 +49,7 @@ function submitClick(){
                         district:vm.address.district,
                         details:vm.details//详细地址
                     }];
-                    window.localStorage.setItem('addressinfo',addressinfo);
+                    setStore('addressinfo',addressinfo);
                     window.location.href="order.html";
                 }
             }

@@ -7,7 +7,7 @@ body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, l
     border: none;
     color: #333;
     font-weight: normal;
-    font-family: "Microsoft Yahei";
+    font-family:'Microsoft YaHei UI';
     box-sizing: border-box;
     -webkit-tap-highlight-color:transparent;
     -webkit-font-smoothing: antialiased;
@@ -45,7 +45,6 @@ input[type="button"], input[type="submit"], input[type="search"], input[type="re
 textarea { -webkit-appearance: none;}   
 
 html,body{
-    height: 100%;
     width: 100%;
     background-color: #F5F5F5;
 }

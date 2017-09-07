@@ -9,8 +9,8 @@ var vm = new Vue({
             city: '',
             district: '',
             details: '',
-            firstprice: 12,//首重价格,默认江浙沪
-            fllowprice: 2,//续重价格
+            firstPrice: 12,//首重价格,默认江浙沪
+            fllowPrice: 2,//续重价格
 
         },//收货地址
         send: {
@@ -34,7 +34,8 @@ var vm = new Vue({
         },
         blChoseBalance: true,//是否优先使用余额
         useBalance: 0,//已经使用余额
-        blHaveSend: false,//是否有发件人信息，
+        blHaveSend: false,//是否有发件人信息,
+        blReceive:false,//是否有收件人信息
         prepayId: '',//预支付编号
         orderId: 0,//订单编号,
         finishPay: false,//是否完成支付
@@ -70,10 +71,11 @@ var vm = new Vue({
             if (that.openId) {
                 //查看本地是否存在收件地址信息
                 let addressinfo = getStore("addressinfo");
-                console.info(addressinfo);
+               // console.info(addressinfo);
                 if (addressinfo) {//存在
                     console.info("存在地址信息");
-                    that.address = addressinfo;
+                    that.blReceive=true;
+                    that.address =JSON.parse(addressinfo)[0];
                 } else {
                     $.ajax({
                         type: 'get',
@@ -86,9 +88,10 @@ var vm = new Vue({
                                 window.localStorage.setItem('userid', msg.user.UserId);
                                 //是否存在默认地址:
                                 if (msg.addressList.length > 0) {//存在地址
+                                    that.blReceive=true;
                                     let addressArr = msg.addressList[0].Details.split('&');
-                                    that.address.firstprice = msg.firstPrice;
-                                    that.address.fllowprice = msg.fllowPrice;
+                                    that.address.firstPrice = msg.firstPrice;
+                                    that.address.fllowPrice = msg.fllowPrice;
                                     that.address.consignee = msg.addressList[0].Consignee;
                                     that.address.consex = msg.addressList[0].ConSex;
                                     that.address.telphone = msg.addressList[0].TelPhone;
@@ -98,6 +101,7 @@ var vm = new Vue({
                                     that.address.details = addressArr[3];
                                 }
                             } else {
+                                that.blReceive=false;
                                 //弹出注册用户框
                                 var $promt = $('#myprompt').modal({
                                     relatedTarget: this,
@@ -211,7 +215,7 @@ var vm = new Vue({
         expressPrice: function () {
             let price = 0;
             let totalWeight = Math.ceil((this.totalProductWeight + this.totalPartWeight + this.totalPart1Weight) / 0.5) * 0.5;
-            price = this.address.firstprice + (totalWeight - 1) * this.address.fllowprice;
+            price = this.address.firstPrice + (totalWeight - 1) * this.address.fllowPrice;
             return Number(price.toFixed(2));
 
         },
@@ -291,9 +295,9 @@ function SubmitPlay() {
         Pay();
     } else {
         //发货人信息
-        if (vm.send.person === "" || vm.send.telphone === "") {
-            alert("请选择或者填写发货者信息"); return;
-        }
+        // if (vm.send.person === "" || vm.send.telphone === "") {
+        //     alert("请选择或者填写发货者信息"); return;
+        // }
         //收货人信息
         if (vm.address.consignee === "" || vm.address.telphone === "") {
             alert("请选择或填写收件者信息"); return;
@@ -310,7 +314,7 @@ function SubmitPlay() {
                 totalmoney: vm.totalmoney,//总金额
                 balance: vm.balance,//优惠金额
                 finalPrice: vm.finalPrice,//实际支付金额
-                orderaddress: vm.address.province + '$' + vm.address.city + '$' + vm.address.district + '$' + vm.address.details + '$' + vm.address.consignee + '$' + vm.address.consex + '$' + vm.address.telphone,//订单地址
+                orderaddress:'$'+vm.address.consignee+'('+ vm.address.consex+')$$'+vm.address.telphone+'$'+ vm.address.province  +' '+ vm.address.city + ' ' + vm.address.district + ' ' + vm.address.details,//订单地址
                 sendaddress: vm.send.person + '$' + vm.send.telphone,//寄件人地址
                 totalnumber: vm.totalNumber,//份数
                 totalweight: vm.totalweight,//实际重量
@@ -319,7 +323,9 @@ function SubmitPlay() {
                 partList: vm.partList,//必须配件列表
                 partNList: vm.partNumList,//可选配件列表
                 balancePrice: vm.balancePrice,//返利金额
-                usebalance: vm.useBalance//已使用余额
+                usebalance: vm.useBalance,//已使用余额
+                expressmoney:vm.expressPrice,//运费
+                servicemoney:vm.shopPrice//商城服务费
             },
             success: function (d) {
                 if (d.status) {
@@ -329,13 +335,14 @@ function SubmitPlay() {
                         type: 'post',
                         data: {
                             body: '购买大闸蟹支付',
-                            orderNumber: d.orderid + '',
+                            orderNumber:  (new Date() - new Date("1970"))+d.orderid+'',
                             total: 1 + '',
                             notify: 'http://dzx.osintell.cn/myOrder.html',
                             openId: vm.openId
                         },
                         complete: function (d) {
                             var obj = JSON.parse(d.responseText)
+                            console.info(obj);
                             if (obj.code === 1) {
                                 vm.prepayId = obj.data;
                                 $.post('http://test.osintell.cn/api/WebApi/UpdatePrepaymentId',{ OrderId: vm.orderId,PrepaymentId: obj.data },function(msg){

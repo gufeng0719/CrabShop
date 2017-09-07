@@ -2,10 +2,12 @@
 var vm = new Vue({
     el: "#app",
     data: {
-       priceDate:'',
+      // priceDate:'',
         priceList1:'',
         priceList2:'',
-        partsList:''
+        partsList:'',
+        month:'',
+        date:''
     },
     methods: {
         getpage: function () {
@@ -17,10 +19,12 @@ var vm = new Vue({
                    // console.info(d);
                     var obj = JSON.parse(d.responseJSON);
                     //console.info(obj);
-                    that.priceDate = obj.priceDate;
+                   // that.priceDate = obj.priceDate;
                     that.priceList1 = obj.priceList1;
                     that.priceList2 = obj.priceList2;
                     that.partsList=obj.partsList;
+                    that.month =obj.priceDate.split('-')[0];
+                    that.date=obj.priceDate.split('-')[1];
                     // if (obj.list.length < 1) {
                     //     that.isNotMore = true
                     // } else {

@@ -1,13 +1,58 @@
 .title{
+      width:100%;
+      height:85px;
+}
+.priceDate{
       text-align: center;
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: bolder;
 }
+
+.title_date {
+    width:26%;
+    text-align:left;
+    float:left;
+}
+.title_date_pic {
+    margin-left:8px;
+    width:84px; height:85px;
+      background:url(../images/date_bg.png) no-repeat;
+      font-family:'Microsoft YaHei UI';
+}
+ .title_date_pic .mon {
+    height:30px; text-align:center;
+    line-height:30px;
+    color:#fff;
+    font-weight:bold;
+    font-size:.8rem;
  
+         }
+ .title_date_pic .da {
+    height:55px;text-align:center;
+    margin-top:.5rem;
+     color:#ff7200;
+    font-weight:bold;
+    font-size:1.5rem;
+         }
+.title_font {
+     text-align: center;
+      font-size: 1.7rem;
+      font-weight: bolder;
+      width:44%;
+      float:left;
+      color:#ff7200;
+      margin-top:1.4rem;
+}
+.title_btn {
+    width:30%;
+    text-align:right;
+    float:left;
+    margin-top:1.3rem;
+}
    .btn{
         padding: .3rem 1rem;
         border-radius: 5px;
-        background-color: #3190e8;
+        background-color: #ff7200;
         font-size: 1rem;
         font-weight: normal;
         display: inline;
@@ -15,45 +60,61 @@
         position: absolute;
         right: 1rem;
         width: 28%;
-  }
-  .priceDate{
-      text-align: center;
-      font-size: 1.8rem;
-      font-weight: bolder;
+       text-align:center;
   }
 
   .list{
-        margin-left: 0.5rem;
+        margin:0.5rem 0px 0px 0.5rem;
   }
+
   .list header{
-        border-bottom: 1px solid gray;
-        padding-bottom: 10px;
+      background:url(../images/lm_bg.png) no-repeat;
+      margin:0px; padding:0px;
+      height:23px;
+      padding-left:.3rem;
   }
 
   .list header span{
-      font-size: 1.2rem;
-      font-weight: 700;
+      font-size: 0.8rem;
+      color:#fff;
+      font-family:'Microsoft YaHei UI';
+      letter-spacing:.1rem;
   }
   .list table{
         background: #fff;
         border-spacing: 0;
-        border: 1px solid #000000;
         width: 100%;
         height: 100%;
         text-align: center;
         border-collapse:collapse;
-        margin:15px 0  30px 0;
+        margin:10px 0  20px 0;
+        font-size:.6rem;
   }
-  .list table tr, .list table td{
-        border: 1px solid #000000;
-        height: 35px;
+    .list thead {
+    background-color:#ff7200;
+    color:#fff; letter-spacing:1px;
+    font-family:'Microsoft YaHei UI';
+
+    }
+
+  .list table tr{
+
+        height: 25px;
         vertical-align: middle;
+        
   }
+  .list table td{
+        border: 1px solid #9f9e9d;
+        height: 25px;
+        vertical-align: middle;
+        
+  }
+
  .link{
-       font-size:1.2rem;
-       text-decoration: underline;
+       font-size:.8rem;
        position: relative;
-       left: 20px;
+       left: 130px;
+       color:#ff7200;
  }
  .link2{
       font-size:1.2rem;
@@ -77,6 +138,78 @@ ul li p{
       float: right;
       margin-right: 10%;
 }
+.end {
+ height:2rem;
+}
+
+.services {
+     margin:1rem 0px 1rem 0.5rem;
+     border-top:2px solid #ff9600;
+     border-bottom:1px solid #ff9600;
+     background:#ffffff;
+}
+
+
+ .services table{
+        background: #fff;
+        border-spacing: 0;
+        width: 96%;
+        height: 100%;
+        text-align: center;
+        border-collapse:collapse;
+        margin:10px 0  20px 6px;
+        font-size:.6rem;
+  }
+ .services thead {
+    background-color:#ff7200;
+    color:#fff; letter-spacing:1px;
+
+    }
+
+  .services table tr{
+
+        height: 25px;
+        vertical-align: middle;
+        
+  }
+  .services table td{
+        border: 1px solid #9f9e9d;
+        height: 25px;
+        vertical-align: middle;
+        
+  }
+
+
+.sfsd {
+   margin:1rem 0px 1rem 0.5rem;
+   background:url(../images/sf.png);
+   height:94px;
+   text-align:center;
+   border-bottom:solid 1px #ff9600;
+}
+ .sfsd_title {
+    height:64px;
+    padding-top:20px;
+    color:#ff7200;
+    font-size:1.4rem;
+    }
+.sfsd_price {
+    height:30px;
+    }
+.sfsd .btns{
+        padding: .3rem 1rem;
+        border-radius: 5px;
+        background-color: #ff7200;
+        font-size: 1rem;
+        font-weight: normal;
+        display: inline;
+        margin: 0;      
+        width: 40%;
+       text-align:center;
+       color:#FFFFFF;
+       font-size:.8rem;
+ }
+
 
 footer{
 	z-index: 100;
@@ -84,7 +217,7 @@ footer{
 	position: fixed;
 	bottom: 0;
 	left: 0;
-	background-color: rgba(42, 41, 41, 0.39);
+	background-color: rgba(255, 114, 0, 0.8);
 }
 
 .paddingTop{
@@ -126,20 +259,32 @@ footer{
       vertical-align: middle;
 }
 #indexFooter li{
-	width: 32%;
+	width: 33%;
       text-align: center;
       height: 40px;
       line-height: 40px;
 	float: left;
+    
+}
+.bor {
+  border-right:solid 1px #ffffff;
 }
 #indexFooter li a {
 	color:#fff ;
       font-size: 12px;
-      vertical-align: middle;
+
+}
+#indexFooter li a  span{
+	color:#fff ;
+      font-size: 12px;
+      position:relative;
+      top:-3px;
+
 }
 #indexFooter li a i{
      
       color:#fff;
       margin-right: 10px;
 }
+
 /*底部菜单*/

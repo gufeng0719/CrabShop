@@ -52,13 +52,13 @@
                 <li>
                     <div class="title">收货信息</div>
                 </li>
-                <li v-if="!address">
+                <li v-if="!blReceive">
                     <div>
-                        <i class="fa fa-plus-square-o fa-3x"></i><span style="font-size:2rem;font-weight:bold; position:relative;left:10%;top:-10px;">填写收货地址</span>
+                        <a href="address.html"><i class="fa fa-plus-square-o fa-3x"></i><span style="font-size:2rem;font-weight:bold; position:relative;left:10%;top:-10px;">填写收货地址</span></a>
                     </div>
                 </li>
                 <li v-else>
-                    <div class="address">
+                    <div class="blReceive">
                         <div class="info">
                             <span>{{address.province}}省</span><span>{{address.city}}市</span><span v-show="address.district">{{address.district}}区</span><span>{{address.details}}</span>
                         </div>
@@ -122,7 +122,7 @@
                 <li class="partli">
                     <div class="title">快递</div>
                     <div class="express">
-                        <span>顺丰 惠农云仓专享9折优惠</span> <span>{{totalProductWeight+totalPart1Weight+totalPartWeight}}kg</span>                        <span>￥{{expressPrice}} 元</span>
+                        <span>顺丰 惠农云仓专享9折优惠</span> <span>{{totalProductWeight+totalPart1Weight+totalPartWeight}}kg</span><span>￥{{expressPrice}} 元</span>
                     </div>
                 </li>
                 <li class="partli">

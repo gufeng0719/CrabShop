@@ -18,19 +18,24 @@
   <link rel="stylesheet" type="text/css" href="style/font-awesome.min.css" />
 </head>
 
-<body style="width:98%;">
-  <div id="app">
+<body>
     <!--top开始图片-->
     <div class="banner">
-      <img src="images/header.png">
+        <img src="images/header.png">
     </div>
-    <!-- /top图片-->
+  <div id="app"  style="width:98%;">
+        <!-- /top图片-->
     <div class="main">
       <div class="title">
-        今日蟹价<a class="btn" href="shop.html">立即购买</a>
-      </div>
-      <div class="priceDate">
-        {{priceDate}}
+          <div class="title_date">
+             <div class="title_date_pic">
+                <div class="mon">{{month}} 月</div>
+                <div class="da">{{date}} 日</div>
+             </div>           
+          </div>
+          <div class="title_font">今日蟹价</div>
+          <div class="title_btn"><a class="btn" href="shop.html">立即购买</a></div>
+          <div class="clr"></div>
       </div>
       <div class="list">
         <header>
@@ -93,28 +98,37 @@
           </tbody>
         </table>
       </div>
-      <div class="title">
-        服务价格表<a href="#" class="link">查看说明</a>
-        <ul>
-          <li>
-            <p class="fl">电商代发</p>
-            <p class="fr">5元/斤</p>
-          </li>
-          <li>
-            <p class="fl">大宗批发自提</p>
-            <p class="fr">3-10元/斤</p>
-          </li>
-        </ul>
+      <div class="services">       
+          <table>
+              <thead>
+                  <tr>
+                      <td colspan="2">
+                          服务价格表
+                      </td>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>电商代发</td>
+                      <td>5元/斤</td>
+                  </tr>
+                  <tr>
+                      <td>大宗批发自提</td>
+                      <td>3元/斤</td>
+                  </tr>
+                  <tr>
+                      <td colspan="2"><a href="#" class="link">查看说明</a></td>
+                  </tr>
+              </tbody>
+          </table>
       </div>
-      <div class="clear">
-      </div>
-      <div class="title">
-        顺丰惠农云仓专享优惠
-        <br />
-        <a class="link2">查看具体报价</a>
+      
+      <div class="sfsd">
+          <div class="sfsd_title">顺丰惠农云仓专享优惠</div>
+          <div class="sfsd_price"><a class="btns">查看具体报价</a></div>       
       </div>
       <div class="list">
-        <header>代发货配件价格</header>
+        <header><span>配件价格</span></header>
         <table>
           <thead>
             <tr>
@@ -134,23 +148,24 @@
           </tbody>
         </table>
       </div>
+      <div class="end"></div>
     </div>
     <footer>
         <div id="indexFooterBox">
           <ul id="indexFooter">
-            <li><a href="index.html"><i class="fa fa-file-text-o fa-2x"></i>我的订单</a></li>
-            <li><a href="huodong.html"><i class="fa fa-folder-open-o fa-2x"></i>我的返利</a></li>
-            <li><a href="shop.html"><i class="fa fa-cart-plus fa-2x"></i>立即购买</a></li>
+            <li class="bor"><a href="myOrder.html"><i class="fa fa-file-text-o fa-2x"></i><span>我的订单</span></a></li>
+            <li  class="bor"><a href="huodong.html"><i class="fa fa-folder-open-o fa-2x"></i><span>我的返利</span></a></li>
+            <li><a href="shop.html"><i class="fa fa-cart-plus fa-2x"></i><span>立即购买</span></a></li>
           </ul>
         </div>
       </footer>
-    
+     
   </div>
-  <script src="scripts/jquery.min.js"></script>
-  <script src="scripts/vue.js"></script>
-  <script src="scripts/vue-resource.js"></script>
-  <script src="pulgins/swiper.min.js"></script>
-  <script src="service/index.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/vue.js"></script>
+    <script src="scripts/vue-resource.js"></script>
+    <script src="pulgins/swiper.min.js"></script>
+    <script src="service/index.js"></script>
 
 </body>
 

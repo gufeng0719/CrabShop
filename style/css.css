@@ -17,14 +17,14 @@ a {
 
 body {
     width: 100%;
-    max-width: 640px;
+    max-width: 640px;min-width: 320px;
     margin: 0 auto;
-    background: #eeeeee;
+    background: #eeeeee url(../images/bg.png);
     top: 0px;
     bottom: 0px;
     left: 0px;
-    right: 0px;
-    min-width: 320px;
+    right: 0px;  
+
 }
 
 .banner {
@@ -160,4 +160,7 @@ body {
     max-height: 100%;
     width: auto;
     height: 64px;
+}
+.clr {
+   clear:both;
 }
