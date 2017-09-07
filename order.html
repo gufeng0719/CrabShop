@@ -17,7 +17,7 @@
 </head>
 
 <body style="background-color:#eee;">
-    <div id="app">
+    <div id="app" v-cloak>
         <!--top开始图片-->
         <div class="banner">
             <img src="images/header.png">
@@ -29,6 +29,24 @@
                 提交订单
             </div>
             <ul class="order-list">
+                <li>
+                    <div class="title">收货信息</div>
+                </li>
+                <li v-if="!blReceive">
+                    <div>
+                        <a href="address.html"><i class="fa fa-plus-square-o fa-3x"></i><span style="font-size:2rem;font-weight:bold; position:relative;left:10%;top:-10px;">填写收货地址</span></a>
+                    </div>
+                </li>
+                <li v-else>
+                    <div class="blReceive">
+                        <div class="info">
+                            <span>{{address.province}}省</span><span>{{address.city}}市</span><span v-show="address.district">{{address.district}}区</span><span>{{address.details}}</span>
+                        </div>
+                        <div class="person">
+                            <span>{{address.consignee}}</span><span>{{address.consex}}</span><span>{{address.telphone}}</span>
+                        </div>
+                    </div>
+                </li>
                 <li>
                     <div class="title">发货信息</div>
                 </li>
@@ -47,24 +65,6 @@
                             <label for="">联系方式</label>
                         </div>
                         <input type="text" v-model="send.telphone" placeholder="请输入发货人联系方式">
-                    </div>
-                </li>
-                <li>
-                    <div class="title">收货信息</div>
-                </li>
-                <li v-if="!blReceive">
-                    <div>
-                        <a href="address.html"><i class="fa fa-plus-square-o fa-3x"></i><span style="font-size:2rem;font-weight:bold; position:relative;left:10%;top:-10px;">填写收货地址</span></a>
-                    </div>
-                </li>
-                <li v-else>
-                    <div class="blReceive">
-                        <div class="info">
-                            <span>{{address.province}}省</span><span>{{address.city}}市</span><span v-show="address.district">{{address.district}}区</span><span>{{address.details}}</span>
-                        </div>
-                        <div class="person">
-                            <span>{{address.consignee}}</span><span>{{address.consex}}</span><span>{{address.telphone}}</span>
-                        </div>
                     </div>
                 </li>
                 <li>
@@ -122,7 +122,8 @@
                 <li class="partli">
                     <div class="title">快递</div>
                     <div class="express">
-                        <span>顺丰 惠农云仓专享9折优惠</span> <span>{{totalProductWeight+totalPart1Weight+totalPartWeight}}kg</span><span>￥{{expressPrice}} 元</span>
+                        <span>顺丰 惠农云仓专享9折优惠</span> <span>{{(totalProductWeight+totalPart1Weight+totalPartWeight).toFixed(2)}}kg</span><span>￥{{expressPrice}} 元</span>
+                        <span>顺丰 惠农云仓专享9折优惠(优惠后)</span> <span>{{(totalProductWeight+totalPart1Weight+totalPartWeight).toFixed(2)}}kg</span><span>￥{{expressPrice*0.9}} 元</span>
                     </div>
                 </li>
                 <li class="partli">

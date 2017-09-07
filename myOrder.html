@@ -11,8 +11,9 @@
     <meta name="full-screen" content="yes">
     <meta name="x5-fullscreen" content="true">
     <title>我的订单</title>
+    <link href="style/index.css" text="text/css" rel="stylesheet" />
     <link href="style/style.css" type="text/css" rel="stylesheet" />
-    <link href="style/mescroll.min.css" text="text/css" rel="stylesheet">
+    <link href="style/mescroll.min.css" text="text/css" rel="stylesheet" />    
     <link rel="stylesheet" type="text/css" href="style/font-awesome.min.css" />
     <style>
         * {
@@ -92,13 +93,13 @@
     <div id="app">
         <!-- 订单列表-->
         <div class="content-list">
-            <div class="title">
+            <div class="title" style="height:auto;">
                 我的订单
             </div>
             <div id="mescroll" class="mescroll">
-                <ul id="dataList">
+                <ul id="dataList" v-cloak>
                     <li v-for="(order,index) in orderList">
-                        <div class="ordernumber">订单号: {{order.OrderNumber}}</div>
+                        <div class="ordernumber"><a :href="'orderInfo.html?orderid='+order.OrderId">订单号: {{order.OrderNumber}}</a></div>
                         <div class="orderInfo">
                             <span>下单时间:{{order.OrderDate}}</span><span v-if="order.OrderDelivery!=''">运单号: {{order.OrderDelivery}}</span>
                         </div>
@@ -114,6 +115,15 @@
             </div>
         </div>
         <!-- -->
+        <footer>
+                <div id="indexFooterBox">
+                  <ul id="indexFooter">
+                    <li class="bor"><a href="myOrder.html"><i class="fa fa-file-text-o fa-2x"></i><span>我的订单</span></a></li>
+                    <li  class="bor"><a href="huodong.html"><i class="fa fa-folder-open-o fa-2x"></i><span>我的返利</span></a></li>
+                    <li><a href="shop.html"><i class="fa fa-cart-plus fa-2x"></i><span>立即购买</span></a></li>
+                  </ul>
+                </div>
+              </footer>
     </div>
     <script src="scripts/jquery.min.js" type="text/javascript"></script>
     <script src="scripts/mescroll.min.js" type="text/javascript"></script>

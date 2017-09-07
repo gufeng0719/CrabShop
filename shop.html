@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -17,13 +17,13 @@
 </head>
 
 <body>
-
-    <div id="app">
-        <!--top开始图片-->
-        <div class="banner">
-            <img src="images/header.png">
-        </div>
-        <!-- /top图片-->
+    <!--top开始图片-->
+    <div class="banner">
+        <img src="images/header.png">
+    </div>
+    <!-- /top图片-->
+    <div id="app" v-cloak>
+        <div class="shop_top"><a href="#">高淳大闸蟹线电商线上服务市场资费说明</a></div>
         <div class="content-list" id="outer">
             <div class="list-left" id="tab">
                 <li :class="{current:menuIndex==0}" @click="menuIndex=0">大宗采购公蟹</li>
@@ -37,10 +37,9 @@
                     <li v-for="(product,index) in proList1">
                         <img :src="imgBaseUrl+product.ProductImage" class="list-pic" />
                         <div class="shop-list-mid">
-                            <div class="tit">{{product.ProductName}}</div>
-                            <div class="weight">{{product.ProductWeight}} kg</div>
-                            <div class="total">月售 {{product.TotalNumber}} 只</div>
-                            <div class="price"><span>￥{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}元/只</span>|<span>￥{{product.ProductPrice}}元/斤</span></div>
+                            <div class="tit">{{product.ProductName}} / {{product.ProductWeight}} kg</div>        
+                            <div class="total">月售 <span>{{product.TotalNumber}}</span> 只</div>
+                            <div class="price">￥<span>{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}</span>只 / ￥<span>{{product.ProductPrice}}</span>斤</div>
                             <!-- <div class="am-gallery-desc">{{product.OperationDate}}</div> -->
                         </div>
                         <div class="list-cart">
@@ -56,12 +55,9 @@
                     <li v-for="(product,index) in proList2">
                         <img :src="imgBaseUrl+product.ProductImage" class="list-pic" />
                         <div class="shop-list-mid">
-                            <div class="tit">{{product.ProductName}}</div>
-                            <div class="weight">{{product.ProductWeight}} kg</div>
-                            <div class="total">月售 {{product.TotalNumber}} 只</div>
-                            <div class="price"><span>￥{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}元/只</span>|<span>￥{{product.ProductPrice}}元/斤</span></div>
-                            <!-- <div class="am-gallery-desc">{{product.OperationDate}}</div> -->
-                        </div>
+                            <div class="tit">{{product.ProductName}} / {{product.ProductWeight}} kg</div>             
+                            <div class="total">月售 <span>{{product.TotalNumber}}</span> 只</div>
+                            <div class="price">￥<span>{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}</span>只 / ￥<span>{{product.ProductPrice}}</span>斤</div>                        </div>
                         <div class="list-cart">
                             <div class="d-stock ">
                                 <a class="decrease" v-if="product.number>0" @click="removeOutCart(product)">-</a>
@@ -76,12 +72,9 @@
                     <li v-for="(product,index) in proList3">
                         <img :src="imgBaseUrl+product.ProductImage" class="list-pic" />
                         <div class="shop-list-mid">
-                            <div class="tit">{{product.ProductName}}</div>
-                            <div class="weight">{{product.ProductWeight}} kg</div>
-                            <div class="total">月售 {{product.TotalNumber}} 只</div>
-                            <div class="price"><span>￥{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}元/只</span>|<span>￥{{product.ProductPrice}}元/斤</span></div>
-                            <!-- <div class="am-gallery-desc">{{product.OperationDate}}</div> -->
-                        </div>
+                            <div class="tit">{{product.ProductName}} / {{product.ProductWeight}} kg</div>                   
+                            <div class="total">月售 <span>{{product.TotalNumber}}</span> 只</div>
+                            <div class="price">￥<span>{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}</span>只 / ￥<span>{{product.ProductPrice}}</span>斤</div>                        </div>
                         <div class="list-cart">
                             <div class="d-stock ">
                                 <a class="decrease" v-if="product.number>0" @click="removeOutCart(product)">-</a>
@@ -95,12 +88,9 @@
                     <li v-for="(product,index) in proList4">
                         <img :src="imgBaseUrl+product.ProductImage" class="list-pic" />
                         <div class="shop-list-mid">
-                            <div class="tit">{{product.ProductName}}</div>
-                            <div class="weight">{{product.ProductWeight}} kg</div>
-                            <div class="total">月售 {{product.TotalNumber}} 只</div>
-                            <div class="price"><span>￥{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}元/只</span>|<span>￥{{product.ProductPrice}}元/斤</span></div>
-                            <!-- <div class="am-gallery-desc">{{product.OperationDate}}</div> -->
-                        </div>
+                            <div class="tit">{{product.ProductName}} / {{product.ProductWeight}} kg</div>                   
+                            <div class="total">月售 <span>{{product.TotalNumber}}</span> 只</div>
+                            <div class="price">￥<span>{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}</span>只 / ￥<span>{{product.ProductPrice}}</span>斤</div>                        </div>
                         <div class="list-cart">
                             <div class="d-stock ">
                                 <a class="decrease" v-if="product.number>0" @click="removeOutCart(product)">-</a>
@@ -112,12 +102,12 @@
                 </ul>
                 <ul class="list-pro" v-if="menuIndex==4">
                     <li v-for="(part,index) in partList">
-                        <!-- <img :src="imgBaseUrl+product.ProductImage" class="list-pic" /> -->
+                        <img src="../images/m4.gif" class="list-pic" />
                         <div class="shop-list-mid">
-                            <div class="tit">{{part.PartName}}</div>
-                            <div class="weight">{{part.PartWeight}} kg</div>
-                            <div class="price"><span>￥{{part.PartPrice}}元/件</span></div>
-                            <div class="am-gallery-desc">{{part.OperationDate}}</div>
+                            <div class="tit">{{part.PartName}} / {{part.PartWeight}} kg</div>
+                
+                            <div class="price1">￥<span>{{part.PartPrice}}</span>件</div>
+                            
                         </div>
                         <div class="list-cart1">
                             <div class="d-stock ">
@@ -131,14 +121,15 @@
         <!--底部-->
         <div class="fix-bot">
             <div class="fix-bot-cart" style="float:left;">
-                <i class="fa fa-cart-arrow-down fa-3x" @click="showCart()"></i>
+                <i v-if="totalNumber<1" class="fa fa-cart-arrow-down fa-mx"  @click="showCart()"></i>
+                <i v-if="totalNumber>0" style="background-color:#ff7200" class="fa fa-cart-arrow-down fa-mx" @click="showCart()"></i>
                 <p>已选 {{totalNumber}} 只</p>
-                <p>共计 <span style="font-size:1.5rem;font-weight:bolder;">￥{{totalPrice}}</span> 元</p>
+                <p>共计￥ <span style="font-size:1.5rem;font-weight:bolder;">{{totalPrice}}</span> 元</p>
             </div>
             <div class="fix-bot-jsk">
-                <span v-if="totalNumber<6 ">还需  <i style="font-size:2rem;color:coral;font-weight:bolder;">{{6-totalNumber}}</i> 只即可下单</span>
-                <a v-else-if="totalNumber>=6 && totalNumber<=12 " href="order.html" class="list-jsk">去结算</a>
-                <span v-else>每单最多可购买<i style="font-size:2rem;color:coral;font-weight:bolder">12</i>只</span>
+                <span v-if="totalNumber<6 ">还需  <i style="font-size:2rem;color:#ff7200;font-weight:bolder;">{{6-totalNumber}}</i> 只即可下单</span>
+                <a v-else-if="totalNumber>=6 && totalNumber<=12 " href="order.html">去结算</a>
+                <span v-else>每单最多可购买 <i style="font-size:2rem;color:#ff7200;font-weight:bolder">12</i> 只</span>
             </div>
         </div>
 
@@ -148,8 +139,8 @@
                 <div class="am-modal-bd">
                         <header data-am-widget="header" class="am-header am-header-default sq-head ">
                                 <div class="am-header-right am-header-nav">
-                                   <button type="button" class="am-btn am-btn-warning" id="doc-confirm-toggle" style="background: none; border: 0; font-size: 24px;" @click="clearCart()">
-                                      <i class="am-header-icon am-icon-trash"></i>
+                                   <button type="button" class="am-btn am-btn-warning" id="doc-confirm-toggle" style="background: none; border: 0; font-size: 1.2rem;" @click="clearCart()">
+                                      <i class="am-header-icon am-icon-trash"> 清空购物车</i>
                                    </button>
                                  </div>
                             </header>
@@ -166,8 +157,8 @@
                                      </div>
                                  </li>
                                  <li>
-                                        <span style="width: 20%;  float: left; height: 30px; line-height: 30px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;font-weight:bold;">必选配件</span>
-                                        <span style="width:63%;float:left; height: 30px; line-height: 30px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><em v-for="(car,index) in partList1">{{car.PartName}} </em></span>
+                                        <span class="span_name">必选配件</span>
+                                        <span class="span_con"><em v-for="(car,index) in partList1">{{car.PartName}} </em></span>
                                         <em class="price">{{cartPrice}}</em>
                                         <!-- <div class="d-stock ">
                                                <div class="d-stock ">

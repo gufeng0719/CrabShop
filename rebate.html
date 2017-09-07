@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="screen-orientation" content="portrait" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>高淳大闸蟹</title>
+    <link href="style/index.css" text="text/css" rel="stylesheet" />
+    <link href="style/amazeui.min.css" type="text/css" rel="stylesheet" />
+    <link href="style/style.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="style/font-awesome.min.css" />
+    <style>
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+
+
+        .project-screening {
+            background: url(../images/s_select_bg_03.png) repeat-x;
+            width: 100%;
+            margin: 50px auto 0 auto;
+            position: relative;
+            height: 5px;
+        }
+
+        .screening-select {
+            background: url(../images/s_select_bg_06.png) no-repeat;
+            width: 8px;
+            height: 9px;
+            position: absolute;
+            top: -2px;
+            cursor: pointer
+        }
+
+        .select-1 {
+            left: 2px;
+        }
+
+        .select-2 {
+            left: 10%;
+        }
+
+        .select-3 {
+            left: 30%;
+        }
+
+        .select-4 {
+            left: 60%;
+        }
+
+        .select-5 {
+            left: 95%;
+        }
+
+        .project-screening-yellow {
+            background: url(../images/s_select_bg_04.png) no-repeat;
+            height: 9px;
+            overflow: hidden;
+            width: 0;
+            border-radius: 10px;
+        }
+
+        .screening-select a {
+            position: absolute;
+            left: -23px;
+            top: -27px;
+            white-space: nowrap;
+            margin: 0;
+            padding: 0;
+            line-height: none;
+            width: 56px;
+            text-align: center;
+            line-height: 16px;
+            font-size: 12px;
+        }
+
+        .screening-select a:hover {
+            color: #ff8b24;
+        }
+
+        .project-screening .select-1-yellow {
+            background: url(Images/s_select_bg_17.png) no-repeat;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            left: -7px;
+            bottom: -8px;
+            z-index: 3
+        }
+
+        .project-screening .current a {
+            background: url(Images/s_select_bg_09.png) top center no-repeat;
+            color: #fff;
+            height: 21px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--top开始图片-->
+    <div class="banner">
+        <img src="images/header.png">
+    </div>
+    <!-- /top图片-->
+    <div id="app" v-cloak>
+        <div class="shop_top"><a href="#">采购返点规则说明</a></div>
+        <div class="content-list" id="outer">
+            <div class="project-screening">
+                <div class="project-screening-yellow"></div>
+                <div class="select-1-yellow"></div>
+                <div class="screening-select select-1 current"><a>0</a></div>
+                <div class="screening-select select-2" selval="4,6"><a>20</a></div>
+                <div class="screening-select select-3" selval="6,7"><a>60</a></div>
+                <div class="screening-select select-4" selval="7,10"><a>200</a></div>
+                <div class="screening-select select-5" selval="10,-1"><a>2000以上</a></div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="scripts/amazeui.min.js" type="text/javascript"></script>
+    <script src="scripts/vue.js"></script>
+    <script src="scripts/lodash.min.js" type="text/javascript"></script>
+    <script src="service/rebate.js"></script>
+    <script type="text/javascript">
+        $(".screening-select").click(function () {
+            var _parent = $(this);
+            var _postX = _parent.position().left;
+            _parent.siblings(".screening-select").removeClass("current");
+            _parent.addClass("current");
+            _parent.siblings(".project-screening-yellow").animate({ width: _postX }, 300);
+            _parent.siblings(".select-1-yellow").animate({ left: _postX - 5 }, 300);
+            _parent.prevAll(".screening-select").css("background", "none");
+            _parent.nextAll().removeAttr("style");
+        });
+    </script>
+</body>
+
+</html>

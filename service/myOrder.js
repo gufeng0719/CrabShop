@@ -66,7 +66,7 @@ var vm = new Vue({
 /*联网加载列表数据*/
 function getListDataFromNet(pageNum, pageSize, successCallback, errorCallback) {
     //分页加载数据
-    $.getJSON('http://localhost:56703/api/WebApi/GetCsOrderList', {
+    $.getJSON('http://test.osintell.cn/api/WebApi/GetCsOrderList', {
         openId: getStore('openid'),//openid
         num: pageNum,//页码
         size: pageSize //每页长度

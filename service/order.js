@@ -222,7 +222,7 @@ var vm = new Vue({
         //商城服务费
         shopPrice: function () {
             let price = 0;
-            price = this.totalProductWeight * 20 * 2;//20一斤
+            price = this.totalProductWeight * 5 * 2;//5元/斤
             return Number(price.toFixed(2));
         },
         //返利金额
