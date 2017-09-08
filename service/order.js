@@ -35,7 +35,7 @@ var vm = new Vue({
         blChoseBalance: true,//是否优先使用余额
         useBalance: 0,//已经使用余额
         blHaveSend: false,//是否有发件人信息,
-        blReceive:false,//是否有收件人信息
+        blReceive: false,//是否有收件人信息
         prepayId: '',//预支付编号
         orderId: 0,//订单编号,
         finishPay: false,//是否完成支付
@@ -71,11 +71,11 @@ var vm = new Vue({
             if (that.openId) {
                 //查看本地是否存在收件地址信息
                 let addressinfo = getStore("addressinfo");
-               // console.info(addressinfo);
+                // console.info(addressinfo);
                 if (addressinfo) {//存在
                     console.info("存在地址信息");
-                    that.blReceive=true;
-                    that.address =JSON.parse(addressinfo)[0];
+                    that.blReceive = true;
+                    that.address = JSON.parse(addressinfo)[0];
                 } else {
                     $.ajax({
                         type: 'get',
@@ -88,7 +88,7 @@ var vm = new Vue({
                                 window.localStorage.setItem('userid', msg.user.UserId);
                                 //是否存在默认地址:
                                 if (msg.addressList.length > 0) {//存在地址
-                                    that.blReceive=true;
+                                    that.blReceive = true;
                                     let addressArr = msg.addressList[0].Details.split('&');
                                     that.address.firstPrice = msg.firstPrice;
                                     that.address.fllowPrice = msg.fllowPrice;
@@ -101,7 +101,7 @@ var vm = new Vue({
                                     that.address.details = addressArr[3];
                                 }
                             } else {
-                                that.blReceive=false;
+                                that.blReceive = false;
                                 //弹出注册用户框
                                 var $promt = $('#myprompt').modal({
                                     relatedTarget: this,
@@ -196,7 +196,7 @@ var vm = new Vue({
             }
             return Number(weight.toFixed(2));
         },
-        //购买可选配件价格
+        //购买可选配件总价
         totalPart1Price: function () {
             let price = 0;
             if (this.partNumList != null) {
@@ -214,15 +214,37 @@ var vm = new Vue({
         //快递费用
         expressPrice: function () {
             let price = 0;
-            let totalWeight = Math.ceil((this.totalProductWeight + this.totalPartWeight + this.totalPart1Weight) / 0.5) * 0.5;
-            price = this.address.firstPrice + (totalWeight - 1) * this.address.fllowPrice;
+            //  let totalWeight =sendweight;
+            price = this.address.firstPrice + (this.sendweight - 1) * this.address.fllowPrice;
             return Number(price.toFixed(2));
-
+        },
+        //快递优惠后费用
+        expressFinalPrice: function () {
+            let price = this.expressPrice * 0.9;
+            return Number(price.toFixed(2));
         },
         //商城服务费
         shopPrice: function () {
             let price = 0;
-            price = this.totalProductWeight * 5 * 2;//5元/斤
+            //螃蟹总重量
+            let totalProWeight = this.totalProductWeight * this.totalNumber;//每单重量乘以份数
+            //电商服务费方案：每单0-10斤 收20元/斤
+            //                 10-20斤 收15元/斤
+            //                 20-40斤 收10元/斤
+            //                40-100斤 收7元/斤
+            //               大于100斤 收5元/斤
+            //重量单位为千克，所以需要乘以2
+            if (totalProWeight <= 5) {
+                price = totalProWeight * 20 * 2;
+            } else if (totalProWeight > 5 && totalProWeight <= 10) {
+                price = totalProWeight * 15 * 2;
+            } else if (totalProWeight > 10 && totalProWeight <= 20) {
+                price = totalProWeight * 10 * 2;
+            } else if (totalProWeight > 20 && totalProWeight <= 50) {
+                price = totalProWeight * 7 * 2;
+            } else {
+                price = totalProWeight * 5 * 2;
+            }
             return Number(price.toFixed(2));
         },
         //返利金额
@@ -246,7 +268,8 @@ var vm = new Vue({
         },
         //总金额
         totalmoney: function () {
-            let totalPrice = (this.totalProductPrice + this.totalPart1Price + this.totalPartPrice + this.expressPrice + this.shopPrice) * this.totalNumber
+            //购买螃蟹金额+配件金额+快递费(带有份数)+服务费(带有份数)
+            let totalPrice = (this.totalProductPrice + this.totalPart1Price + this.totalPartPrice) * this.totalNumber + this.expressPrice + this.shopPrice
             return Number(totalPrice.toFixed(2));
         },
         //最终付款费用
@@ -314,7 +337,7 @@ function SubmitPlay() {
                 totalmoney: vm.totalmoney,//总金额
                 balance: vm.balance,//优惠金额
                 finalPrice: vm.finalPrice,//实际支付金额
-                orderaddress:'$'+vm.address.consignee+'('+ vm.address.consex+')$$'+vm.address.telphone+'$'+ vm.address.province  +' '+ vm.address.city + ' ' + vm.address.district + ' ' + vm.address.details,//订单地址
+                orderaddress: '$' + vm.address.consignee + '(' + vm.address.consex + ')$$' + vm.address.telphone + '$' + vm.address.province + ' ' + vm.address.city + ' ' + vm.address.district + ' ' + vm.address.details,//订单地址
                 sendaddress: vm.send.person + '$' + vm.send.telphone,//寄件人地址
                 totalnumber: vm.totalNumber,//份数
                 totalweight: vm.totalweight,//实际重量
@@ -324,8 +347,8 @@ function SubmitPlay() {
                 partNList: vm.partNumList,//可选配件列表
                 balancePrice: vm.balancePrice,//返利金额
                 usebalance: vm.useBalance,//已使用余额
-                expressmoney:vm.expressPrice,//运费
-                servicemoney:vm.shopPrice//商城服务费
+                expressmoney: vm.expressFinalPrice,//运费
+                servicemoney: vm.shopPrice//商城服务费
             },
             success: function (d) {
                 if (d.status) {
@@ -335,7 +358,7 @@ function SubmitPlay() {
                         type: 'post',
                         data: {
                             body: '购买大闸蟹支付',
-                            orderNumber:  (new Date() - new Date("1970"))+d.orderid+'',
+                            orderNumber: (new Date() - new Date("1970")) + d.orderid + '',
                             total: 1 + '',
                             notify: 'http://dzx.osintell.cn/myOrder.html',
                             openId: vm.openId
@@ -345,19 +368,19 @@ function SubmitPlay() {
                             console.info(obj);
                             if (obj.code === 1) {
                                 vm.prepayId = obj.data;
-                                $.post('http://test.osintell.cn/api/WebApi/UpdatePrepaymentId',{ OrderId: vm.orderId,PrepaymentId: obj.data },function(msg){
-                                    if(msg&&msg.status){
-                                        Pay(); 
+                                $.post('http://test.osintell.cn/api/WebApi/UpdatePrepaymentId', { OrderId: vm.orderId, PrepaymentId: obj.data }, function (msg) {
+                                    if (msg && msg.status) {
+                                        Pay();
                                     }
                                 });
-                                
+
                             } else {
                                 console.log(d.responseText)
                                 alert(obj.msg)
                             }
                         }
                     });
-                   
+
                 } else {
 
                 }
@@ -392,15 +415,15 @@ function Pay() {
                         , function (res) {
                             //console.info(res);
                             //console.debug(res);  
-                                                     
+
                             //var result =JSON.parse(res.err_msg);
                             WeixinJSBridge.log(res.err_msg);
-                            if (res.err_msg=="get_brand_wcpay_request:ok") {
+                            if (res.err_msg == "get_brand_wcpay_request:ok") {
                                 //alert("支付成功");
-                                vm.finishPay = true;                                
-                                $.post('http://test.osintell.cn/api/WebApi/UpdateOrderState',{ OrderId: vm.orderId,OrderState: 2 },function(msg){
-                                    if(msg&&msg.status){
-                                          window.location.href="myOrder.html";
+                                vm.finishPay = true;
+                                $.post('http://test.osintell.cn/api/WebApi/UpdateOrderState', { OrderId: vm.orderId, OrderState: 2 }, function (msg) {
+                                    if (msg && msg.status) {
+                                        window.location.href = "myOrder.html";
                                     }
                                 });
                             }

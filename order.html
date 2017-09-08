@@ -122,14 +122,14 @@
                 <li class="partli">
                     <div class="title">快递</div>
                     <div class="express">
-                        <span>顺丰 惠农云仓专享9折优惠</span> <span>{{(totalProductWeight+totalPart1Weight+totalPartWeight).toFixed(2)}}kg</span><span>￥{{expressPrice}} 元</span>
-                        <span>顺丰 惠农云仓专享9折优惠(优惠后)</span> <span>{{(totalProductWeight+totalPart1Weight+totalPartWeight).toFixed(2)}}kg</span><span>￥{{expressPrice*0.9}} 元</span>
+                        <span>顺丰 惠农云仓专享9折优惠</span> <span>{{totalweight}}kg</span><span>￥{{expressPrice}} 元</span>
+                        <span>顺丰 惠农云仓专享9折优惠(优惠后)</span> <span>{{totalweight}}kg</span><span>￥{{expressFinalPrice}} 元</span>
                     </div>
                 </li>
                 <li class="partli">
                     <div class="title">商城服务费</div>
                     <div class="service">
-                        <span> 服务费</span> <span>{{totalProductWeight}}kg</span> <span> ￥{{shopPrice}} 元</span>
+                        <span> 服务费</span> <span>{{totalProductWeight*totalNumber}}kg</span> <span> ￥{{shopPrice}} 元</span>
                     </div>
                 </li>
                 <li class="partli">
