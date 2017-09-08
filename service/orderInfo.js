@@ -22,7 +22,7 @@ var vm = new Vue({
             if (url.indexOf("?") !== -1) {
                 let str = url.substr(1);
                 let orderid = str.split('=')[1];
-                $.getJSON('http://localhost:56703/api/WebApi/GetOrderInfoByOrderId/'+orderid, function (msg) {
+                $.getJSON('http://dzx.osintell.cn/api/WebApi/GetOrderInfoByOrderId/'+orderid, function (msg) {
                     //console.info(msg);
                     that.order = msg.order;
                     that.crabList = msg.crabList;
