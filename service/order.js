@@ -75,6 +75,7 @@ var vm = new Vue({
                 if (addressinfo) {//存在
                     console.info("存在地址信息");
                     that.blReceive = true;
+                    that.user.UserId =getStore("userid");
                     that.address = JSON.parse(addressinfo)[0];
                 } else {
                     $.ajax({

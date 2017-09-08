@@ -30,7 +30,7 @@ function submitClick(){
             type:'post',
             url:'http://test.osintell.cn/api/WebApi/AddAddress',
             data:{
-                UserId:window.localStorage.getItem('userid'),
+                UserId:getStore('userid'),
                 Consignee:vm.consignee,
                 Details:vm.address.province+"&"+vm.address.city+"&"+vm.address.district+"&"+vm.details,
                 TelPhone:vm.telphone,
