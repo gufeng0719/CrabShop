@@ -39,65 +39,82 @@
                         <div class="shop-list-mid">
                             <div class="tit">{{product.ProductName}} / {{product.ProductWeight}} kg</div>        
                             <div class="total">月售 <span>{{product.TotalNumber}}</span> 只</div>
-                            <div class="price">￥<span>{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}</span>只 / ￥<span>{{product.ProductPrice}}</span>斤</div>
-                            <!-- <div class="am-gallery-desc">{{product.OperationDate}}</div> -->
+                            <div class="price">
+                            ￥ <span>{{product.ProductPrice}}</span> 元/斤 - 
+                            ￥ <span>{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}</span> 元/只
+                            </div>
+                             <!-- <div class="am-gallery-desc">{{product.OperationDate}}</div> -->
                         </div>
                         <div class="list-cart">
                             <div class="d-stock ">
                                 <a class="decrease" v-if="product.number>0" @click="removeOutCart(product)">-</a>
-                                <input v-if="product.number>0" :id="'num'+product.ProductId" readonly="" class="text_box" type="text" :value="product.number">
+                                <input v-if="product.number>0" id="'num'+product.ProductId" readonly="" class="text_box" type="text" :value="product.number">
                                 <a class="increase" @click="addToCart(product)">+</a>
                             </div>
-                        </div>
-                    </li>
+                            </div>
+</li>
                 </ul>
                 <ul class="list-pro" v-if="menuIndex==1">
                     <li v-for="(product,index) in proList2">
                         <img :src="imgBaseUrl+product.ProductImage" class="list-pic" />
                         <div class="shop-list-mid">
-                            <div class="tit">{{product.ProductName}} / {{product.ProductWeight}} kg</div>             
+                            <div class="tit">{{product.ProductName}} / {{product.ProductWeight}} kg</div>
                             <div class="total">月售 <span>{{product.TotalNumber}}</span> 只</div>
-                            <div class="price">￥<span>{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}</span>只 / ￥<span>{{product.ProductPrice}}</span>斤</div>                        </div>
-                        <div class="list-cart">
-                            <div class="d-stock ">
-                                <a class="decrease" v-if="product.number>0" @click="removeOutCart(product)">-</a>
-                                <input v-if="product.number>0" :id="'num'+product.ProductId" readonly="" class="text_box" type="text" :value="product.number">
-                                <a class="increase" @click="addToCart(product)">+</a>
+                            <div class="price">
+                                ￥ <span>{{product.ProductPrice}}</span> 元/斤 -
+                                ￥ <span>{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}</span> 元/只
+                            </div>
+                        </div>
+                            <div class="list-cart">
+                                <div class="d-stock ">
+                                    <a class="decrease" v-if="product.number>0" @click="removeOutCart(product)">-</a>
+                                    <input v-if="product.number>0" id="'num'+product.ProductId" readonly="" class="text_box" type="text" :value="product.number">
+                                    <a class="increase" @click="addToCart(product)">+</a>
+                                </div>
                             </div>
 
-                        </div>
+                       
                     </li>
                 </ul>
                 <ul class="list-pro" v-if="menuIndex==2">
                     <li v-for="(product,index) in proList3">
                         <img :src="imgBaseUrl+product.ProductImage" class="list-pic" />
                         <div class="shop-list-mid">
-                            <div class="tit">{{product.ProductName}} / {{product.ProductWeight}} kg</div>                   
+                            <div class="tit">{{product.ProductName}} / {{product.ProductWeight}} kg</div>
                             <div class="total">月售 <span>{{product.TotalNumber}}</span> 只</div>
-                            <div class="price">￥<span>{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}</span>只 / ￥<span>{{product.ProductPrice}}</span>斤</div>                        </div>
-                        <div class="list-cart">
-                            <div class="d-stock ">
-                                <a class="decrease" v-if="product.number>0" @click="removeOutCart(product)">-</a>
-                                <input v-if="product.number>0" :id="'num'+product.ProductId" readonly="" class="text_box" type="text" :value="product.number">
-                                <a class="increase" @click="addToCart(product)">+</a>
+                            <div class="price">
+                                ￥ <span>{{product.ProductPrice}}</span> 元/斤 -
+                                ￥ <span>{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}</span> 元/只
                             </div>
-                        </div>
+                        </div>                    
+                             <div class="list-cart">
+                                <div class="d-stock ">
+                                    <a class="decrease" v-if="product.number>0" @click="removeOutCart(product)">-</a>
+                                    <input v-if="product.number>0" :id="'num'+product.ProductId" readonly="" class="text_box" type="text" :value="product.number">
+                                    <a class="increase" @click="addToCart(product)">+</a>
+                                </div>
+                           </div>
                     </li>
                 </ul>
                 <ul class="list-pro" v-if="menuIndex==3">
                     <li v-for="(product,index) in proList4">
                         <img :src="imgBaseUrl+product.ProductImage" class="list-pic" />
                         <div class="shop-list-mid">
-                            <div class="tit">{{product.ProductName}} / {{product.ProductWeight}} kg</div>                   
+                            <div class="tit">{{product.ProductName}} / {{product.ProductWeight}} kg</div>
                             <div class="total">月售 <span>{{product.TotalNumber}}</span> 只</div>
-                            <div class="price">￥<span>{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}</span>只 / ￥<span>{{product.ProductPrice}}</span>斤</div>                        </div>
-                        <div class="list-cart">
-                            <div class="d-stock ">
-                                <a class="decrease" v-if="product.number>0" @click="removeOutCart(product)">-</a>
-                                <input v-if="product.number>0" :id="'num'+product.ProductId" readonly="" class="text_box" type="text" :value="product.number">
-                                <a class="increase" @click="addToCart(product)">+</a>
+                            <div class="price">
+                                ￥ <span>{{product.ProductPrice}}</span> 元/斤 -
+                                ￥ <span>{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}</span> 元/只
                             </div>
                         </div>
+                            <div class="list-cart">
+                                <div class="d-stock ">
+                                    <a class="decrease" v-if="product.number>0" @click="removeOutCart(product)">-</a>
+                                    <input v-if="product.number>0" id="'num'+product.ProductId" readonly="" class="text_box" type="text" :value="product.number">
+                                    <a class="increase" @click="addToCart(product)">+</a>
+                                </div>
+                            </div>
+                      
                     </li>
                 </ul>
                 <ul class="list-pro" v-if="menuIndex==4">
@@ -106,7 +123,7 @@
                         <div class="shop-list-mid">
                             <div class="tit">{{part.PartName}} / {{part.PartWeight}} kg</div>
                 
-                            <div class="price1">￥<span>{{part.PartPrice}}</span>件</div>
+                            <div class="price1">￥ <span>{{part.PartPrice}}</span> 件</div>
                             
                         </div>
                         <div class="list-cart1">
@@ -117,6 +134,7 @@
                     </li>
                 </ul>
             </div>
+
         </div>
         <!--底部-->
         <div class="fix-bot">
@@ -124,7 +142,7 @@
                 <i v-if="totalNumber<1" class="fa fa-cart-arrow-down fa-mx"  @click="showCart()"></i>
                 <i v-if="totalNumber>0" style="background-color:#ff7200" class="fa fa-cart-arrow-down fa-mx" @click="showCart()"></i>
                 <p>已选 {{totalNumber}} 只</p>
-                <p>共计￥ <span style="font-size:1.5rem;font-weight:bolder;">{{totalPrice}}</span> 元</p>
+                <p>共计￥ <span style="font-size:1.5rem;font-weight:bolder;">{{(totalPrice).toFixed(2)}}</span> 元</p>
             </div>
             <div class="fix-bot-jsk">
                 <span v-if="totalNumber<6 ">还需  <i style="font-size:2rem;color:#ff7200;font-weight:bolder;">{{6-totalNumber}}</i> 只即可下单</span>
@@ -159,7 +177,7 @@
                                  <li>
                                         <span class="span_name">必选配件</span>
                                         <span class="span_con"><em v-for="(car,index) in partList1">{{car.PartName}} </em></span>
-                                        <em class="price">{{cartPrice}}</em>
+                                        <em class="price">￥{{(cartPrice).toFixed(2)}}</em>
                                         <!-- <div class="d-stock ">
                                                <div class="d-stock ">
                                                       <a class="decrease" v-if="cart.num>0" @click="removeCart(cart)">-</a>

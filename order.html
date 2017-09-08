@@ -24,117 +24,138 @@
         </div>
 
         <!-- /top图片-->
+        <header data-am-widget="header" class="am-header am-header-default sq-head ">
+            
+            <h1 class="am-header-title">
+                <a href="" class="" style="color: #333;">提交订单</a>
+            </h1>
+        </header>
+        <div style="height: 10px;"></div>
         <div class="content-list" id="outer">
-            <div class="title">
-                提交订单
-            </div>
+            
             <ul class="order-list">
                 <li>
-                    <div class="title">收货信息</div>
-                </li>
-                <li v-if="!blReceive">
-                    <div>
+                    <div class="title">收货人信息</div>
+                    <div v-if="!blReceive">
                         <a href="address.html"><i class="fa fa-plus-square-o fa-3x"></i><span style="font-size:2rem;font-weight:bold; position:relative;left:10%;top:-10px;">填写收货地址</span></a>
                     </div>
-                </li>
-                <li v-else>
-                    <div class="blReceive">
-                        <div class="info">
-                            <span>{{address.province}}省</span><span>{{address.city}}市</span><span v-show="address.district">{{address.district}}区</span><span>{{address.details}}</span>
-                        </div>
-                        <div class="person">
-                            <span>{{address.consignee}}</span><span>{{address.consex}}</span><span>{{address.telphone}}</span>
+                    <div v-else>
+                        <div class="blReceive">
+                            <div class="info">
+                                <span>{{address.province}}省</span><span>{{address.city}}市</span><span v-show="address.district">{{address.district}}区</span><span>{{address.details}}</span>
+                            </div>
+                            <div class="person">
+                                <span>{{address.consignee}}</span><span>{{address.consex}}</span><span>{{address.telphone}}</span>
+                            </div>
                         </div>
                     </div>
-                </li>
+                 </li>
+                
+
                 <li>
-                    <div class="title">发货信息</div>
-                </li>
-                <li v-if="blHaveSend">
-                    <div class="send">
-                        {{send.person}}--{{send.telphone}}
+                    <div class="title">发货人信息</div>
+                    <div v-if="blHaveSend">
+                        <div class="send">
+                            {{send.person}}--{{send.telphone}}
+                        </div>
+                    </div>
+                    <div v-else>
+                        <div class="am-form">
+                            <div class="am-form-group" style="margin-bottom:.5rem;">
+                                <input type="text" id="person" v-model="send.person" placeholder="请输入发货人姓名">
+                            </div>
+                            <div class="am-form-group" style="margin-bottom:0;">
+                                <input type="text" v-model="send.telphone" placeholder="请输入发货人联系方式">
+                            </div>                           
+                        </div>
                     </div>
                 </li>
-                <li v-else>
-                    <div class="am-form">
-                        <div class="am-form-group" style="margin-bottom:0;">
-                            <label for="person">发货人:</label>
-                            <input type="text" id="person" v-model="send.person" placeholder="请输入发货人姓名">
-                        </div>
-                        <div class="am-form-group" style="margin-bottom:0;">
-                            <label for="">联系方式</label>
-                        </div>
-                        <input type="text" v-model="send.telphone" placeholder="请输入发货人联系方式">
-                    </div>
-                </li>
+                
+               
                 <li>
                     <div class="title">商品清单</div>
-                </li>
-                <li v-for="(cart,index) in cartFoodList ">
-                    <img :src="imgBaseUrl+cart.image" class="list-pic" />
-                    <div class="shop-list-mid">
-                        <div class="tit">{{cart.name}} ({{cart.tname}})</div>
-                        <div class="weight1">{{cart.weight}} kg</div>
-                        <div class="price" style="position:absolute; right:10px;top:32px;"><span>￥{{(cart.price*cart.weight*2).toFixed(2)}}元/只</span></div>
-                        <div class="total">X {{cart.num}} 只</div>
+                    <div v-for="(cart,index) in cartFoodList " class="list-product">
+                        <img v-bind:src="imgBaseUrl+cart.image" class="list-pic" />
+                        <div class="list-mid">
+                            <div class="tit">{{cart.name}} / {{cart.weight}} kg ({{cart.tname}})</div>
+                            <div class="total">x {{cart.num}}</div>
+                            <div class="price"><span>￥{{(cart.price*cart.weight*2).toFixed(2)}}元/只</span></div>                            
+                        </div>
                     </div>
                 </li>
+                
                 <li>
                     <div class="title">必选配件</div>
+                    <div class="partli" v-for="(part,index) in partList">
+                        <span>{{part.PartName}}</span>
+                        <span>{{part.PartWeight}} kg</span>
+                        <span>￥{{part.PartPrice}}</span>
+                        <span>x{{part.PartId!=10004?1:totalNum}}</span>    
+                    </div>
                 </li>
-                <li class="partli" v-for="(part,index) in partList">
-                    <span>{{part.PartName}}</span>
-                    <span>X{{part.PartId!=10004?1:totalNum}}</span>
-                    <span>{{part.PartWeight}} kg</span>
-                    <span>￥{{part.PartPrice}}</span>
-                </li>
+                
                 <li>
                     <div class="title">可选配件</div>
+                    <div class="partli" v-for="(part,index) in partNumList">
+                        <span>{{part.name}}</span>
+                        <span>{{part.weight}} kg</span>
+                        <span>￥{{part.price}}</span>
+                        <span>x{{part.id!=10009?1:totalNum}}</span>                        
+                    </div>
                 </li>
-                <li class="partli" v-for="(part,index) in partNumList">
-                    <span>{{part.name}}</span>
-                    <span>X{{part.id!=10009?1:totalNum}}</span>
-                    <span>{{part.weight}} kg</span>
-                    <span>￥{{part.price}}</span>
-                </li>
+                
                 <li>
                     <div class="title">订单小计</div>
+                    <div class="totalpartli">
+                        <span>螃蟹</span>
+                        <span>{{totalProductWeight}}kg</span>
+                        <span>￥{{totalProductPrice}}</span>
+                    </div>
+                    <div class="totalpartli">
+                        <span>必选配件</span>
+                        <span>{{totalPartWeight}} kg</span>
+                        <span>￥{{totalPartPrice}}</span>
+                    </div>
+                    <div class="totalpartli">
+                        <span>可选配件</span>
+                        <span>{{totalPart1Weight}} kg</span>
+                        <span>￥{{totalPart1Price}}</span>
+                    </div>
+                    <div class="totalpartlij">
+                        <span>小计:￥{{(totalProductPrice+totalPart1Price+totalPartPrice).toFixed(2)}}</span>
+                    </div>
                 </li>
-                <li class="totalpartli">
-                    <span>螃蟹</span>
-                    <span>{{totalProductWeight}}kg</span>
-                    <span>￥{{totalProductPrice}}元</span>
-                </li>
-                <li class="totalpartli">
-                    <span>必选配件</span>
-                    <span>{{totalPartWeight}} kg</span>
-                    <span>￥{{totalPartPrice}}元</span>
-                </li>
-                <li class="totalpartli">
-                    <span>可选配件</span>
-                    <span>{{totalPart1Weight}} kg</span>
-                    <span>￥{{totalPart1Price}}元</span>
-                </li>
-                <li>
-                    <span style="float:right;">￥{{(totalProductPrice+totalPart1Price+totalPartPrice).toFixed(2)}}</span>
-                    <span style="float:right;">小计: </span>
-                </li>
-                <li class="partli">
+               
+                <li >
                     <div class="title">快递</div>
-                    <div class="express">
-                        <span>顺丰 惠农云仓专享9折优惠</span> <span>{{totalweight}}kg</span><span>￥{{expressPrice}} 元</span>
-                        <span>顺丰 惠农云仓专享9折优惠(优惠后)</span> <span>{{totalweight}}kg</span><span>￥{{expressFinalPrice}} 元</span>
+                    <div class="totalpartli">
+                        <span>顺丰速递</span> 
+                        <span>{{totalweight}}kg</span>
+                        <span>￥{{expressPrice}}</span>                        
+                    </div>
+                    <div  class="totalpartli">
+                        <span>惠农云仓专享9折优惠</span> 
+                        <span>&nbsp;</span>
+                        <span>x 0.9</span>
+                    </div>
+                    <div class="totalpartlij">
+                        <span>实收:￥{{expressFinalPrice}}</span>
                     </div>
                 </li>
-                <li class="partli">
+                <li >
                     <div class="title">商城服务费</div>
-                    <div class="service">
-                        <span> 服务费</span> <span>{{totalProductWeight*totalNumber}}kg</span> <span> ￥{{shopPrice}} 元</span>
+                    <div class="totalpartli">
+                        <span> 服务费</span> 
+                        <span>{{totalProductWeight*totalNumber}}kg (螃蟹净重)</span> 
+                        <span> ￥{{shopPrice}}</span>
                     </div>
                 </li>
                 <li class="partli">
-                    <div class="title">返利账户余额 {{balance}} 元
-                        <p style="float:right;"><input type="checkbox" checked v-model="blChoseBalance" style="width:2rem;height:2rem;line-height:2rem;">优先使用</p>
+                    <div class="titles">
+                        返利账户余额 {{balance}} 元
+                        <p style="float:right; font-size:1.2rem">
+                            优先使用 <input type="checkbox" checked v-model="blChoseBalance" style="position:relative; top:0.3rem;">
+                        </p>
                     </div>
                     <div class="clear:both;"></div>
                 </li>
@@ -144,20 +165,23 @@
         <!--底部-->
         <div class="fix-bot">
             <div class="fix-bot-cart" style="float:left;width:70%;margin-left:0%;">
-                <p style="position:initial;line-height:4.5rem;height:454.5rempx;"><span style="font-size:18px;font-weight:bolder;">共计</span> <span style="font-size:1.5rem;font-weight:bolder;color:#f60;">￥{{finalPrice}}</span>                    元
-                    <span style="margin-left:5px;">来多份?</span>
-                    <a v-show="totalNumber>1" class="fa fa-minus-circle" style="color:#3f3f3f; font-size:20px; margin-left:3px;" @click="ResponseNumber()"></a>
-                    <span style="margin:0 3px;">{{totalNumber}}</span>
-                    <a class="fa fa-plus-circle" style="color:#39b867; font-size:20px;" @click="AddNumber()"></a>
-                </p>
+                <div class="c_price">
+                    共 ￥<span style="font-size:1.5rem;font-weight:bolder;color:#f60;">{{finalPrice}}</span> 元
+                </div>
+                <div class="c_btn">
+                    <a v-show="totalNumber<2" class="fa fa-minus-circle" style="color:#3f3f3f; font-size:2.3rem; "></a>
+                    <a v-show="totalNumber>1" class="fa fa-minus-circle" style="color:#3f3f3f; font-size:2.3rem;" @click="ResponseNumber()"></a>
+                    <span style="margin:0 1.2rem 0 1.2rem; position:relative; top:-.4rem;">{{totalNumber}}</span>
+                    <a class="fa fa-plus-circle" style="color:#39b867; font-size:2.3rem;" @click="AddNumber()"></a>
+                </div>
             </div>
-            <div class="fix-bot-jsk" style="width:27%;">
-                <a href="javascript:void(0)" class="list-jsk" onclick="SubmitPlay()">立即支付</a>
+            <div class="fix-bot-jsks">
+                <a href="javascript:void(0)" onclick="SubmitPlay()">立即支付</a>
             </div>
         </div>
         <div class="am-modal am-modal-prompt" tabindex="-1" id="myprompt">
             <div class="am-modal-dialog">
-                <div class="am-modal-hd">快速关联</div>
+                <div class="am-modal-hd">用户首次登录</div>
                 <div class="am-modal-bd">
                     <form action="" class="am-form am-form-horizontal" id="doc-vld-msg" data-am-validator>
                         <div class="am-form-group ">

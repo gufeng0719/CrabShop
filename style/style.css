@@ -14,17 +14,24 @@
    .sq-head .am-icon-trash{ color: #999;}
    .sq-head .am-header-left a { border: 1px solid #ddd; color: #999; padding: 0 8px; height: 35px; line-height: 35px; border-radius: 8px;}
    .content-list{ margin: 0px auto 0;  width: 98%;}
-   .list-content{ position: relative; overflow: hidden; }
-   .list-left{ width: 26%;   height:794px; background-color:#f6f3f3;
-                 float: left;  overflow: auto; border-right: 1px solid #ddd; }
+   .list-content{ position: relative; overflow: hidden;  }
+   .list-left{ width: 25%;   height:794px; background-color:#f6f3f3;
+                 float: left;  overflow: auto;
+                   }
    .list-left li {width: 100%;  font-size: 1.2rem;
        height: 5rem;line-height: 5rem;text-align: center;
-        border-bottom: 1px solid #ddd;overflow: hidden;}
+        border-bottom: 1px solid #ddd;overflow: hidden;
+ 
+   }
    .list-left li a{ color: #666;}
    .list-left .current{ color: #ff7200;
-                         background-color:#fff;width:102%;}
+                        width:100%;
+                          background-color:#fff; 
+                          
+   }
    .list-left .current a{ color: #ff7200;}
-   .list-right{ float: right; width: 74%;padding-bottom: 50px; margin-top:10px;}
+   .list-right{ float: right; width: 75%;padding-bottom: 50px;
+                 margin-top:10px;}
    .list-right .am-gallery-item{ text-align: center; position: relative;}
    .list-right .am-gallery li{ margin: 1rem 0;}
    .list-right .am-gallery-default .am-gallery-item img {
@@ -106,15 +113,17 @@
    }
    
    .fix-bot-cart .c_price {
-       width:45%;float:left; font-size:1.2rem; color:#fff; line-height:4.5rem;
+       width:50%;float:left; font-size:1.2rem; color:#fff; line-height:4.5rem;
        }
-   .fix-bot-cart .c_con {
+   /*.fix-bot-cart .c_con {
        width:25%; float:left;font-size:1.2rem;color:#fff;line-height:4.5rem;
        text-align:center;
-       }
+       }*/
    .fix-bot-cart .c_btn {
-       width:30%; float:right;color:#fff;line-height:4.5rem;font-size:1.2rem;
+       width:50%; float:right;color:#fff;
+       line-height:4.5rem;font-size:1.2rem;
        text-align:left; height:4.5rem; text-align:center;
+       padding-top:.4rem;
        }
    
    .fix-bot-jsk{
@@ -158,7 +167,6 @@
            position: relative;
            display: inline;
            font-size: 1.5rem;
-           font-weight: 700;
            display: -webkit-box;
            -webkit-line-clamp: 1;
            -webkit-box-orient: vertical;
@@ -167,34 +175,31 @@
            text-overflow: ellipsis;
        }
        .shop-list-mid .total {
-           font-size:1.1rem; margin:0.5rem 0px;
+           font-size:1rem; margin:.5rem 0;
        }
        .shop-list-mid .total span{
            font-size:1.4rem; color:#ff7200; font-weight:bold;
        }
        .shop-list-mid .price {
-        font-size:1.1rem;
+        font-size:1rem;
        }
    .shop-list-mid .price span:nth-child(1){
        font-size: 1.4rem;
        color: #ff7200;
        font-weight: bold;
-       margin-right: .3rem;
    }
    .shop-list-mid .price span:nth-child(2){
        font-size: 1.4rem;
        color: #ff7200;
        font-weight: bold;
-       margin-right: .3rem;
    }
    .shop-list-mid .price1 {
-        font-size:1.1rem; margin-top:20px;
+        font-size:1rem; margin-top:20px;
        }
    .shop-list-mid .price1 span:nth-child(1){
        font-size: 1.4rem;
        color: #ff7200;
        font-weight: bold;
-       margin-right: .3rem;
    }
    .shop-list-mid .shop-list-price{color: #cb2527; }
    .list-js{ font-size: 16px; color: #000; margin-left: 10px; line-height: 54px;}
@@ -276,7 +281,7 @@
        text-align:right;
         display: inline-block;
        }
-   
+
    .totalpartli span{
        width: 30%;
        text-align: center;
