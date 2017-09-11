@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -145,9 +145,12 @@
                 <li >
                     <div class="title">商城服务费</div>
                     <div class="totalpartli">
-                        <span> 服务费</span> 
-                        <span>{{(totalProductWeight*totalNumber).toFixed(2)}}kg (螃蟹净重)</span> 
-                        <span> ￥{{shopPrice}}</span>
+                        <span> 螃蟹净重</span> 
+                        <span>{{(totalProductWeight*totalNumber).toFixed(2)}}kg</span> 
+                        <span>{{(totalProductWeight*totalNumber*2).toFixed(2)}}斤</span>
+                    </div>
+                    <div class="totalpartlij">
+                        <span>实收:￥{{shopPrice}}</span>
                     </div>
                 </li>
                 <!-- <li class="partli">

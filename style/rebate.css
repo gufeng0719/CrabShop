@@ -1,0 +1,36 @@
+.progress{
+    margin: 10px 0 0;
+}
+ul li{
+    float: left;
+    position: relative;
+}
+ul li div{    
+    width: 20px;
+}
+ul li:first-child{
+    left: 10%;
+}
+ul li:nth-child(2){
+    left: 25%;
+}
+ul li:nth-child(3){
+    left: 40%;
+}
+ul li:nth-child(4){
+    left: 55%;
+}
+
+ul li:nth-child(5){
+    left: 70%;
+}
+.weight{
+    margin: 10px auto;
+    font-size: 16px;
+    text-align: center;
+}
+.weight span{
+    font-size: 20px;
+    font-weight: bold;
+    color: #ee33ee;
+}
