@@ -35,6 +35,16 @@ var vm = new Vue({
                     }
                 }
             });
+        },
+        showCart() {
+            $('#sf_price').modal({
+                relatedTarget: this
+            });
+        },
+        showCart1() {
+            $('#fw_price').modal({
+                relatedTarget: this
+            });
         }
     },
     mounted: function () {

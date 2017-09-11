@@ -42,18 +42,19 @@
       float:left;
       color:#ff7200;
       margin-top:1.4rem;
+      text-align:center;
 }
 .title_btn {
     width:30%;
     text-align:right;
-    float:left;
+    float:right;
     margin-top:1.3rem;
 }
    .btn{
-        padding: .3rem 1rem;
+        padding: .4rem 0rem;
         border-radius: 5px;
         background-color: #ff7200;
-        font-size: 1rem;
+        font-size: .8rem;
         font-weight: normal;
         display: inline;
         margin: 0;
@@ -113,7 +114,7 @@
  .link{
        font-size:.8rem;
        position: relative;
-       left: 130px;
+       right:1rem;
        color:#ff7200;
  }
  .link2{
@@ -173,11 +174,15 @@ ul li p{
         
   }
   .services table td{
+ 
         border: 1px solid #9f9e9d;
         height: 25px;
         vertical-align: middle;
-        
+       
   }
+    .services .services_tds {
+        text-align:right;
+    }
 
 
 .sfsd {
@@ -249,10 +254,10 @@ footer{
 	z-index: 100;
 	/*border-top: 1px #F7B52B solid;*/
 	border-top: 1px #EEEEEE solid;
-	height: 50px;
+	height: 2.8rem;
 }
 #indexFooter{
-	margin: 5px auto 0;
+	margin:auto 0;
 	/*max-width: 780px;*/
 	width: 100%;
       overflow: hidden;
@@ -261,9 +266,10 @@ footer{
 #indexFooter li{
 	width: 33%;
       text-align: center;
-      height: 40px;
-      line-height: 40px;
+      height:2.8rem;
+      line-height: 2.8rem;
 	float: left;
+    margin-top:.1rem;
     
 }
 .bor {
@@ -288,3 +294,27 @@ footer{
 }
 
 /*底部菜单*/
+.pop_head {
+    width:100%; font-size:.8rem;
+    border-bottom:solid 1px #d0d0d0;
+    padding-bottom:.5rem;
+    margin-bottom:.5rem;
+}
+.pop_head_tit {
+    font-size:.6rem;
+    text-align:left;
+    margin-bottom:.5rem;
+}
+.pop_head_tab {
+    font-size: .6rem;
+    text-align: center;
+    border: solid 1px #ccc;
+    width:100%;
+     margin-bottom:.5rem;
+}
+.pop_head_tab tr td { 
+    border:solid 1px #ccc;
+}
+.pop_head_tab tr td:first-child {     
+
+}

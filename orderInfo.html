@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -10,11 +10,15 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="full-screen" content="yes">
     <meta name="x5-fullscreen" content="true">
-    <title>订单相信</title>
+    <title>订单详情</title>
+    <link href="style/amazeui.min.css" type="text/css" rel="stylesheet" />   
+    
+
+    <link text="text/css" rel="stylesheet" href="style/mescroll.min.css" />  
+    <link rel="stylesheet" type="text/css" href="style/font-awesome.min.css" />  
+    <link rel="stylesheet" type="text/css" href="style/myorder.css" />
     <link href="style/index.css" text="text/css" rel="stylesheet" />
-    <link href="style/amazeui.min.css" type="text/css" rel="stylesheet" />
     <link href="style/style.css" type="text/css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="style/font-awesome.min.css" />
 </head>
 
 <body>
@@ -24,51 +28,51 @@
     </div>
     <!-- /top图片-->
     <div id="app" v-cloak>
-        <div class="content-list" id="outer">
-            <div class="title">
-                订单详情 {{order.OrderNumber}}
-            </div>
+        <div class="tit_dh">订单：{{order.OrderNumber}}</div>
+        <div style="height: 10px;"></div>
+        <div class="content-list">
             <ul class="order-list">
                 <li>
                     <div class="title">商品清单</div>
-                </li>
-                <li class="partli" v-for="(crab,index) in crabList">
-                    <span>{{crab.ProductName}} ({{crab.ProductType}})</span>
-                    <span>X {{crab.ProductNumber}} 只</span>
-                    <span>￥{{crab.TotalPrice}}元</span>
-                </li>
-                <li>
-                    <div class="title">必选配件</div>
-                </li>
-                <li class="partli" v-for="(part,index) in partMustList">
-                    <span>{{part.PartName}}({{part.PartType}})</span>
-                    <span>X{{part.ProductNumber}}</span>
-                    <span>￥{{part.TotalPrice}}</span>
-                </li>
-                <li>
-                    <div class="title">可选配件</div>
-                </li>
-                <li class="partli" v-for="(part,index) in partOptList">
-                    <span>{{part.PartName}}({{part.PartType}})</span>
-                    <span>X{{part.ProductNumber}}</span>
-                    <span>￥{{part.TotalPrice}}</span>
-                </li>
-                <li class="partli">
-                    <div class="title">货运</div>
-                    <div class="express">
-                        <span>顺丰 惠农云仓专享9折优惠</span><span>{{order.BillWeight}}kg</span><span>￥{{order.ExpressMoney}} 元</span>
+                    <div class="totalpartli" v-for="(crab,index) in crabList">
+                        <span>{{crab.ProductName}} ({{crab.ProductType}})</span>                      
+                        <span>￥{{crab.TotalPrice}}元</span>
+                        <span>x {{crab.ProductNumber}}</span>
                     </div>
                 </li>
-                <li class="partli">
+                
+                <li>
+                    <div class="title">必选配件</div>
+                    <div class="totalpartli" v-for="(part,index) in partMustList">
+                        <span>{{part.PartName}}({{part.PartType}})</span>                       
+                        <span>￥{{part.TotalPrice}}</span>
+                        <span>x{{part.ProductNumber}}</span>
+                    </div>
+                </li>
+                
+                <li>
+                    <div class="title">可选配件</div>
+                    <div class="totalpartli" v-for="(part,index) in partOptList">
+                        <span>{{part.PartName}}({{part.PartType}})</span>                       
+                        <span>￥{{part.TotalPrice}}</span>
+                        <span>x{{part.ProductNumber}}</span>
+                    </div>
+                </li>
+                
+                <li >
+                    <div class="title">货运</div>
+                    <div class="totalpartli">
+                        <span>惠农云仓专享9折优惠</span><span>{{order.BillWeight}}kg</span> <span> ￥{{order.ExpressMoney}}</span>
+                    </div>
+                </li>
+                <li >
                     <div class="title">商城服务费</div>
-                    <div class="service">
-                        <span> 服务费</span> <span>{{order.TotalWeight}}kg</span> <span> ￥{{order.ServiceMoney}} 元</span>
+                    <div class="totalpartli">
+                        <span> 服务费</span> <span>{{order.TotalWeight}}kg (螃蟹净重)</span> <span> ￥{{order.ServiceMoney}}</span>
                     </div>
                 </li>
                 <li>
                     <div class="title">配送地址</div>
-                </li>
-                <li>
                     <div class="blReceive">
                         <div class="info">
                             <span>{{address.province}}省</span><span>{{address.city}}市</span><span v-show="address.district!=''">{{address.district}}区</span><span>{{address.details}}</span>
@@ -81,16 +85,17 @@
             </ul>
         </div>
         <div style="height: 60px;"></div>
-        <footer>
-            <div id="indexFooterBox">
-                <ul id="indexFooter">
-                    <li class="bor"><a href="myOrder.html"><i class="fa fa-file-text-o fa-2x"></i><span>我的订单</span></a></li>
+        <footer >
+            <div id="indexFooterBox" style="height:4.5rem; line-height:4.5rem; position:relative; top:1rem;border-top:none;" >
+                <ul id="indexFooter"  >
+                    <li class="bor" ><a href="myOrder.html"><i class="fa fa-file-text-o fa-2x"></i><span>我的订单</span></a></li>
                     <li class="bor"><a href="huodong.html"><i class="fa fa-folder-open-o fa-2x"></i><span>我的返利</span></a></li>
                     <li><a href="shop.html"><i class="fa fa-cart-plus fa-2x"></i><span>立即购买</span></a></li>
                 </ul>
             </div>
         </footer>
     </div>
+
     <script src="scripts/jquery.min.js" type="text/javascript"></script>
     <script src="scripts/amazeui.min.js" type="text/javascript"></script>
     <script src="scripts/vue.js"></script>

@@ -319,65 +319,7 @@
         display: inline-block;
        }
    
-       #mescroll ul li{
-           margin:5px 0;
-           border-bottom: 1px #999  dashed ;
-       }
-       #mescroll ul li div{
-           margin-bottom: 18px;
-       }
-       #mescroll ul li div.ordernumber{
-           font-size: 18px;
-           font-weight: bolder;
-           margin: 5px 0;
-           height: 35px;
-           line-height: 35px;
-           
-       }
-       
-       #mescroll ul li div.orderInfo{
-           margin: 5px 0;
-           font-size: 16px;
-       }
-       #mescroll ul li div.orderInfo span{
-           text-align: center;
-           display: inline-block;
-           height: 35px;
-           line-height: 35px;
-       }
-       #mescroll ul li div.orderInfo span:first-child{
-           width: 55%;
-           margin-right: 2px;
-           text-align: left;
-       }
-       
-       /* #mescroll ul li div.orderInfo span:nth-child(2){
-           width: 25%;
-           margin-right: 0px;
-       }*/
-       
-       #mescroll ul li div.orderInfo span{
-           width: 40%;
-           margin-left: 0px;
-       } 
-       #mescroll ul li div.orderAddress span{
-           text-align: left;
-           display: inline-block;
-           margin-right: 5px;
-           height: 35px;
-           line-height: 35px;
-       }
-       #mescroll ul li div.orderAddress span:last-child{
-           text-align: center;
-           background-color: #FF9900;
-           color: #fff;
-           width: 25%;
-           height: 35px;
-           line-height: 35px;
-           border-radius: 5%;
-           position: absolute;
-           right: 3px;
-       }
+     
    
    .eat-list{ overflow:auto; height:350px;font-size: 1.2rem;}
    .eat-list .name{ width: 50%;  float: left; height: 30px; 

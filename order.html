@@ -150,7 +150,7 @@
                         <span> ￥{{shopPrice}}</span>
                     </div>
                 </li>
-                <li class="partli">
+                <!-- <li class="partli">
                     <div class="titles">
                         返利账户余额 {{balance}} 元
                         <p style="float:right; font-size:1.2rem">
@@ -158,7 +158,7 @@
                         </p>
                     </div>
                     <div class="clear:both;"></div>
-                </li>
+                </li> -->
             </ul>
         </div>
         <div style="height: 60px;"></div>
@@ -166,7 +166,7 @@
         <div class="fix-bot">
             <div class="fix-bot-cart" style="float:left;width:70%;margin-left:0%;">
                 <div class="c_price">
-                    共 ￥<span style="font-size:1.5rem;font-weight:bolder;color:#f60;">{{finalPrice}}</span> 元
+                    共 ￥<span style="font-size:1.5rem;font-weight:bolder;color:#f60;">{{totalmoney}}</span> 元
                 </div>
                 <div class="c_btn">
                     <a v-show="totalNumber<2" class="fa fa-minus-circle" style="color:#3f3f3f; font-size:2.3rem; "></a>
@@ -244,7 +244,7 @@
                         success: function (msg) {
                             if (msg && msg.status) {
                                 vm.user.UserId = msg.userid;
-                                window.localStorage.setItem("userid", msg.userid);
+                                setStore("userid",msg.userid);
                                 $("#myprompt").modal('close');
                             }
                         }

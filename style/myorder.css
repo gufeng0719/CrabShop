@@ -1,0 +1,109 @@
+﻿    * {
+            margin: 0;
+            padding: 0;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #fff;
+        }
+
+        ul {
+            list-style-type: none
+        }
+
+        a {
+            text-decoration: none;
+            color: #18B4FE;
+        }
+.tit_dh {
+     text-align:center;
+     height:3rem; line-height:3rem;
+     font-size:1.2rem; color:#666;
+      background-color:#fff;
+}
+#app {
+    background-color:#f0f0f0;
+}
+
+        /*列表*/
+
+        .mescroll {
+            position: fixed;
+            top: 200px;
+            bottom: 0;
+            height: auto;
+             background-color:#f0f0f0;
+        }
+        /*展示上拉加载的数据列表*/
+
+        
+
+
+        #mescroll ul li{
+            padding:0 .5rem;
+           margin:5px 0;
+            background-color:#fff;
+       }
+       #mescroll ul li div{
+           margin-bottom: 1rem;
+       }
+       #mescroll ul li div.ordernumber{
+           height:3rem;
+           line-height:3rem;
+           border-bottom:solid 1px #f1f1f1;          
+           color:#666;       
+           margin:0px;    
+       }
+            #mescroll ul li div.ordernumber a{
+            color:#808080;     
+            font-size:.8rem; 
+       }
+          #mescroll ul li div.ordernumber i{
+            position:relative;
+            left:9rem; top:.2rem;
+            font-size:1.5rem; color:#808080;   
+       }
+       
+       #mescroll ul li div.orderInfo{
+          margin:0px;
+           font-size:.8rem;
+           margin-top:.5rem;
+       }
+       #mescroll ul li div.orderInfo span{
+           text-align: center;
+           display: inline-block;
+       }
+        #mescroll ul li div.orderInfo span{
+           width: 40%;
+           margin-left: 0px;
+       } 
+       #mescroll ul li div.orderInfo span:first-child{
+           width: 55%;
+           margin-right: 2px;
+           text-align: left;
+       }
+
+        #mescroll ul li div.orderAddress {
+            height:2.4rem;
+            line-height:2.4rem;
+             border-top:solid 1px #f1f1f1;   
+            margin-top:.5rem;  
+            font-size:.8rem;
+            color:#808080;
+        }
+       #mescroll ul li div.orderAddress span{
+           text-align: left;
+           display: inline-block;
+           
+       }
+       #mescroll ul li div.orderAddress span:last-child{
+           text-align: center;
+            
+           color: #808080;
+           width: 25%;  
+           position: absolute;
+           right:.1rem;
+       }

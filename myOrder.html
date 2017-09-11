@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -15,73 +15,7 @@
     <link href="style/style.css" type="text/css" rel="stylesheet" />
     <link href="style/mescroll.min.css" text="text/css" rel="stylesheet" />    
     <link rel="stylesheet" type="text/css" href="style/font-awesome.min.css" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            background-color: white
-        }
-
-        ul {
-            list-style-type: none
-        }
-
-        a {
-            text-decoration: none;
-            color: #18B4FE;
-        }
-        /*列表*/
-
-        .mescroll {
-            position: fixed;
-            top: 200px;
-            bottom: 0;
-            height: auto;
-        }
-        /*展示上拉加载的数据列表*/
-
-        .data-list {
-            display: none;
-        }
-
-        .data-list li {
-            position: relative;
-            padding: 10px 8px 10px 120px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .data-list .pd-img {
-            position: absolute;
-            left: 18px;
-            top: 18px;
-            width: 80px;
-            height: 80px;
-        }
-
-        .data-list .pd-name {
-            font-size: 16px;
-            line-height: 20px;
-            height: 40px;
-            overflow: hidden;
-        }
-
-        .data-list .pd-price {
-            margin-top: 8px;
-            color: red;
-        }
-
-        .data-list .pd-sold {
-            font-size: 12px;
-            margin-top: 8px;
-            color: gray;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style/myorder.css" />
 </head>
 
 <body>
@@ -89,41 +23,44 @@
     <div class="banner">
         <img src="images/header.png">
     </div>
+
     <!-- /top开始图片-->
     <div id="app">
+        <div class="tit_dh">我的订单</div>
         <!-- 订单列表-->
-        <div class="content-list">
-            <div class="title" style="height:auto;">
-                我的订单
-            </div>
-            <div id="mescroll" class="mescroll">
-                <ul id="dataList" v-cloak>
-                    <li v-for="(order,index) in orderList">
-                        <div class="ordernumber"><a :href="'orderInfo.html?orderid='+order.OrderId">订单号: {{order.OrderNumber}}</a></div>
-                        <div class="orderInfo">
-                            <span>下单时间:{{order.OrderDate}}</span><span v-if="order.OrderDelivery!=''">运单号: {{order.OrderDelivery}}</span>
-                        </div>
-                        <div class="orderInfo">
-                            <span>总重量:{{order.TotalWeight}}kg</span><span>总价:{{order.ActualMoney}}元</span>
-                        </div>
-                        <div class="orderAddress">
-                            <span>收货人: {{order.consignee}}</span><span>{{order.telphone}}</span>
-                            <span>{{order.OrderState}}</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+        <div id="mescroll" class="mescroll">
+            <ul id="dataList" v-cloak>
+                <li v-for="(order,index) in orderList">
+                    <div class="ordernumber">
+                        <a :href="'orderInfo.html?orderid='+order.OrderId">
+                           订单号: {{order.OrderNumber}}
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                    <div class="orderInfo">
+                      收货人: {{order.consignee}} {{order.telphone}}</span> 
+                    </div>
+                    <div class="orderInfo">
+                        <span>总重量:{{order.TotalWeight}}kg 总价:{{order.ActualMoney}}元</span> 
+                        <span v-if="order.OrderDelivery!=''">运单号: {{order.OrderDelivery}}</span>
+                    </div>
+                    <div class="orderAddress">                        
+                        <span>{{order.OrderDate}}</span>
+                        <span>{{order.OrderState}}</span>
+                    </div>
+                </li>
+            </ul>
         </div>
         <!-- -->
         <footer>
-                <div id="indexFooterBox">
-                  <ul id="indexFooter">
+            <div id="indexFooterBox">
+                <ul id="indexFooter">
                     <li class="bor"><a href="myOrder.html"><i class="fa fa-file-text-o fa-2x"></i><span>我的订单</span></a></li>
-                    <li  class="bor"><a href="huodong.html"><i class="fa fa-folder-open-o fa-2x"></i><span>我的返利</span></a></li>
+                    <li class="bor"><a href="huodong.html"><i class="fa fa-folder-open-o fa-2x"></i><span>我的返利</span></a></li>
                     <li><a href="shop.html"><i class="fa fa-cart-plus fa-2x"></i><span>立即购买</span></a></li>
-                  </ul>
-                </div>
-              </footer>
+                </ul>
+            </div>
+        </footer>
     </div>
     <script src="scripts/jquery.min.js" type="text/javascript"></script>
     <script src="scripts/mescroll.min.js" type="text/javascript"></script>
