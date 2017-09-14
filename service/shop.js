@@ -38,7 +38,7 @@ var vm = new Vue({
         choosedFoods: null, //当前选中食品数据
         showDeleteTip: false, //多规格商品点击减按钮，弹出提示框
         windowHeight: null, //屏幕的高度
-        imgBaseUrl: 'http://test.osintell.cn/'
+        imgBaseUrl: 'http://bw.gcdzxfu.cn/'
     },
     methods: {
         //初始化数据
@@ -46,7 +46,7 @@ var vm = new Vue({
             var that = this;
             $.ajax({
                 type: "get",
-                url: "http://test.osintell.cn/api/WebApi/GetProductList",
+                url: "http://bw.gcdzxfu.cn/api/WebApi/GetProductList",
                 complete: function (d) {
                     var obj = JSON.parse(d.responseText);
                     //console.info(obj);

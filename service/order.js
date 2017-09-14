@@ -36,7 +36,7 @@ var vm = new Vue({
         prepayId: '',//预支付编号
         orderId: 0,//订单编号,
         finishPay: false,//是否完成支付
-        imgBaseUrl: 'http://test.osintell.cn/'
+        imgBaseUrl: 'http://bw.gcdzxfu.cn/'
     },
     methods: {
         //初始化数据
@@ -47,7 +47,7 @@ var vm = new Vue({
             //获取必选配件
             $.ajax({
                 type: "get",
-                url: "http://test.osintell.cn/api/WebApi/GetPartList/1",
+                url: "http://bw.gcdzxfu.cn/api/WebApi/GetPartList/1",
                 complete: function (d) {
                     var obj = JSON.parse(d.responseText);
                     that.partList = obj;
@@ -68,7 +68,7 @@ var vm = new Vue({
             if (that.openId) {
                 $.ajax({
                     type: 'get',
-                    url: 'http://test.osintell.cn/api/WebApi/GetAddress',
+                    url: 'http://bw.gcdzxfu.cn/api/WebApi/GetAddress',
                     data: { openId: that.openId },
                     success: function (msg) {
                         if (msg.status) {
@@ -120,6 +120,9 @@ var vm = new Vue({
         ResponseNumber: function () {
             var that = this;
             that.totalNumber--;
+        },
+        ChooseAddress:function(){
+            window.location.href="chooseAdd.html"
         }
     },
     computed: {
@@ -319,7 +322,7 @@ function SubmitPlay() {
             alert("请至少购买6只螃蟹才能下单"); return;
         }
         $.ajax({
-            url: "http://test.osintell.cn/api/WebApi/AddOrder",
+            url: "http://bw.gcdzxfu.cn/api/WebApi/AddOrder",
             type: "post",
             data: {
                 userid: vm.user.UserId,//下单用户
@@ -340,21 +343,21 @@ function SubmitPlay() {
                 if (d.status) {
                     vm.orderId = d.orderid;
                     $.ajax({
-                        url: 'http://test.osintell.cn/WeChatApi/GetPrepayId',
+                        url: 'http://bw.gcdzxfu.cn/WeChatApi/GetPrepayId',
                         type: 'post',
                         data: {
                             body: '购买大闸蟹支付',
                             orderNumber: (new Date() - new Date("1970")) + d.orderid + '',
-                            total: 1 + '',
-                            notify: 'http://dzx.osintell.cn/myOrder.html',
+                            total: vm.totalmoney*100+ '',
+                            notify: 'http://dzx.gcdzxfu.cn/myOrder.html',
                             openId: vm.openId
                         },
                         complete: function (d) {
                             var obj = JSON.parse(d.responseText)
-                            console.info(obj);
+                            //console.info(obj);
                             if (obj.code === 1) {
                                 vm.prepayId = obj.data;
-                                $.post('http://test.osintell.cn/api/WebApi/UpdatePrepaymentId', { OrderId: vm.orderId, PrepaymentId: obj.data }, function (msg) {
+                                $.post('http://bw.gcdzxfu.cn/api/WebApi/UpdatePrepaymentId', { OrderId: vm.orderId, PrepaymentId: obj.data }, function (msg) {
                                     if (msg && msg.status) {
                                         setStore('addressinfo', '');
                                         Pay();
@@ -362,7 +365,7 @@ function SubmitPlay() {
                                 });
 
                             } else {
-                                console.log(d.responseText)
+                               // console.log(d.responseText)
                                 alert(obj.msg)
                             }
                         }
@@ -374,7 +377,7 @@ function SubmitPlay() {
 
                 // window.open("index.html", "_self");
             }, error: function (d) {
-                console.log(d);
+                //console.log(d);
             }
         });
     }
@@ -390,7 +393,7 @@ function Pay() {
             return;
         } else {
             $.ajax({
-                url: 'http://test.osintell.cn/WeChatApi/GetBrandWcPay',
+                url: 'http://bw.gcdzxfu.cn/WeChatApi/GetBrandWcPay',
                 type: 'post',
                 data: {
                     prepayId: vm.prepayId
@@ -404,7 +407,7 @@ function Pay() {
                             if (res.err_msg == "get_brand_wcpay_request:ok") {
                                 //alert("支付成功");
                                 vm.finishPay = true;
-                                $.post('http://test.osintell.cn/api/WebApi/FinshOrder', { OrderId: vm.orderId, UserId:vm.user.UserId,TotalWeight:vm.totalProductWeight,OrderCopies:vm.totalNumber }, function (msg) {
+                                $.post('http://bw.gcdaxfu.cn/api/WebApi/FinshOrder', { OrderId: vm.orderId, UserId:vm.user.UserId,TotalWeight:vm.totalProductWeight,OrderCopies:vm.totalNumber }, function (msg) {
                                     if (msg && msg.status) {
                                         window.location.href = "myOrder.html";
                                     }

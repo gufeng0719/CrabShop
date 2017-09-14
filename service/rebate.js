@@ -9,11 +9,11 @@ var vm = new Vue({
         //初始化数据
         initData: function () {
             var that = this;
-            $.getJSON("http://test.osintell.cn/api/WebApi/GetUserInfo", { openId: that.openId }, function (msg) {
+            $.getJSON("http://bw.gcdzxfu.cn/api/WebApi/GetUserInfo", { openId: that.openId }, function (msg) {
                 //console.info(msg);
                 if (msg.status) {
                     that.totalWeight = msg.user.TotalWight;
-                    that.weightWidth = msg.user.TotalWight * 2 - 8;
+                    that.weightWidth = msg.user.TotalWight * 2;
                 }
             });
         }

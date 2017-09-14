@@ -10,7 +10,7 @@ function loadOpen() {
             setStore('openid', req["openId"]);
         } else {
            // console.info('加载路径');
-           window.open('http://test.osintell.cn/WeChatApi/GetOpenId/?currentPage=' + window.location.href, '_self');
+           window.open('http://bw.gcdzxfu.cn/WeChatApi/GetOpenId/?currentPage=' + window.location.href, '_self');
         //    getRequest();
         //    openid=req["openId"];
         //   console.info(openid);

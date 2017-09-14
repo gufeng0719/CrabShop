@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -11,11 +11,12 @@
     <meta name="full-screen" content="yes">
     <meta name="x5-fullscreen" content="true">
     <title>高淳大闸蟹</title>
-
     <link rel="stylesheet" type="text/css" href="style/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="style/style.css" />
+    <link rel="stylesheet" type="text/css" href="style/index.css" />
+    <link rel="stylesheet" type="text/css" href="style/style.css" />    
     <link rel="stylesheet" type="text/css" href="style/rebate.css" />
-    <link rel="stylesheet" type="text/css" href="style/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="style/font-awesome.min.css" />
+    
 </head>
 
 <body>
@@ -25,51 +26,69 @@
     </div>
     <!-- /top图片-->
     <div id="app" v-cloak>
-        <div class="shop_top"><a href="#">商城服务费规则说明</a></div>
+        <div class="shop_top">我的成果</div>
         <div class="container" id="outer">
-            <div class="progress progress-striped active">
-                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" :style="'width:'+weightWidth +'%;'">
-                </div>
-            </div>
             <ul>
                 <li>
                     <div>
-                        <i class="fa fa-angle-up"></i>
-                        已购买20斤
+                        0<br /><i class="fa fa-angle-down"></i>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <i class="fa fa-angle-up"></i>
-                        已购买40斤
+                        20<br /><i class="fa fa-angle-down"></i>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <i class="fa fa-angle-up"></i>
-                        已购买60斤
+                        40<br /><i class="fa fa-angle-down"></i>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <i class="fa fa-angle-up"></i>
-                        已购买80斤
+                        60<br /><i class="fa fa-angle-down"></i>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <i class="fa fa-angle-up"></i>
-                        已购买100斤
+                        80<br /><i class="fa fa-angle-down"></i> 
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        100<br /><i class="fa fa-angle-down"></i>
                     </div>
                 </li>
             </ul>
             <div style="clear:both;"></div>
+            <div class="progress progress-striped active">
+                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"
+                    :style="'width:'+weightWidth +'%;'">
+                </div>
+            </div>
+            
+            
             <div class="weight">
-                到目前为止您累计购买:<span>{{totalWeight}} kg</span>
+                您已累计购买
+            </div>
+            <div class="money">
+                <span>{{(totalWeight*2).toFixed(2)}} 斤</span>
             </div>
         </div>
+        <!-- -->
+        <footer>
+            <div id="indexFooterBox" style="height:4.5rem; line-height:4.5rem; position:relative; top:1rem;border-top:none;">
+                <ul id="indexFooter">
+                    <li class="bor"><a href="myOrder.html"><i class="fa fa-file-text-o fa-2x"></i><span>我的订单</span></a></li>
+                    <li class="bor"><a href="rebate.html"><i class="fa fa-folder-open-o fa-2x"></i><span>我的成果</span></a></li>
+                    <li><a href="shop.html"><i class="fa fa-cart-plus fa-2x"></i><span>立即购买</span></a></li>
+                </ul>
+            </div>
+        </footer>
     </div>
+
     <script src="scripts/jquery.min.js" type="text/javascript"></script>
+    <!-- <script src="scripts/amazeui.min.js" type="text/javascript"></script> -->
     <script src="scripts/bootstrap.min.js" type="text/javascript"></script>
     <script src="scripts/vue.js" type="text/javascript"></script>
     <script src="service/load.js" type="text/javascript"></script>

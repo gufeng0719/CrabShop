@@ -6,7 +6,7 @@
     background:#f6f5f5;
     border-bottom:solid 1px #ff7200;
     font-size:1.4rem;
-    padding-left:10px;
+    padding-left:10px; text-align:center;
    }
    li{ list-style-type: none;}
    ul{ padding: 0; margin: 0;}
@@ -50,7 +50,7 @@
    .list-cart{  height: 45px; text-align: center; right: 0px;  bottom: 0px;  border-radius: 50%;}
    .list-cart1{  position: absolute; text-align: center; right: 0px;  bottom: 5px;  border-radius: 50%;}
    .list-cart img{ margin-top: 8px;}
-   .list-cart .d-stock{ width: 7.5rem; float: right; margin-top:5px;}
+   .list-cart .d-stock{ width: 7.5rem; float: right; margin-top:5px; font-size:1.2rem; text-align:right;}
    .response{
        border-radius:50%;  
        color: #fff;
@@ -303,6 +303,11 @@
     .totalpartlij span{
        width:99%; display: inline-block;
        text-align: right;font-size:1.2rem;
+   }
+     .totalpartlit span{
+       width:99%; display: inline-block;
+       text-align: left;font-size:1.2rem;
+        border-bottom:dashed 1px #dadada;
    }
     .partliservices span{
        width: 20%;

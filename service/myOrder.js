@@ -29,6 +29,40 @@ var vm = new Vue({
                 //联网失败的回调,隐藏下拉刷新和上拉加载的状态;
                 self.mescroll.endErr();
             });
+        },
+        Pay:function(order){
+            var that = this;
+            $.ajax({
+                url: 'http://bw.gcdzxfu.cn/WeChatApi/GetBrandWcPay',
+                type: 'post',
+                data: {
+                    prepayId: order.PrepaymentId
+                },
+                complete: function (d) {
+                    console.log(d.responseText)
+                    WeixinJSBridge.invoke('getBrandWCPayRequest',
+                        JSON.parse(d.responseText)
+                        , function (res) {
+                            WeixinJSBridge.log(res.err_msg);
+                            if (res.err_msg == "get_brand_wcpay_request:ok") {
+                                //alert("支付成功");
+                                vm.finishPay = true;
+                                $.post('http://bw.gcdaxfu.cn/api/WebApi/FinshOrder2', { '': order.OrderId}, function (msg) {
+                                    if (msg && msg.status) {
+                                       that.upCallback(1);
+                                    }
+                                });
+                            }else{
+                                // //支付失败
+                                // $.post('http://bw.gcdaxfu.cn/api/WebApi/UpdateOrderState', { OrderId: order.OrderId,OrderState:0}, function (msg) {
+                                //     if (msg && msg.status) {
+                                //        that.upCallback(1);
+                                //     }
+                                // });
+                            }
+                        });
+                }
+            });
         }
     },
     computed: {
@@ -50,11 +84,7 @@ var vm = new Vue({
                 empty: { //配置列表无任何数据的提示
                     warpId: "app",
                     icon: "../images/mescroll-empty.png",
-                    //						  	tip : "亲,暂无相关数据哦~" , 
-                    //						  	btntext : "去逛逛 >" , 
-                    //						  	btnClick : function() {
-                    //						  		alert("点击了去逛逛按钮");
-                    //						  	} 
+                    
                 }
             }
         });
@@ -66,7 +96,7 @@ var vm = new Vue({
 /*联网加载列表数据*/
 function getListDataFromNet(pageNum, pageSize, successCallback, errorCallback) {
     //分页加载数据
-    $.getJSON('http://test.osintell.cn/api/WebApi/GetCsOrderList', {
+    $.getJSON('http://bw.gcdzxfu.cn/api/WebApi/GetCsOrderList', {
         openId: getStore('openid'),//openid
         num: pageNum,//页码
         size: pageSize //每页长度

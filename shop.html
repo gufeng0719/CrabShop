@@ -23,7 +23,7 @@
     </div>
     <!-- /top图片-->
     <div id="app" v-cloak>
-        <div class="shop_top"><a href="#">高淳大闸蟹线电商线上服务市场资费说明</a></div>
+        <div class="shop_top"><a href="#">价格透明 一键代发 售后无忧</a></div>
         <div class="content-list" id="outer">
             <div class="list-left" id="tab">
                 <li :class="{current:menuIndex==0}" @click="menuIndex=0">大宗采购公蟹</li>
@@ -39,8 +39,11 @@
                         <div class="shop-list-mid">
                             <div class="tit">{{product.ProductName}} / {{product.ProductWeight}} kg</div>
                             <div class="total">月售 <span>{{product.TotalNumber}}</span> 只</div>
-                            <div class="price">
+                            <div class="price" v-if="product.ProductState==1">
                                 ￥ <span>{{product.ProductPrice}}</span> 元/斤 - ￥ <span>{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}</span>                                元/只
+                            </div>
+                            <div class="price" v-else>
+                                ￥ <span>-</span> 元/斤 - ￥ <span>-</span>元/只
                             </div>
                             <!-- <div class="am-gallery-desc">{{product.OperationDate}}</div> -->
                         </div>
@@ -50,7 +53,7 @@
                                 <input v-if="product.number>0" :id="'num'+product.ProductId" readonly="" class="text_box" type="text" :value="product.number">
                                 <a class="increase" @click="addToCart(product)">+</a>
                             </div>
-                            <div  class="d-stock" v-else>
+                            <div class="d-stock" v-else>
                                 <span>暂时无货</span>
                             </div>
                         </div>
@@ -62,8 +65,11 @@
                         <div class="shop-list-mid">
                             <div class="tit">{{product.ProductName}} / {{product.ProductWeight}} kg</div>
                             <div class="total">月售 <span>{{product.TotalNumber}}</span> 只</div>
-                            <div class="price">
+                            <div class="price" v-if="product.ProductState==1">
                                 ￥ <span>{{product.ProductPrice}}</span> 元/斤 - ￥ <span>{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}</span>                                元/只
+                            </div>
+                            <div class="price" v-else>
+                                ￥ <span>-</span> 元/斤 - ￥ <span>-</span>元/只
                             </div>
                         </div>
                         <div class="list-cart">
@@ -84,8 +90,11 @@
                         <div class="shop-list-mid">
                             <div class="tit">{{product.ProductName}} / {{product.ProductWeight}} kg</div>
                             <div class="total">月售 <span>{{product.TotalNumber}}</span> 只</div>
-                            <div class="price">
+                            <div class="price" v-if="product.ProductState==1">
                                 ￥ <span>{{product.ProductPrice}}</span> 元/斤 - ￥ <span>{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}</span>                                元/只
+                            </div>
+                            <div class="price" v-else>
+                                ￥ <span>-</span> 元/斤 - ￥ <span>-</span>元/只
                             </div>
                         </div>
                         <div class="list-cart">
@@ -94,7 +103,7 @@
                                 <input v-if="product.number>0" :id="'num'+product.ProductId" readonly="" class="text_box" type="text" :value="product.number">
                                 <a class="increase" @click="addToCart(product)">+</a>
                             </div>
-                            <div  class="d-stock" v-else>
+                            <div class="d-stock" v-else>
                                 <span>暂时无货</span>
                             </div>
                         </div>
@@ -106,8 +115,11 @@
                         <div class="shop-list-mid">
                             <div class="tit">{{product.ProductName}} / {{product.ProductWeight}} kg</div>
                             <div class="total">月售 <span>{{product.TotalNumber}}</span> 只</div>
-                            <div class="price">
+                            <div class="price" v-if="product.ProductState==1">
                                 ￥ <span>{{product.ProductPrice}}</span> 元/斤 - ￥ <span>{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}</span>                                元/只
+                            </div>
+                            <div class="price" v-else>
+                                ￥ <span>-</span> 元/斤 - ￥ <span>-</span>元/只
                             </div>
                         </div>
                         <div class="list-cart">
@@ -116,11 +128,11 @@
                                 <input v-if="product.number>0" :id="'num'+product.ProductId" readonly="" class="text_box" type="text" :value="product.number">
                                 <a class="increase" @click="addToCart(product)">+</a>
                             </div>
-                            <div  class="d-stock" v-else>
-                                    <span>暂时无货</span>
+                            <div class="d-stock" v-else>
+                                <span>暂时无货</span>
                             </div>
                         </div>
-                       
+
                     </li>
                 </ul>
                 <ul class="list-pro" v-if="menuIndex==4">
@@ -129,7 +141,7 @@
                         <div class="shop-list-mid">
                             <div class="tit">{{part.PartName}} / {{part.PartWeight}} kg</div>
 
-                            <div class="price1">￥ <span>{{part.PartPrice}}</span> 件</div>
+                            <div class="price1">￥ <span>{{part.PartPrice}}</span> 元/件</div>
 
                         </div>
                         <div class="list-cart1">
@@ -206,7 +218,6 @@
     <script src="scripts/vue.js"></script>
     <script src="scripts/lodash.min.js" type="text/javascript"></script>
     <script src="service/shop.js"></script>
-
 </body>
 
 </html>

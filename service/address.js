@@ -28,7 +28,7 @@ function submitClick(){
     if(length==0){
         $.ajax({
             type:'post',
-            url:'http://test.osintell.cn/api/WebApi/AddAddress',
+            url:'http://bw.gcdzxfu.cn/api/WebApi/AddAddress',
             data:{
                 UserId:getStore('userid'),
                 Consignee:vm.consignee,

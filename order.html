@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="full-screen" content="yes">
     <meta name="x5-fullscreen" content="true">
-    <title>订单页</title>
+    <title>高淳大闸蟹</title>
     <link href="style/amazeui.min.css" type="text/css" rel="stylesheet" />
     <link href="style/style.css" type="text/css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="style/font-awesome.min.css" />
@@ -25,32 +25,33 @@
 
         <!-- /top图片-->
         <header data-am-widget="header" class="am-header am-header-default sq-head ">
-            
+
             <h1 class="am-header-title">
                 <a href="" class="" style="color: #333;">提交订单</a>
             </h1>
         </header>
         <div style="height: 10px;"></div>
         <div class="content-list" id="outer">
-            
+
             <ul class="order-list">
                 <li>
-                    <div class="title">收货人信息</div>
+                    <div class="title">收货人信息(点击下面收件信息更换地址)</div>
                     <div v-if="!blReceive">
                         <a href="address.html"><i class="fa fa-plus-square-o fa-3x"></i><span style="font-size:2rem;font-weight:bold; position:relative;left:10%;top:-10px;">填写收货地址</span></a>
                     </div>
                     <div v-else>
-                        <div class="blReceive">
-                            <div class="info">
+                        <div class="blReceive" @click="ChooseAddress()">
+                            <div class="info" >
                                 <span>{{address.province}}省</span><span>{{address.city}}市</span><span v-show="address.district">{{address.district}}区</span><span>{{address.details}}</span>
                             </div>
                             <div class="person">
                                 <span>{{address.consignee}}</span><span>{{address.consex}}</span><span>{{address.telphone}}</span>
                             </div>
+
                         </div>
                     </div>
-                 </li>
-                
+                </li>
+
 
                 <li>
                     <div class="title">发货人信息</div>
@@ -66,12 +67,12 @@
                             </div>
                             <div class="am-form-group" style="margin-bottom:0;">
                                 <input type="text" v-model="send.telphone" placeholder="请输入发货人联系方式">
-                            </div>                           
+                            </div>
                         </div>
                     </div>
                 </li>
-                
-               
+
+
                 <li>
                     <div class="title">商品清单</div>
                     <div v-for="(cart,index) in cartFoodList " class="list-product">
@@ -79,31 +80,31 @@
                         <div class="list-mid">
                             <div class="tit">{{cart.name}} / {{cart.weight}} kg ({{cart.tname}})</div>
                             <div class="total">x {{cart.num}}</div>
-                            <div class="price"><span>￥{{(cart.price*cart.weight*2).toFixed(2)}}元/只</span></div>                            
+                            <div class="price"><span>￥{{(cart.price*cart.weight*2).toFixed(2)}}元/只</span></div>
                         </div>
                     </div>
                 </li>
-                
+
                 <li>
                     <div class="title">必选配件</div>
                     <div class="partli" v-for="(part,index) in partList">
                         <span>{{part.PartName}}</span>
                         <span>{{part.PartWeight}} kg</span>
                         <span>￥{{part.PartPrice}}</span>
-                        <span>x{{part.PartId!=10004?1:totalNum}}</span>    
+                        <span>x{{part.PartId!=10004?1:totalNum}}</span>
                     </div>
                 </li>
-                
+
                 <li>
                     <div class="title">可选配件</div>
                     <div class="partli" v-for="(part,index) in partNumList">
                         <span>{{part.name}}</span>
                         <span>{{part.weight}} kg</span>
                         <span>￥{{part.price}}</span>
-                        <span>x{{part.id!=10009?1:totalNum}}</span>                        
+                        <span>x{{part.id!=10009?1:totalNum}}</span>
                     </div>
                 </li>
-                
+
                 <li>
                     <div class="title">订单小计</div>
                     <div class="totalpartli">
@@ -125,16 +126,16 @@
                         <span>小计:￥{{(totalProductPrice+totalPart1Price+totalPartPrice).toFixed(2)}}</span>
                     </div>
                 </li>
-               
-                <li >
+
+                <li>
                     <div class="title">快递</div>
                     <div class="totalpartli">
-                        <span>顺丰速递</span> 
+                        <span>顺丰速递</span>
                         <span>{{totalweight}}kg</span>
-                        <span>￥{{expressPrice}}</span>                        
+                        <span>￥{{expressPrice}}</span>
                     </div>
-                    <div  class="totalpartli">
-                        <span>惠农云仓专享9折优惠</span> 
+                    <div class="totalpartli">
+                        <span>惠农云仓专享9折优惠</span>
                         <span>&nbsp;</span>
                         <span>x 0.9</span>
                     </div>
@@ -142,11 +143,11 @@
                         <span>实收:￥{{expressFinalPrice}}</span>
                     </div>
                 </li>
-                <li >
+                <li>
                     <div class="title">商城服务费</div>
                     <div class="totalpartli">
-                        <span> 螃蟹净重</span> 
-                        <span>{{(totalProductWeight*totalNumber).toFixed(2)}}kg</span> 
+                        <span> 螃蟹净重</span>
+                        <span>{{(totalProductWeight*totalNumber).toFixed(2)}}kg</span>
                         <span>{{(totalProductWeight*totalNumber*2).toFixed(2)}}斤</span>
                     </div>
                     <div class="totalpartlij">
@@ -237,7 +238,7 @@
                 if (length == 0) {
                     $.ajax({
                         type: 'post',
-                        url: 'http://test.osintell.cn/api/WebApi/AddUser',
+                        url: 'http://bw.gcdzxfu.cn/api/WebApi/AddUser',
                         data: {
                             UserName: vm.user.UserName,
                             UserPhone: vm.user.UserPhone,
@@ -247,7 +248,7 @@
                         success: function (msg) {
                             if (msg && msg.status) {
                                 vm.user.UserId = msg.userid;
-                                setStore("userid",msg.userid);
+                                setStore("userid", msg.userid);
                                 $("#myprompt").modal('close');
                             }
                         }
@@ -256,7 +257,7 @@
             });
             //生产JSAPI配置
             $.ajax({
-                url: 'http://test.osintell.cn/WeChatApi/GetJsApiConfig',
+                url: 'http://bw.gcdzxfu.cn/WeChatApi/GetJsApiConfig',
                 type: 'post',
                 data: {
                     currentPage: window.location.href

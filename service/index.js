@@ -14,7 +14,7 @@ var vm = new Vue({
             var that = this;
             $.ajax({
                 type: "get",
-                url: "http://test.osintell.cn/api/WebApi/GetIndex",               
+                url: "http://bw.gcdzxfu.cn/api/WebApi/GetIndex",               
                 complete: function (d) {
                    // console.info(d);
                     var obj = JSON.parse(d.responseJSON);

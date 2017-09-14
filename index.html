@@ -2,21 +2,21 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
-  <meta name="screen-orientation" content="portrait" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="full-screen" content="yes">
-  <meta name="x5-fullscreen" content="true">
-  <title>高淳大闸蟹</title>
-  <link rel="stylesheet" type="text/css" href="style/common.css" />
-  <link rel="stylesheet" type="text/css" href="style/css.css" />
-  <link rel="stylesheet" type="text/css" href="style/index.css" />
-  <link rel="stylesheet" type="text/css" href="style/swiper.min.css" />
-  <link rel="stylesheet" type="text/css" href="style/font-awesome.min.css" />
-  <link href="style/amazeui-u.min.css" rel="stylesheet" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="screen-orientation" content="portrait" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>高淳大闸蟹</title>
+    <link rel="stylesheet" type="text/css" href="style/common.css" />
+    <link rel="stylesheet" type="text/css" href="style/css.css" />
+    <link rel="stylesheet" type="text/css" href="style/index.css" />
+    <link rel="stylesheet" type="text/css" href="style/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="style/font-awesome.min.css" />
+    <link href="style/amazeui-u.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -26,13 +26,12 @@
     </div>
     <div class="am-modal am-modal-confirm" tabindex="-1" id="sf_price">
         <div class="am-modal-dialog" style="position:relative; top:8rem;">
-            <div class="am-modal-bd" >
+            <div class="am-modal-bd">
                 <div class="pop_head">
                     顺风速递资费说明
                 </div>
                 <div class="pop_head_tit">
-                    首重（1kg）+续重<br />
-                    南京始发具体价格如下
+                    首重（1kg）+续重<br /> 南京始发具体价格如下
                 </div>
                 <div class="pop_head_tab">
                     <table>
@@ -43,7 +42,7 @@
                             <td colspan="2">大闸蟹专递价格</td>
                         </tr>
                         <tr>
-                            <td >首重</td>
+                            <td>首重</td>
                             <td>续重</td>
                         </tr>
                         <tr>
@@ -66,15 +65,21 @@
                             <td>2</td>
                         </tr>
                         <tr>
-                            <td>山东、福建</td>
-                            <td>27</td>
+                            <td>河南、湖北、江西</td>
+                            <td>22</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td>山东</td>
+                            <td>22</td>
                             <td>10</td>
                         </tr>
                         <tr>
-                            <td>河南、湖北、江西</td>
+                            <td>福建</td>
                             <td>27</td>
-                            <td>8</td>
+                            <td>10</td>
                         </tr>
+
                         <tr>
                             <td>北京、河北、湖南、山西、陕西、天津</td>
                             <td>28</td>
@@ -106,167 +111,165 @@
                     为降低大闸蟹寄递的死亡率，今年包装要求：泡沫箱+保温袋+冰瓶+螃蟹，否则不予收寄
                 </div>
                 <div class="pop_head_tit">
-                    服务范围<br />
-                    全省禁收：西藏，港澳台<br />
-                    仅省会城市可收寄：甘肃（兰州）,广西（南宁），内蒙古（呼和浩特），青海（西宁），山西（太原）,云南（昆明），新疆（乌鲁木齐）
+                    服务范围<br /> 全省禁收：西藏，港澳台
+                    <br /> 仅省会城市可收寄：甘肃（兰州）,广西（南宁），内蒙古（呼和浩特），青海（西宁），山西（太原）,云南（昆明），新疆（乌鲁木齐）
                 </div>
             </div>
-         </div>
+        </div>
     </div>
     <div class="am-modal am-modal-confirm" tabindex="-1" id="fw_price">
         <div class="am-modal-dialog" style="position:relative; top:6rem;">
             <div class="am-modal-bd">
                 <div class="pop_head">市场服务费说明</div>
                 <div class="pop_head_tit">
-                    1.累计购买数量小于等于20斤,按照20元/斤收取市场服务费。<br />
-                    2.累计购买数量大于20斤，按照5元/斤收取市场服务费。
+                    1.累计购买数量小于等于20斤,按照20元/斤收取市场服务费。<br /> 2.累计购买数量大于20斤，按照5元/斤收取市场服务费。
                 </div>
             </div>
         </div>
     </div>
-  <div id="app"  v-cloak style="width:98%;">
+    <div id="app" v-cloak style="width:98%;">
         <!-- /top图片-->
-    <div class="main">
-      <div class="title">
-          <div class="title_date">
-             <div class="title_date_pic">
-                <div class="mon">{{month}} 月</div>
-                <div class="da">{{date}} 日</div>
-             </div>           
-          </div>
-          <div class="title_font">今日蟹价</div>
-          <div class="title_btn"><a class="btn" href="shop.html">立即购买</a></div>
-          <div class="clr"></div>
-      </div>
-      <div class="list">
-        <header>
-          <span>大宗采购价</span>
-        </header>
-        <table>
-          <thead>
-            <tr>
-              <td>
-                规格(母/两)
-              </td>
-              <td>
-                价格(元/斤)
-              </td>
-              <td>
-                规格(公/两)
-              </td>
-              <td>
-                价格(元/斤)
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in priceList1">
-              <td style="font-weight:bold;">{{item.pn2}}</td>
-              <td>{{item.pv2}}</td>
-              <td style="font-weight:bold;">{{item.pn1}}</td>
-              <td>{{item.pv1}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="list">
-        <header>
-          <span>蟹塘直采价</span></header>
-        <table>
-          <thead>
-            <tr>
-              <td>
-                规格(母/两)
-              </td>
-              <td>
-                价格(元/斤)
-              </td>
-              <td>
-                规格(公/两)
-              </td>
-              <td>
-                价格(元/斤)
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in priceList2">
-              <td style="font-weight:bold;">{{item.pn2}}</td>
-              <td>{{item.pv2}}</td>
-              <td style="font-weight:bold;">{{item.pn1}}</td>
-              <td>{{item.pv1}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="services">       
-          <table>
-              <thead>
-                  <tr>
-                      <td colspan="2">
-                          服务价格表
-                      </td>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td>电商代发</td>
-                      <td>5-20元/斤</td>
-                  </tr>
-                  <tr>
-                      <td>大宗批发自提</td>
-                      <td>3-10元/斤</td>
-                  </tr>
-                  <tr>
-                      <td colspan="2" class="services_tds"><i class="link"  @click="showCart1()">查看说明</i></td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
-      
-      <div class="sfsd">
-          <div class="sfsd_title">顺丰惠农云仓专享优惠</div>
-          <div class="sfsd_price"><i class="btns"  @click="showCart()">查看具体报价</i></div>       
-      </div>
-      <div class="list">
-        <header><span>配件价格</span></header>
-        <table>
-          <thead>
-            <tr>
-              <td>必选 </td>
-              <td>价格(元)</td>
-              <td>可选</td>
-              <td>价格(元)</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in partsList">
-              <td>{{item.pr1}}</td>
-              <td>{{item.pv1}}</td>
-              <td>{{item.pr2}}</td>
-              <td>{{item.pv2}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="end"></div>
+        <div class="main">
+            <div class="title">
+                <div class="title_date">
+                    <div class="title_date_pic">
+                        <div class="mon">{{month}} 月</div>
+                        <div class="da">{{date}}</div>
+                    </div>
+                </div>
+                <div class="title_font">今日蟹价</div>
+                <div class="title_btn"><a class="btn" href="shop.html">立即购买</a></div>
+                <div class="clr"></div>
+            </div>
+            <div class="list">
+                <header>
+                    <span>大宗采购价</span>
+                </header>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>
+                                规格(母/两)
+                            </td>
+                            <td>
+                                价格(元/斤)
+                            </td>
+                            <td>
+                                规格(公/两)
+                            </td>
+                            <td>
+                                价格(元/斤)
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in priceList1">
+                            <td style="font-weight:bold;">{{item.pn2}}</td>
+                            <td>{{item.pv2}}</td>
+                            <td style="font-weight:bold;">{{item.pn1}}</td>
+                            <td>{{item.pv1}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="list">
+                <header>
+                    <span>蟹塘直采价</span></header>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>
+                                规格(母/两)
+                            </td>
+                            <td>
+                                价格(元/斤)
+                            </td>
+                            <td>
+                                规格(公/两)
+                            </td>
+                            <td>
+                                价格(元/斤)
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in priceList2">
+                            <td style="font-weight:bold;">{{item.pn2}}</td>
+                            <td>{{item.pv2}}</td>
+                            <td style="font-weight:bold;">{{item.pn1}}</td>
+                            <td>{{item.pv1}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="services">
+                <table>
+                    <thead>
+                        <tr>
+                            <td colspan="2">
+                                服务价格表
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>电商代发</td>
+                            <td>5-20元/斤</td>
+                        </tr>
+                        <tr>
+                            <td>大宗批发自提</td>
+                            <td>3-10元/斤</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="services_tds"><i class="link" @click="showCart1()">查看说明</i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="sfsd">
+                <div class="sfsd_title">顺丰惠农云仓专享优惠</div>
+                <div class="sfsd_price"><i class="btns" @click="showCart()">查看具体报价</i></div>
+            </div>
+            <div class="list">
+                <header><span>配件价格</span></header>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>必选 </td>
+                            <td>价格(元)</td>
+                            <td>可选</td>
+                            <td>价格(元)</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in partsList">
+                            <td>{{item.pr1}}</td>
+                            <td>{{item.pv1}}</td>
+                            <td>{{item.pr2}}</td>
+                            <td>{{item.pv2}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="end"></div>
+        </div>
+
+
+
+        <footer>
+            <div id="indexFooterBox">
+                <ul id="indexFooter">
+                    <li class="bor"><a href="myOrder.html"><i class="fa fa-file-text-o fa-2x"></i><span>我的订单</span></a></li>
+                    <li class="bor"><a href="rebate.html"><i class="fa fa-folder-open-o fa-2x"></i><span>我的成果</span></a></li>
+                    <li><a href="shop.html"><i class="fa fa-cart-plus fa-2x"></i><span>立即购买</span></a></li>
+                </ul>
+            </div>
+        </footer>
+
+
     </div>
 
-      
-
-    <footer>
-        <div id="indexFooterBox">
-          <ul id="indexFooter">
-            <li class="bor"><a href="myOrder.html"><i class="fa fa-file-text-o fa-2x"></i><span>我的订单</span></a></li>
-            <li  class="bor"><a href="huodong.html"><i class="fa fa-folder-open-o fa-2x"></i><span>我的返利</span></a></li>
-            <li ><a href="shop.html"><i class="fa fa-cart-plus fa-2x"></i><span>立即购买</span></a></li>
-          </ul>
-        </div>
-      </footer>
-
-      
-  </div>
-    
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/amazeui.min.js" type="text/javascript"></script>
     <script src="scripts/vue.js"></script>

@@ -27,7 +27,7 @@ Vue.component("ddladdress", {
         ChooseAddress: function (index, type) {
             var that = this;
             $.ajax({
-                url: "http://test.osintell.cn/api/WebApi/GetCityList",
+                url: "http://bw.gcdzxfu.cn/api/WebApi/GetCityList",
                 type: "get",
                 data: { parentId: index },
                 success: function (d) {
