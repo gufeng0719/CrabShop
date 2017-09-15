@@ -121,8 +121,8 @@ var vm = new Vue({
             var that = this;
             that.totalNumber--;
         },
-        ChooseAddress:function(){
-            window.location.href="chooseAdd.html"
+        ChooseAddress: function () {
+            window.location.href = "chooseAdd.html"
         }
     },
     computed: {
@@ -263,7 +263,7 @@ var vm = new Vue({
             //购买螃蟹金额+配件金额+快递费(带有份数)+服务费(带有份数)
             let totalPrice = (this.totalProductPrice + this.totalPart1Price + this.totalPartPrice) * this.totalNumber + this.expressFinalPrice + this.shopPrice
             return Number(totalPrice.toFixed(2));
-         },
+        },
         // //最终付款费用
         // finalPrice: function () {
         //     //let price = 0;
@@ -318,7 +318,7 @@ function SubmitPlay() {
             alert("请选择或填写收件者信息"); return;
         }
         //采购螃蟹信息
-        if (vm.totalNum <6) {
+        if (vm.totalNum < 6) {
             alert("请至少购买6只螃蟹才能下单"); return;
         }
         $.ajax({
@@ -348,7 +348,7 @@ function SubmitPlay() {
                         data: {
                             body: '购买大闸蟹支付',
                             orderNumber: (new Date() - new Date("1970")) + d.orderid + '',
-                            total: vm.totalmoney*100+ '',
+                            total: vm.totalmoney * 100 + '',
                             notify: 'http://dzx.gcdzxfu.cn/myOrder.html',
                             openId: vm.openId
                         },
@@ -365,7 +365,7 @@ function SubmitPlay() {
                                 });
 
                             } else {
-                               // console.log(d.responseText)
+                                // console.log(d.responseText)
                                 alert(obj.msg)
                             }
                         }
@@ -407,7 +407,7 @@ function Pay() {
                             if (res.err_msg == "get_brand_wcpay_request:ok") {
                                 //alert("支付成功");
                                 vm.finishPay = true;
-                                $.post('http://bw.gcdaxfu.cn/api/WebApi/FinshOrder', { OrderId: vm.orderId, UserId:vm.user.UserId,TotalWeight:vm.totalProductWeight,OrderCopies:vm.totalNumber }, function (msg) {
+                                $.post('http://bw.gcdaxfu.cn/api/WebApi/FinshOrder', { OrderId: vm.orderId, UserId: vm.user.UserId, TotalWeight: vm.totalProductWeight, OrderCopies: vm.totalNumber }, function (msg) {
                                     if (msg && msg.status) {
                                         window.location.href = "myOrder.html";
                                     }

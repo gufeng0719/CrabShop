@@ -1,6 +1,23 @@
-.main .title{
-      width:100%;
-      height:85px;
+﻿.main .title{
+     width:100%;
+	height:85px;
+}
+ .title_index{
+     width:102%;
+      height:2.4rem;
+      line-height:2.4rem;
+     
+      background-color:#fff;
+      text-align:center;
+      font-size:1rem;
+      letter-spacing:.1rem;
+      font-family:'Microsoft YaHei UI';
+      font-weight:bold;
+      color:#aa1f24;
+      box-shadow:-1px 3px 6px #aa1f24;
+      margin-bottom:1rem;
+      position:relative;
+      top:-2px;
 }
 .priceDate{
       text-align: center;
@@ -116,7 +133,7 @@
        font-size:.8rem;
        position: relative;
        right:1rem;
-       color:#4c3732;
+       color:#aa1f24;
  }
  .link2{
       font-size:1.2rem;
@@ -188,7 +205,7 @@ ul li p{
 
 .sfsd {
    margin:1rem 0px 1rem 0.5rem;
-   background:url(../images/sf.png);
+   background:url(../images/sf.png) no-repeat;
    height:94px;
    text-align:center;
    border-bottom:solid 1px #4c3732;
@@ -196,7 +213,7 @@ ul li p{
  .sfsd_title {
     height:64px;
     padding-top:20px;
-    color:#4c3732;
+    color:#aa1f24;
     font-size:1.4rem;
     }
 .sfsd_price {
@@ -205,7 +222,7 @@ ul li p{
 .sfsd .btns{
         padding: .3rem 1rem;
         border-radius: 5px;
-        background-color: #4c3732;
+        background-color: #aa1f24;
         font-size: 1rem;
         font-weight: normal;
         display: inline;

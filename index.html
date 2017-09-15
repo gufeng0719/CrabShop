@@ -28,7 +28,9 @@
         <div class="am-modal-dialog" style="position:relative; top:8rem;">
             <div class="am-modal-bd">
                 <div class="pop_head">
-                    顺风速递资费说明
+                    顺丰速递资费说明
+                    <span style="color:red;display:block;">“惠农云仓”专享9折优惠
+                    </span>
                 </div>
                 <div class="pop_head_tit">
                     首重（1kg）+续重<br /> 南京始发具体价格如下
@@ -128,19 +130,21 @@
         </div>
     </div>
     <div id="app" v-cloak style="width:98%;">
+        <div class="title_index">
+            <!--<div class="title_date">
+            <div class="title_date_pic">
+                <div class="mon">{{month}} 月</div>
+                <div class="da">{{date}}</div>
+            </div>
+        </div>
+        <div class="title_font">今日蟹价</div>
+        <div class="title_btn"><a class="btn" href="shop.html">立即购买</a></div>
+        <div class="clr"></div>-->
+            {{month}}月{{date}}日螃蟹报价单
+        </div>
         <!-- /top图片-->
         <div class="main">
-            <div class="title">
-                <div class="title_date">
-                    <div class="title_date_pic">
-                        <div class="mon">{{month}} 月</div>
-                        <div class="da">{{date}}</div>
-                    </div>
-                </div>
-                <div class="title_font">今日蟹价</div>
-                <div class="title_btn"><a class="btn" href="shop.html">立即购买</a></div>
-                <div class="clr"></div>
-            </div>
+            
             <div class="list">
                 <header>
                     <span>大宗采购价</span>
@@ -228,7 +232,7 @@
             </div>
 
             <div class="sfsd">
-                <div class="sfsd_title">顺丰惠农云仓专享优惠</div>
+                <div class="sfsd_title">顺丰"惠农云仓"专享9折优惠</div>
                 <div class="sfsd_price"><i class="btns" @click="showCart()">查看具体报价</i></div>
             </div>
             <div class="list">
