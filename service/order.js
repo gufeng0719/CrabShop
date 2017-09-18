@@ -347,8 +347,8 @@ function SubmitPlay() {
                         type: 'post',
                         data: {
                             body: '购买大闸蟹支付',
-                            orderNumber: (new Date() - new Date("1970")) + d.orderid + '',
-                            total: vm.totalmoney * 100 + '',
+                            orderNumber: d.orderNumber,
+                            total: (vm.totalmoney * 100).toFixed(2),
                             notify: 'http://dzx.gcdzxfu.cn/myOrder.html',
                             openId: vm.openId
                         },
@@ -372,7 +372,7 @@ function SubmitPlay() {
                     });
 
                 } else {
-
+                    alert('对不起订单生成失败！');
                 }
 
                 // window.open("index.html", "_self");
