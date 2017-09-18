@@ -407,7 +407,7 @@ function Pay() {
                             if (res.err_msg == "get_brand_wcpay_request:ok") {
                                 //alert("支付成功");
                                 vm.finishPay = true;
-                                $.post('http://bw.gcdaxfu.cn/api/WebApi/FinshOrder', { OrderId: vm.orderId, UserId: vm.user.UserId, TotalWeight: vm.totalProductWeight, OrderCopies: vm.totalNumber }, function (msg) {
+                                $.post('http://bw.gcdzxfu.cn/api/WebApi/FinshOrder', { OrderId: vm.orderId, UserId: vm.user.UserId, TotalWeight: vm.totalProductWeight, OrderCopies: vm.totalNumber }, function (msg) {
                                     if (msg && msg.status) {
                                         window.location.href = "myOrder.html";
                                     }

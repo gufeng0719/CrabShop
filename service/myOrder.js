@@ -47,14 +47,14 @@ var vm = new Vue({
                             if (res.err_msg == "get_brand_wcpay_request:ok") {
                                 //alert("支付成功");
                                 vm.finishPay = true;
-                                $.post('http://bw.gcdaxfu.cn/api/WebApi/FinshOrder2', { '': order.OrderId}, function (msg) {
+                                $.post('http://bw.gcdzxfu.cn/api/WebApi/FinshOrder2', { '': order.OrderId}, function (msg) {
                                     if (msg && msg.status) {
                                        that.upCallback(1);
                                     }
                                 });
                             }else{
                                 // //支付失败
-                                // $.post('http://bw.gcdaxfu.cn/api/WebApi/UpdateOrderState', { OrderId: order.OrderId,OrderState:0}, function (msg) {
+                                // $.post('http://bw.gcdzxfu.cn/api/WebApi/UpdateOrderState', { OrderId: order.OrderId,OrderState:0}, function (msg) {
                                 //     if (msg && msg.status) {
                                 //        that.upCallback(1);
                                 //     }

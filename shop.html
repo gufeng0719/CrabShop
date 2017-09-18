@@ -26,15 +26,16 @@
         <div class="shop_top"><a href="#">价格透明 一键代发 售后无忧</a></div>
         <div class="content-list" id="outer">
             <div class="list-left" id="tab">
-                <li :class="{current:menuIndex==0}" @click="menuIndex=0">大宗采购公蟹</li>
-                <li :class="{current:menuIndex==1}" @click="menuIndex = 1"><a>大宗采购母蟹</a></li>
-                <li :class="{current:menuIndex==2}" @click="menuIndex=2"><a>蟹塘直采公蟹</a></li>
-                <li :class="{current:menuIndex==3}" @click="menuIndex=3"><a>蟹塘直采母蟹</a></li>
+                <li :class="{current:menuIndex==0}" @click="menuIndex=0"><a>蟹塘直采母蟹</a></li>
+                <li :class="{current:menuIndex==1}" @click="menuIndex=1"><a>蟹塘直采公蟹</a></li>
+                <li :class="{current:menuIndex==2}" @click="menuIndex = 2"><a>大宗采购母蟹</a></li>
+                <li :class="{current:menuIndex==3}" @click="menuIndex=3">大宗采购公蟹</li>
                 <li :class="{current:menuIndex==4}" @click="menuIndex=4"><a>可选配件</a></li>
             </div>
             <div class="list-right" id="content">
+                <!--蟹塘直采母蟹 -->
                 <ul class="list-pro" v-if="menuIndex==0">
-                    <li v-for="(product,index) in proList1">
+                    <li v-for="(product,index) in proList4">
                         <img :src="imgBaseUrl+product.ProductImage" class="list-pic" />
                         <div class="shop-list-mid">
                             <div class="tit">{{product.ProductName}} / {{product.ProductWeight}} kg</div>
@@ -45,7 +46,6 @@
                             <div class="price" v-else>
                                 ￥ <span>-</span> 元/斤 - ￥ <span>-</span>元/只
                             </div>
-                            <!-- <div class="am-gallery-desc">{{product.OperationDate}}</div> -->
                         </div>
                         <div class="list-cart">
                             <div class="d-stock" v-if="product.ProductStock>0&&product.ProductPrice>0&&product.ProductState==1">
@@ -57,34 +57,12 @@
                                 <span>暂时无货</span>
                             </div>
                         </div>
+
                     </li>
                 </ul>
+
+                <!--蟹塘直采公蟹 -->
                 <ul class="list-pro" v-if="menuIndex==1">
-                    <li v-for="(product,index) in proList2">
-                        <img :src="imgBaseUrl+product.ProductImage" class="list-pic" />
-                        <div class="shop-list-mid">
-                            <div class="tit">{{product.ProductName}} / {{product.ProductWeight}} kg</div>
-                            <div class="total">月售 <span>{{product.TotalNumber}}</span> 只</div>
-                            <div class="price" v-if="product.ProductState==1">
-                                ￥ <span>{{product.ProductPrice}}</span> 元/斤 - ￥ <span>{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}</span>                                元/只
-                            </div>
-                            <div class="price" v-else>
-                                ￥ <span>-</span> 元/斤 - ￥ <span>-</span>元/只
-                            </div>
-                        </div>
-                        <div class="list-cart">
-                            <div class="d-stock" v-if="product.ProductStock>0&&product.ProductPrice>0&&product.ProductState==1">
-                                <a class="decrease" v-if="product.number>0" @click="removeOutCart(product)">-</a>
-                                <input v-if="product.number>0" :id="'num'+product.ProductId" readonly="" class="text_box" type="text" :value="product.number">
-                                <a class="increase" @click="addToCart(product)">+</a>
-                            </div>
-                            <div class="d-stock" v-else>
-                                <span>暂时无货</span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <ul class="list-pro" v-if="menuIndex==2">
                     <li v-for="(product,index) in proList3">
                         <img :src="imgBaseUrl+product.ProductImage" class="list-pic" />
                         <div class="shop-list-mid">
@@ -109,8 +87,10 @@
                         </div>
                     </li>
                 </ul>
-                <ul class="list-pro" v-if="menuIndex==3">
-                    <li v-for="(product,index) in proList4">
+
+                <!--大宗采购母蟹 -->
+                <ul class="list-pro" v-if="menuIndex==2">
+                    <li v-for="(product,index) in proList2">
                         <img :src="imgBaseUrl+product.ProductImage" class="list-pic" />
                         <div class="shop-list-mid">
                             <div class="tit">{{product.ProductName}} / {{product.ProductWeight}} kg</div>
@@ -123,7 +103,7 @@
                             </div>
                         </div>
                         <div class="list-cart">
-                            <div class="d-stoc " v-if="product.ProductStock>0&&product.ProductPrice>0&&product.ProductState==1">
+                            <div class="d-stock" v-if="product.ProductStock>0&&product.ProductPrice>0&&product.ProductState==1">
                                 <a class="decrease" v-if="product.number>0" @click="removeOutCart(product)">-</a>
                                 <input v-if="product.number>0" :id="'num'+product.ProductId" readonly="" class="text_box" type="text" :value="product.number">
                                 <a class="increase" @click="addToCart(product)">+</a>
@@ -132,7 +112,34 @@
                                 <span>暂时无货</span>
                             </div>
                         </div>
+                    </li>
+                </ul>
 
+                <!--大宗采购公蟹 -->
+                <ul class="list-pro" v-if="menuIndex==3">
+                    <li v-for="(product,index) in proList1">
+                        <img :src="imgBaseUrl+product.ProductImage" class="list-pic" />
+                        <div class="shop-list-mid">
+                            <div class="tit">{{product.ProductName}} / {{product.ProductWeight}} kg</div>
+                            <div class="total">月售 <span>{{product.TotalNumber}}</span> 只</div>
+                            <div class="price" v-if="product.ProductState==1">
+                                ￥ <span>{{product.ProductPrice}}</span> 元/斤 - ￥ <span>{{(product.ProductPrice*product.ProductWeight*2).toFixed(2)}}</span>                                元/只
+                            </div>
+                            <div class="price" v-else>
+                                ￥ <span>-</span> 元/斤 - ￥ <span>-</span>元/只
+                            </div>
+                            <!-- <div class="am-gallery-desc">{{product.OperationDate}}</div> -->
+                        </div>
+                        <div class="list-cart">
+                            <div class="d-stock" v-if="product.ProductStock>0&&product.ProductPrice>0&&product.ProductState==1">
+                                <a class="decrease" v-if="product.number>0" @click="removeOutCart(product)">-</a>
+                                <input v-if="product.number>0" :id="'num'+product.ProductId" readonly="" class="text_box" type="text" :value="product.number">
+                                <a class="increase" @click="addToCart(product)">+</a>
+                            </div>
+                            <div class="d-stock" v-else>
+                                <span>暂时无货</span>
+                            </div>
+                        </div>
                     </li>
                 </ul>
                 <ul class="list-pro" v-if="menuIndex==4">
@@ -217,7 +224,7 @@
     <script src="scripts/amazeui.min.js" type="text/javascript"></script>
     <script src="scripts/vue.js"></script>
     <script src="scripts/lodash.min.js" type="text/javascript"></script>
-    <script src="service/shop.js"></script>
+    <script src="service/shop.js?v=1.0"></script>
 </body>
 
 </html>

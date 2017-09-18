@@ -147,37 +147,6 @@
             
             <div class="list">
                 <header>
-                    <span>大宗采购价</span>
-                </header>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>
-                                规格(母/两)
-                            </td>
-                            <td>
-                                价格(元/斤)
-                            </td>
-                            <td>
-                                规格(公/两)
-                            </td>
-                            <td>
-                                价格(元/斤)
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="item in priceList1">
-                            <td style="font-weight:bold;">{{item.pn2}}</td>
-                            <td>{{item.pv2}}</td>
-                            <td style="font-weight:bold;">{{item.pn1}}</td>
-                            <td>{{item.pv1}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="list">
-                <header>
                     <span>蟹塘直采价</span></header>
                 <table>
                     <thead>
@@ -206,6 +175,37 @@
                     </tbody>
                 </table>
             </div>
+            <div class="list">
+                <header>
+                    <span>大宗采购价</span>
+                </header>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>
+                                规格(母/两)
+                            </td>
+                            <td>
+                                价格(元/斤)
+                            </td>
+                            <td>
+                                规格(公/两)
+                            </td>
+                            <td>
+                                价格(元/斤)
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in priceList1">
+                            <td style="font-weight:bold;">{{item.pn2}}</td>
+                            <td>{{item.pv2}}</td>
+                            <td style="font-weight:bold;">{{item.pn1}}</td>
+                            <td>{{item.pv1}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>            
             <div class="services">
                 <table>
                     <thead>
@@ -258,9 +258,6 @@
             </div>
             <div class="end"></div>
         </div>
-
-
-
         <footer>
             <div id="indexFooterBox">
                 <ul id="indexFooter">
@@ -279,7 +276,7 @@
     <script src="scripts/vue.js"></script>
     <script src="scripts/vue-resource.js"></script>
     <script src="pulgins/swiper.min.js"></script>
-    <script src="service/index.js"></script>
+    <script src="service/index.js?v=1.0"></script>
 </body>
 
 </html>
