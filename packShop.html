@@ -30,7 +30,7 @@
                         <img :src="imgBaseUrl+package.PackageImage" class="list-pic" />
                         <div class="shop-list-mid">
                             <div class="tit">{{package.PackageName}}</div>
-                            <div class="total">月售 <span>{{package.number}}</span> 件</div>
+                            <div class="total">月售 <span>{{package.TotalNumber}}</span> 件</div>
                             <div class="price" v-if="package.PackageState==1">
                                 ￥ <span>{{package.PackagePrice}}</span> 元/件
                             </div>

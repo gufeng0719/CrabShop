@@ -38,7 +38,7 @@ var vm = new Vue({
             var that = this;
             $.ajax({
                 type: "get",
-                url: "http://localhost:56703/api/WebApi/GetPackageList",
+                url: "http://bw.gcdzxfu.cn/api/WebApi/GetPackageList",
                 success: function (d) {
                     console.info(d.status)
                     if (d.status) {

@@ -28,9 +28,9 @@
             <div class="list-left" id="tab">
                 <li :class="{current:menuIndex==0}" @click="menuIndex=0"><a>蟹塘直采母蟹</a></li>
                 <li :class="{current:menuIndex==1}" @click="menuIndex=1"><a>蟹塘直采公蟹</a></li>
-                <li :class="{current:menuIndex==2}" @click="menuIndex = 2"><a>大宗采购母蟹</a></li>
-                <li :class="{current:menuIndex==3}" @click="menuIndex=3">大宗采购公蟹</li>
-                <li :class="{current:menuIndex==4}" @click="menuIndex=4"><a>可选配件</a></li>
+                <!-- <li :class="{current:menuIndex==2}" @click="menuIndex = 2"><a>大宗采购母蟹</a></li>
+                <li :class="{current:menuIndex==3}" @click="menuIndex=3">大宗采购公蟹</li> -->
+                <li :class="{current:menuIndex==3}" @click="menuIndex=3"><a>可选配件</a></li>
             </div>
             <div class="list-right" id="content">
                 <!--蟹塘直采母蟹 -->
@@ -89,7 +89,7 @@
                 </ul>
 
                 <!--大宗采购母蟹 -->
-                <ul class="list-pro" v-if="menuIndex==2">
+                <!-- <ul class="list-pro" v-if="menuIndex==2">
                     <li v-for="(product,index) in proList2">
                         <img :src="imgBaseUrl+product.ProductImage" class="list-pic" />
                         <div class="shop-list-mid">
@@ -113,10 +113,10 @@
                             </div>
                         </div>
                     </li>
-                </ul>
+                </ul> -->
 
                 <!--大宗采购公蟹 -->
-                <ul class="list-pro" v-if="menuIndex==3">
+                <!-- <ul class="list-pro" v-if="menuIndex==3">
                     <li v-for="(product,index) in proList1">
                         <img :src="imgBaseUrl+product.ProductImage" class="list-pic" />
                         <div class="shop-list-mid">
@@ -128,7 +128,7 @@
                             <div class="price" v-else>
                                 ￥ <span>-</span> 元/斤 - ￥ <span>-</span>元/只
                             </div>
-                            <!-- <div class="am-gallery-desc">{{product.OperationDate}}</div> -->
+                           
                         </div>
                         <div class="list-cart">
                             <div class="d-stock" v-if="product.ProductStock>0&&product.ProductPrice>0&&product.ProductState==1">
@@ -141,8 +141,8 @@
                             </div>
                         </div>
                     </li>
-                </ul>
-                <ul class="list-pro" v-if="menuIndex==4">
+                </ul> -->
+                <ul class="list-pro" v-if="menuIndex==3">
                     <li v-for="(part,index) in partList">
                         <img :src="imgBaseUrl+part.PartImage" class="list-pic" />
                         <div class="shop-list-mid">
