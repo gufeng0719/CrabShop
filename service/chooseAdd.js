@@ -1,12 +1,19 @@
 var vm = new Vue({
     el: "#app",
     data: {
-        addressList: []//地址列表
+        addressList: [],//地址列表
+        type:1//采购类型
     },
     methods: {
         getpage: function () {
             var that = this;
             let userid = getStore('userid');
+            var url = location.search; //获取url中"?"符后的字串
+            if (url.indexOf("?") !== -1) {
+                let str = url.substr(1);
+                let type = str.split('=')[1];
+                that.type = type;
+            }
             $.ajax({
                 type: "get",
                 url: "http://bw.gcdzxfu.cn/api/WebApi/GetAddressList",
@@ -55,7 +62,12 @@ var vm = new Vue({
                 details:address.Detail//详细地址
             }];
             setStore('addressinfo',addressinfo);
-            window.location.href="order.html"
+            if(vm.type==1){
+                window.location.href="order.html"
+            }else{
+                window.location.href="packOrder.html";
+            }
+            
         }
     },
     mounted: function () {

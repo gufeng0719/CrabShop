@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -37,7 +37,7 @@
                 <li>
                     <div class="title">收货人信息(点击下面收件信息更换地址)</div>
                     <div v-if="!blReceive">
-                        <a href="address.html?type=1"><i class="fa fa-plus-square-o fa-3x"></i><span style="font-size:2rem;font-weight:bold; position:relative;left:10%;top:-10px;">填写收货地址</span></a>
+                        <a href="address.html?type=2"><i class="fa fa-plus-square-o fa-3x"></i><span style="font-size:2rem;font-weight:bold; position:relative;left:10%;top:-10px;">填写收货地址</span></a>
                     </div>
                     <div v-else>
                         <div class="blReceive" @click="ChooseAddress()">
@@ -71,102 +71,17 @@
                         </div>
                     </div>
                 </li>
-
-
                 <li>
                     <div class="title">商品清单</div>
-                    <div v-for="(cart,index) in cartFoodList " class="list-product">
+                    <div v-for="(cart,index) in cartPackageList " class="list-product">
                         <img v-bind:src="imgBaseUrl+cart.image" class="list-pic" />
                         <div class="list-mid">
-                            <div class="tit">{{cart.name}} / {{cart.weight}} kg ({{cart.tname}})</div>
+                            <div class="tit">{{cart.name}}</div>
                             <div class="total">x {{cart.num}}</div>
-                            <div class="price"><span>￥{{(cart.price*cart.weight*2).toFixed(2)}}元/只</span></div>
+                            <div class="price"><span>￥{{cart.price}}元/件</span></div>
                         </div>
                     </div>
-                </li>
-
-                <li>
-                    <div class="title">必选配件</div>
-                    <div class="partli" v-for="(part,index) in partList">
-                        <span>{{part.PartName}}</span>
-                        <span>{{part.PartWeight}} kg</span>
-                        <span>￥{{part.PartPrice}}</span>
-                        <span>x{{part.PartId!=10004?1:totalNum}}</span>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="title">可选配件</div>
-                    <div class="partli" v-for="(part,index) in partNumList">
-                        <span>{{part.name}}</span>
-                        <span>{{part.weight}} kg</span>
-                        <span>￥{{part.price}}</span>
-                        <span>x{{part.id!=10009?1:totalNum}}</span>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="title">订单小计</div>
-                    <div class="totalpartli">
-                        <span>螃蟹</span>
-                        <span>{{totalProductWeight}}kg</span>
-                        <span>￥{{totalProductPrice}}</span>
-                    </div>
-                    <div class="totalpartli">
-                        <span>必选配件</span>
-                        <span>{{totalPartWeight}} kg</span>
-                        <span>￥{{totalPartPrice}}</span>
-                    </div>
-                    <div class="totalpartli">
-                        <span>可选配件</span>
-                        <span>{{totalPart1Weight}} kg</span>
-                        <span>￥{{totalPart1Price}}</span>
-                    </div>
-                    <div class="totalpartlij">
-                        <span>小计:￥{{(totalProductPrice+totalPart1Price+totalPartPrice).toFixed(2)}}</span>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="title">快递</div>
-                    <div class="totalpartli">
-                        <span>顺丰速递</span>
-                        <span>{{totalweight}}kg</span>
-                        <span>￥{{expressPrice}}</span>
-                    </div>
-                    <div class="totalpartli">
-                        <span>惠农云仓专享9折优惠</span>
-                        <span>&nbsp;</span>
-                        <span>x 0.9</span>
-                    </div>
-                    <div class="totalpartlij">
-                        <span>实收:￥{{expressFinalPrice}}</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="title">商城服务费</div>
-                    <div class="totalpartlit">
-                        <span>累计购买数量&gt;=20斤，按20元/斤收取市场服务费</span></div>
-                    <div class="totalpartlit">
-                        <span>累计购买数量&lt;20斤，按5元/斤收取市场服务费</span></div>
-                    <div class="totalpartli">
-                        <span> 螃蟹净重</span>
-                        <span>{{(totalProductWeight*totalNumber).toFixed(2)}}kg</span>
-                        <span>{{(totalProductWeight*totalNumber*2).toFixed(2)}}斤</span>
-                    </div>
-                    <div class="totalpartlij">
-                        <span>实收:￥{{shopPrice}}</span>
-                    </div>
-                </li>
-                <!-- <li class="partli">
-                    <div class="titles">
-                        返利账户余额 {{balance}} 元
-                        <p style="float:right; font-size:1.2rem">
-                            优先使用 <input type="checkbox" checked v-model="blChoseBalance" style="position:relative; top:0.3rem;">
-                        </p>
-                    </div>
-                    <div class="clear:both;"></div>
-                </li> -->
+                </li>                
             </ul>
         </div>
         <div style="height: 60px;"></div>
@@ -229,7 +144,7 @@
     <script src="scripts/vue.js"></script>
     <script src="service/load.js" type="text/javascript"></script>
     <script src="scripts/lodash.min.js" type="text/javascript"></script>
-    <script src="service/order.js?v=1.2" type="text/javascript"></script>
+    <script src="service/packOrder.js?v=1.0" type="text/javascript"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <script>
         if ($.AMUI && $.AMUI.validator) {
