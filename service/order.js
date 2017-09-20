@@ -232,11 +232,11 @@ var vm = new Vue({
             let totalProWeight = this.totalProductWeight * this.totalNumber;//每单重量乘以份数
             //电商服务费方案：累计购买在20斤(含20斤)收20元/斤收取，累计超过20斤按5元/斤收取
             //重量单位为千克，所以费用需要乘以2，重量需要除以2
-            if (this.haveWeight <= 10) {
-                price = totalProWeight * 20 * 2;
-            } else {
+            // if (this.haveWeight <= 10) {
+            //     price = totalProWeight * 20 * 2;
+            // } else {
                 price = totalProWeight * 5 * 2;
-            }
+            // }
             return Number(price.toFixed(2));
         },
         // //返利金额
