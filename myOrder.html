@@ -15,7 +15,6 @@
     <link href="style/style.css" type="text/css" rel="stylesheet" />
     <link href="style/mescroll.min.css" text="text/css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="style/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="style/amazeui-u.min.css">
     <link rel="stylesheet" type="text/css" href="style/myorder.css" />
     <style>
         .am-btn{
@@ -28,7 +27,7 @@
 <body>
     <!--top开始图片-->
     <div class="banner">
-        <img src="images/header.png">
+        <img src="images/header.jpg">
     </div>
     <!-- /top开始图片-->
     <div id="app">
@@ -52,7 +51,7 @@
                     </div>
                     <div class="orderAddress">
                         <span>{{order.OrderDate}}</span>
-                        <span v-if="order.OrderState==1" class="am-btn am-btn-success am-radius" @click="Pay(order)">继续支付</span>
+                        <span v-if="order.OrderState==1" style="color:#ff6600;" @click="Pay(order)">继续支付</span>
                         <span v-else>{{order.OrderStateStr}}</span>
                     </div>
                 </li>
