@@ -29,6 +29,7 @@ var vm = new Vue({
                     that.crabList = msg.crabList;
                     that.partMustList = msg.partMustList;
                     that.partOptList = msg.partOptList;
+                    that.packList = msg.packList;
                     let addressStr =msg.order.OrderAddress.split('$');
                     that.address.consignee =addressStr[1];
                     that.address.telphone =addressStr[3];
