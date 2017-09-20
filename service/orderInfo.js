@@ -5,6 +5,7 @@ var vm = new Vue({
         crabList: [],//订购螃蟹列表
         partMustList: [],//必选配件列表
         partOptList: [],//可选配件列表
+        packList:[],//套餐列表
         address:{
             consignee:'',//联系人
             telphone:'',//联系电话

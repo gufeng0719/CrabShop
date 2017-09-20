@@ -30,7 +30,7 @@
         <div style="height: 10px;"></div>
         <div class="content-list">
             <ul class="order-list">
-                <li>
+                <li v-if="crabList.length>0">
                     <div class="title">商品清单</div>
                     <div class="totalpartli" v-for="(crab,index) in crabList">
                         <span>{{crab.ProductName}} ({{crab.ProductType}})</span>                      
@@ -39,7 +39,7 @@
                     </div>
                 </li>
                 
-                <li>
+                <li v-if="partMustList.length>0">
                     <div class="title">必选配件</div>
                     <div class="totalpartli" v-for="(part,index) in partMustList">
                         <span>{{part.PartName}}({{part.PartType}})</span>                       
@@ -48,7 +48,7 @@
                     </div>
                 </li>
                 
-                <li>
+                <li v-if="partOptList.length>0">
                     <div class="title">可选配件</div>
                     <div class="totalpartli" v-for="(part,index) in partOptList">
                         <span>{{part.PartName}}({{part.PartType}})</span>                       
@@ -57,16 +57,24 @@
                     </div>
                 </li>
                 
-                <li >
+                <li v-if="crabList.length>0" >
                     <div class="title">货运</div>
                     <div class="totalpartli">
                         <span>惠农云仓专享9折优惠</span><span>{{order.BillWeight}}kg</span> <span> ￥{{order.ExpressMoney}}</span>
                     </div>
                 </li>
-                <li >
+                <li v-if="crabList.length>0">
                     <div class="title">商城服务费</div>
                     <div class="totalpartli">
                         <span> 服务费</span> <span>{{order.TotalWeight}}kg (螃蟹净重)</span> <span> ￥{{order.ServiceMoney}}</span>
+                    </div>
+                </li>
+                <li v-if="packList.length>0">
+                    <div class="title">团购清单</div>
+                    <div class="totalpartli" v-for="(pack,index) in packList">
+                        <span>{{pack.ProductName}}</span>                      
+                        <span>￥{{pack.TotalPrice}}元</span>
+                        <span>x {{pack.ProductNumber}}</span>
                     </div>
                 </li>
                 <li>

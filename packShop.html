@@ -14,6 +14,13 @@
     <link href="style/amazeui.min.css" type="text/css" rel="stylesheet" />
     <link href="style/style.css" type="text/css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="style/font-awesome.min.css" />
+    <style>
+        .shop-list-mid .tit {
+            word-wrap: break-word;
+            word-break: break-all;
+            width: 95%;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,46 +30,47 @@
     </div>
     <!-- /top图片-->
     <div id="app" v-cloak>
-        <div class="shop_top"><a href="#">企业团购</a></div>
-        <div class="content-list" id="outer">           
-                <ul class="list-pro">
-                    <li v-for="(package,index) in packageList">
-                        <img :src="imgBaseUrl+package.PackageImage" class="list-pic" />
-                        <div class="shop-list-mid">
-                            <div class="tit">{{package.PackageName}}</div>
-                            <div class="total">月售 <span>{{package.TotalNumber}}</span> 件</div>
-                            <div class="price" v-if="package.PackageState==1">
-                                ￥ <span>{{package.PackagePrice}}</span> 元/件
-                            </div>
-                            <div class="price" v-else>
-                                ￥ <span>-</span> 元/斤 - ￥ <span>-</span>元/只
-                            </div>
+        <div class="shop_top" style="margin-bottom:1rem;"><a href="#">企业团购</a></div>
+        
+        <div class="content-list" id="outer">
+            <ul class="list-pro">
+                <li  v-for="(package,index) in packageList">
+                    <img :src="imgBaseUrl+package.PackageImage" class="list-pic" />
+                    <div class="shop-list-mid">
+                        <div class="tit">{{package.PackageName}}</div>
+                        <div class="total">月售 <span>{{package.TotalNumber}}</span> 件</div>
+                        <div class="price" v-if="package.PackageState==1">
+                            ￥ <span>{{package.PackagePrice}}</span> 元/件
                         </div>
-                        <div class="list-cart">
-                            <div class="d-stock" v-if="package.PackageStock>0&&package.PackagePrice>0&&package.PackageState==1">
-                                <a class="decrease" v-if="package.number>0" @click="removeOutCart(package)">-</a>
-                                <input v-if="package.number>0" :id="'num'+package.PackageId" readonly="" class="text_box" type="text" :value="package.number">
-                                <a class="increase" @click="addToCart(package)">+</a>
-                            </div>
-                            <div class="d-stock" v-else>
-                                <span>暂时无货</span>
-                            </div>
+                        <div class="price" v-else>
+                            ￥ <span>-</span> 元/斤 - ￥ <span>-</span>元/只
                         </div>
+                    </div>
+                    <div class="list-cart">
+                        <div class="d-stock" v-if="package.PackageStock>0&&package.PackagePrice>0&&package.PackageState==1">
+                            <a class="decrease" v-if="package.number>0" @click="removeOutCart(package)">-</a>
+                            <input v-if="package.number>0" :id="'num'+package.PackageId" readonly="" class="text_box" type="text" :value="package.number">
+                            <a class="increase" @click="addToCart(package)">+</a>
+                        </div>
+                        <div class="d-stock" v-else>
+                            <span>暂时无货</span>
+                        </div>
+                    </div>
 
-                    </li>
-                </ul>
+                </li>
+            </ul>
         </div>
         <!--底部-->
         <div class="fix-bot">
             <div class="fix-bot-cart" style="float:left;">
                 <i v-if="totalNumber<1" class="fa fa-cart-arrow-down fa-mx" @click="showCart()"></i>
                 <i v-if="totalNumber>0" style="background-color:#ff7200" class="fa fa-cart-arrow-down fa-mx" @click="showCart()"></i>
-                <p>已选 {{totalNumber}} 只</p>
+                <p>已选 {{totalNumber}} 件</p>
                 <p>共计￥ <span style="font-size:1.5rem;font-weight:bolder;">{{(totalPrice).toFixed(2)}}</span> 元</p>
             </div>
             <div class="fix-bot-jsk">
-                <span v-if="totalNumber<1 ">至少需购买  <i style="font-size:2rem;color:#ff7200;font-weight:bolder;">1件</i> 即可下单</span>
-                <a v-else  href="packOrder.html">去结算</a>
+                <span v-if="totalNumber<1 ">还需购买  <i style="font-size:2rem;color:#ff7200;font-weight:bolder;">1</i> 件即可下单</span>
+                <a v-else href="packOrder.html">去结算</a>
                 <!-- <span v-else>每单最多可购买 <i style="font-size:2rem;color:#ff7200;font-weight:bolder">12</i> 只</span> -->
             </div>
         </div>

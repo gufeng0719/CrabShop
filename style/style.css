@@ -170,9 +170,9 @@
            display: -webkit-box;
            -webkit-line-clamp: 1;
            -webkit-box-orient: vertical;
-           overflow: hidden;
+           /* overflow: hidden; */
            white-space:nowrap;
-           text-overflow: ellipsis;
+           /* text-overflow: ellipsis; */
        }
        .shop-list-mid .total {
            font-size:1rem; margin:.5rem 0;
