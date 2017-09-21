@@ -51,7 +51,7 @@
                             <div class="d-stock" v-if="product.ProductStock>0&&product.ProductPrice>0&&product.ProductState==1">
                                 <a class="decrease" v-if="product.number>0" @click="removeOutCart(product)">-</a>
                                 <input v-if="product.number>0" :id="'num'+product.ProductId" readonly="" class="text_box" type="text" :value="product.number">
-                                <a class="increase" @click="addToCart(product)">+</a>
+                                <a class="increase" @click="addToCart(product,4)">+</a>
                             </div>
                             <div class="d-stock" v-else>
                                 <span>暂时无货</span>
@@ -79,7 +79,7 @@
                             <div class="d-stock" v-if="product.ProductStock>0&&product.ProductPrice>0&&product.ProductState==1">
                                 <a class="decrease" v-if="product.number>0" @click="removeOutCart(product)">-</a>
                                 <input v-if="product.number>0" :id="'num'+product.ProductId" readonly="" class="text_box" type="text" :value="product.number">
-                                <a class="increase" @click="addToCart(product)">+</a>
+                                <a class="increase" @click="addToCart(product,3)">+</a>
                             </div>
                             <div class="d-stock" v-else>
                                 <span>暂时无货</span>
@@ -106,7 +106,7 @@
                             <div class="d-stock" v-if="product.ProductStock>0&&product.ProductPrice>0&&product.ProductState==1">
                                 <a class="decrease" v-if="product.number>0" @click="removeOutCart(product)">-</a>
                                 <input v-if="product.number>0" :id="'num'+product.ProductId" readonly="" class="text_box" type="text" :value="product.number">
-                                <a class="increase" @click="addToCart(product)">+</a>
+                                <a class="increase" @click="addToCart(product,2)">+</a>
                             </div>
                             <div class="d-stock" v-else>
                                 <span>暂时无货</span>
@@ -134,7 +134,7 @@
                             <div class="d-stock" v-if="product.ProductStock>0&&product.ProductPrice>0&&product.ProductState==1">
                                 <a class="decrease" v-if="product.number>0" @click="removeOutCart(product)">-</a>
                                 <input v-if="product.number>0" :id="'num'+product.ProductId" readonly="" class="text_box" type="text" :value="product.number">
-                                <a class="increase" @click="addToCart(product)">+</a>
+                                <a class="increase" @click="addToCart(product,1)">+</a>
                             </div>
                             <div class="d-stock" v-else>
                                 <span>暂时无货</span>

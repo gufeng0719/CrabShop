@@ -72,7 +72,7 @@ var vm = new Vue({
             $ul.eq($t).css('display', 'block');
         },
         //添加到购物车
-        addToCart(product) {
+        addToCart(product,index) {
             if (product.ProductId < 10000) {
                 product.number++;
                 this.totalNumber++;
@@ -90,7 +90,8 @@ var vm = new Vue({
                     "price": product.ProductPrice,
                     "weight": product.ProductWeight,
                     "tname": product.TypeName,
-                    "image":product.ProductImage
+                    "image":product.ProductImage,
+                    "index":index
                 }
                 this.cartFoodList.push(item);
             }
@@ -101,6 +102,11 @@ var vm = new Vue({
             cart.num++;
             this.totalNumber++;
             this.totalPrice += cart.price * cart.weight * 2;
+            let proList = selectProList(cart.index);
+            let item = _.find(proList, { 'ProductId': cart.id });
+            if (item) {
+                item.number++;
+            }
              //存入localStorage
              setStore('buyCart', this.cartFoodList);
         },
@@ -132,6 +138,11 @@ var vm = new Vue({
         {
              this.totalNumber--;
              this.totalPrice -= cart.price * cart.weight * 2;
+             let proList = selectProList(cart.index);
+             let item = _.find(proList, { 'ProductId': cart.id });
+             if (item) {
+                 item.number--;
+             }
            // let item = _.find(this.cartFoodList, { 'id': cart.id });
             if(cart.num>1){
                 cart.num--;
@@ -224,3 +235,22 @@ var vm = new Vue({
         this.initData();        
     }
 });
+
+function selectProList(index){
+    let proList=[];
+    switch(index){
+        case 1:
+        proList = vm.proList1;
+        break;
+        case 2:
+        proList = vm.proList2;
+        break;
+        case 3:
+        proList = vm.proList3;
+        break;
+        case 4:
+        proList = vm.proList4;
+        break;
+    }
+    return proList;
+}
