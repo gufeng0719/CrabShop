@@ -45,7 +45,7 @@ var vm = new Vue({
             var that = this;
             $.post("http://bw.gcdzxfu.cn/api/WebApi/DeleteAddress", { '': addressId }, function (msg) {
                 if(msg){
-                    this.getpage();
+                    that.getpage();
                 }
             })
         },

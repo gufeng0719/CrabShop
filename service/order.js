@@ -37,6 +37,8 @@ var vm = new Vue({
         orderId: 0,//订单编号,
         finishPay: false,//是否完成支付
         isSubmit: false,
+        isInvoice:false,//是否开票
+        remarks:'',//订单备注
         imgBaseUrl: 'http://bw.gcdzxfu.cn/'
     },
     methods: {
@@ -341,7 +343,10 @@ function SubmitPlay() {
                     partList: vm.partList,//必须配件列表
                     partNumList: vm.partNumList,//可选配件列表
                     expressmoney: vm.expressFinalPrice,//运费
-                    servicemoney: vm.shopPrice//商城服务费
+                    servicemoney: vm.shopPrice,//商城服务费
+                    isInvoice:vm.isInvoice,//是否开票
+                    remarks:vm.remarks//备注
+
                 },
                 success: function (d) {
                     if (d.status) {

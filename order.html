@@ -72,7 +72,6 @@
                     </div>
                 </li>
 
-
                 <li>
                     <div class="title">商品清单</div>
                     <div v-for="(cart,index) in cartFoodList " class="list-product">
@@ -146,9 +145,9 @@
                 <li>
                     <div class="title">商城服务费</div>
                     <div class="totalpartlit">
-                        <span>累计购买数量&gt;=20斤，按20元/斤收取市场服务费</span></div>
+                        <span>累计购买数量&lt;=20斤，按20元/斤收取市场服务费</span></div>
                     <div class="totalpartlit">
-                        <span>累计购买数量&lt;20斤，按5元/斤收取市场服务费</span></div>
+                        <span>累计购买数量&gt;20斤，按5元/斤收取市场服务费</span></div>
                     <div class="totalpartlit">
                         <span>试运行期间，按五元/斤收取服务费</span>
                     </div>
@@ -159,6 +158,26 @@
                     </div>
                     <div class="totalpartlij">
                         <span>实收:￥{{shopPrice}}</span>
+                    </div>
+                </li>
+                <li class="partli">
+                    <div class="titles">
+                        是否开票
+                        <p style="float:right; font-size:1.2rem">
+                            <input type="checkbox" v-model="isInvoice" style="position:relative; top:0.3rem;">
+                        </p>
+                    </div>
+                </li>
+                <li class="partli">
+                    <div class="titles">
+                        备注:
+                    </div>
+                    <div>
+                        <div class="am-form">
+                            <div class="am-form-group" style="margin-bottom:.5rem;">
+                                <textarea v-model="remarks"></textarea>
+                            </div>
+                        </div>
                     </div>
                 </li>
                 <!-- <li class="partli">
