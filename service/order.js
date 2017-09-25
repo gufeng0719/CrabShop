@@ -78,6 +78,8 @@ var vm = new Vue({
                             //获取到用户信息
                             that.user.UserId = msg.user.UserId;
                             that.haveWeight = msg.user.TotalWight;
+                            that.send.person =msg.user.UserName;
+                            that.send.telphone = msg.user.UserPhone;
                             setStore("userid", msg.user.UserId);
                             //查看本地缓存中是否存在收件地址信息
                             let addressinfo = getStore("addressinfo");

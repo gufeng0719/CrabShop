@@ -1,15 +1,15 @@
 Vue.component("ddladdress", {
     template:
     '<div>' +
-    '   <select v-model="province">' +
+    '   <select v-model="selectedProvince">' +
     '      <option value="-1">-请选择-</option>' +
     '      <option v-for="(model,index) in provinceList" :value="model">{{model.Name}}</option>' +
     '   </select>' +
-    '   <select v-model="city">' +
-    '      <option selected v-for="(model,index) in cityList" :value="model">{{model.Name}}</option>' +
+    '   <select v-model="selectedCity" v-show="cityList.length>0">' +
+    '      <option v-for="(model,index) in cityList" :value="model">{{model.Name}}</option>' +
     '   </select>' +
-    '   <select> v-model="district" v-show="district!=0">' +
-    '      <option v-for="(model,index) in districtList" :value="model">{{model.Name}}</option>' +
+    '   <select v-model="selectedDistrict" v-show="districtList.length>0">' +
+    '      <option v-for="model in districtList" :value="model" >{{model.Name}}</option>' +
     '   </select>' +
     '</div>',
     props: ["address"],
@@ -18,9 +18,12 @@ Vue.component("ddladdress", {
             provinceList: [],//省会列表
             cityList: [],//城市列表，
             districtList: [],//行政区列表
-            province: -1,
-            city: -1,
-            district: -1
+            // province:-1,
+            // city:-1,
+            // district:-1,
+            selectedProvince: 0,
+            selectedCity: 0,
+            selectedDistrict: 0
         }
     },
     methods: {
@@ -33,60 +36,73 @@ Vue.component("ddladdress", {
                 success: function (d) {
                     if (type == 0) {
                         that.provinceList = d;
-                        that.province = d[10];
+                        that.selectedProvince = d[10];
                         //that.city =  that.provinceList[0].Id
-                         
-                    }else if(type==1){
-                        that.cityList =d;
+
+                    } else if (type == 1) {
+                        that.cityList = d;
                         Vue.nextTick(() => {
-                            that.city = that.cityList[0];
+                            that.selectedCity = that.cityList[0];
                             that.$emit('input', that.info);
-                        }); 
-                    }else{
-                        if(d.length==0){
-                            that.district=0;
-                            that.districtList=[];
-                        }else{
-                            that.districtList =d;
+                        });
+                    } else if (type == 2) {
+                        if (d.length == 0) {
+                            that.selectedDistrict = 0
+                            that.districtList = [];
+                        } else {
+                            that.districtList = d;
                             Vue.nextTick(() => {
-                                that.district = that.districtList[0];
+                                that.selectedDistrict = that.districtList[0];
                                 that.$emit('input', that.info);
-                            }); 
+                            });
                         }
                     }
-                    
+
                 }, error: function (d) {
                     console.log(d);
                 }
             });
         }
-
     },
     watch: {
-        province: function (newValue) {            
+        selectedProvince: function (newValue) {
             var that = this;
-            that.ChooseAddress(newValue.Id, 1);            
-            this.province = newValue;
-            that.address.province=newValue.Name;
-            that.address.firstPrice =newValue.FirstPrice;
-            that.address.fllowPrice =newValue.FllowPrice;
+            //四个直辖市只有两级加上港澳台
+            if (newValue.Id === 1 || newValue.Id === 2 || newValue.Id === 3 || newValue.Id === 4 || newValue.Id === 33 || newValue.Id === 34) {
+                that.ChooseAddress(newValue.Id, 2);
+                that.cityList=[];
+                that.address.province ="";
+                that.address.city=newValue.Name;
+            } else {
+                that.ChooseAddress(newValue.Id, 1);
+            }            
+            that.address.province = newValue.Name;
+            that.address.firstPrice = newValue.FirstPrice;
+            that.address.fllowPrice = newValue.FllowPrice;
         },
-        city: function (newValue) {
+        selectedCity: function (newValue) {
             var that = this;
-            that.districtList = that.ChooseAddress(newValue.Id, 2);            
-            that.city = newValue;
+            if (newValue.Id === 337 || newValue.Id === 338 || newValue.Id === 357 || newValue.Id === 358) {
+                that.address.district = "";
+                that.districtList=[];
+                //四个不设区的城市
+            } else {
+                that.ChooseAddress(newValue.Id, 2);
+            }
+            // that.city = newValue;
             that.address.city = newValue.Name;
         },
-        district: function (newValue) {
+        selectedDistrict: function (newValue) {
+            //console.info(newValue);
             var that = this;
-            this.district = newValue;
+            //that.district = newValue;
             Vue.nextTick(() => {
                 that.$emit('input', that.info);
             });
-            that.address.district =newValue.Name;
+            that.address.district = newValue.Name;
+            //that.distr= newValue.Name;
         }
     },
-    
     mounted: function () {
         this.ChooseAddress(0, 0);
     }
