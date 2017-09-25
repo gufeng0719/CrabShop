@@ -167,6 +167,8 @@
                         success: function (msg) {
                             if (msg && msg.status) {
                                 vm.user.UserId = msg.userid;
+                                vm.send.person = vm.user.UserName;
+                                vm.send.telphone = vm.user.UserPhone;
                                 setStore("userid", msg.userid);
                                 $("#myprompt").modal('close');
                             }
