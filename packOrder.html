@@ -81,7 +81,27 @@
                             <div class="price"><span>￥{{cart.price}}元/件</span></div>
                         </div>
                     </div>
-                </li>                
+                </li>
+                <li class="partli">
+                    <div class="titles">
+                        是否开票
+                        <p style="float:right; font-size:1.2rem">
+                            <input type="checkbox" v-model="isInvoice" style="position:relative; top:0.3rem;">
+                        </p>
+                    </div>
+                </li>
+                <li class="partli">
+                    <div class="titles">
+                        备注:
+                    </div>
+                    <div>
+                        <div class="am-form">
+                            <div class="am-form-group" style="margin-bottom:.5rem;">
+                                <textarea v-model="remarks"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </li>               
             </ul>
         </div>
         <div style="height: 60px;"></div>
@@ -99,7 +119,7 @@
                 </div>
             </div>
             <div class="fix-bot-jsks">
-                <a href="javascript:void(0)" onclick="SubmitPlay()">立即支付</a>
+                <a href="javascript:void(0)" id="ConfirmPay">立即支付</a>
             </div>
         </div>
         <div class="am-modal am-modal-prompt" tabindex="-1" id="myprompt">
@@ -135,6 +155,26 @@
                         </div>
                         <button class="am-btn am-btn-secondary" type="button" id="btnSub">提交</button>
                     </form>
+                </div>
+            </div>
+        </div>
+        <div class="am-modal am-modal-confirm" tabindex="-1" id="myconfirm">
+            <div class="am-modal-dialog">
+                <div class="am-modal-hd">高淳大闸蟹</div>
+                <div class="am-modal-bd">
+                    确定现在支付吗？
+                </div>
+                <div class="am-modal-footer">
+                    <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                    <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+                </div>
+            </div>
+        </div>
+        <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
+            <div class="am-modal-dialog">
+                <div class="am-modal-hd">正在生成订单,请稍候...</div>
+                <div class="am-modal-bd">
+                    <span class="am-icon-spinner am-icon-spin"></span>
                 </div>
             </div>
         </div>
@@ -195,6 +235,31 @@
                     });
                 }
             });
+
+            $("#ConfirmPay").click(function () {
+                $confirm.modal({
+                    relatedTarget: this,
+                    closeViaDimmer: 0
+                });
+            });
+            var $confirm = $('#myconfirm');
+            var $loading = $("#my-modal-loading");
+            var $confirmBtn = $confirm.find('[data-am-modal-confirm]');
+            var $cancelBtn = $confirm.find('[data-am-modal-cancel]');
+            $confirmBtn.off('click.confirm.modal.amui').on('click', function () {
+                // do something
+                $loading.modal({
+                    relatedTarget: this
+                });
+                SubmitPlay();
+
+            });
+
+            $cancelBtn.off('click.cancel.modal.amui').on('click', function () {
+                // do something
+                $confirm.modal('close');
+            });
+
         });
     </script>
 </body>

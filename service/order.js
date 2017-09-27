@@ -37,8 +37,8 @@ var vm = new Vue({
         orderId: 0,//订单编号,
         finishPay: false,//是否完成支付
         isSubmit: false,
-        isInvoice:false,//是否开票
-        remarks:'',//订单备注
+        isInvoice: false,//是否开票
+        remarks: '',//订单备注
         imgBaseUrl: 'http://bw.gcdzxfu.cn/'
     },
     methods: {
@@ -78,7 +78,7 @@ var vm = new Vue({
                             //获取到用户信息
                             that.user.UserId = msg.user.UserId;
                             that.haveWeight = msg.user.TotalWight;
-                            that.send.person =msg.user.UserName;
+                            that.send.person = msg.user.UserName;
                             that.send.telphone = msg.user.UserPhone;
                             setStore("userid", msg.user.UserId);
                             //查看本地缓存中是否存在收件地址信息
@@ -311,24 +311,26 @@ var vm = new Vue({
 
 //提交支付,先生成订单，后发起支付
 function SubmitPlay() {
+    var $loading = $("#my-modal-loading");
+    if (!vm.isSubmit) {//监视是否已经提交过按钮
+        if (vm.orderId > 0) {
+            vm.isSubmit = true;
+            Pay();
+        } else {
+            //发货人信息
+            // if (vm.send.person === "" || vm.send.telphone === "") {
+            //     alert("请选择或者填写发货者信息"); return;
+            // }
+            //收货人信息
+            if (vm.address.consignee === "" || vm.address.telphone === "") {
+                alert("请选择或填写收件者信息"); return;
+            }
+            //采购螃蟹信息
+            if (vm.totalNum < 6) {
+                alert("请至少购买6只螃蟹才能下单"); return;
+            }
 
-    if (vm.orderId > 0) {
-        Pay();
-    } else {
-        //发货人信息
-        // if (vm.send.person === "" || vm.send.telphone === "") {
-        //     alert("请选择或者填写发货者信息"); return;
-        // }
-        //收货人信息
-        if (vm.address.consignee === "" || vm.address.telphone === "") {
-            alert("请选择或填写收件者信息"); return;
-        }
-        //采购螃蟹信息
-        if (vm.totalNum < 6) {
-            alert("请至少购买6只螃蟹才能下单"); return;
-        }
-        if (!vm.isSubmit) {
-            vm.isSubmit=true;
+            vm.isSubmit = true;
             $.ajax({
                 url: "http://bw.gcdzxfu.cn/api/WebApi/AddOrder",
                 type: "post",
@@ -346,8 +348,8 @@ function SubmitPlay() {
                     partNumList: vm.partNumList,//可选配件列表
                     expressmoney: vm.expressFinalPrice,//运费
                     servicemoney: vm.shopPrice,//商城服务费
-                    isInvoice:vm.isInvoice,//是否开票
-                    remarks:vm.remarks//备注
+                    isInvoice: vm.isInvoice,//是否开票
+                    remarks: vm.remarks//备注
 
                 },
                 success: function (d) {
@@ -370,6 +372,7 @@ function SubmitPlay() {
                                     vm.prepayId = obj.data;
                                     $.post('http://bw.gcdzxfu.cn/api/WebApi/UpdatePrepaymentId', { OrderId: vm.orderId, PrepaymentId: obj.data }, function (msg) {
                                         if (msg && msg.status) {
+                                            $loading.modal('close');
                                             setStore('addressinfo', '');
                                             Pay();
                                         }
@@ -377,22 +380,29 @@ function SubmitPlay() {
 
                                 } else {
                                     // console.log(d.responseText)
+                                    $loading.modal('close');
                                     alert(obj.msg)
                                 }
                             }
                         });
 
                     } else {
+                        $loading.modal('close');
+                        vm.isSubmit = false;
                         alert('对不起订单生成失败！');
                     }
 
                     // window.open("index.html", "_self");
                 }, error: function (d) {
+                    $loading.modal('close');
+                    vm.isSubmit = false;
+                    alert('对不起订单生成失败！');
                     //console.log(d);
                 }
             });
         }
     }
+
 }
 
 //发起支付
@@ -419,7 +429,7 @@ function Pay() {
                             if (res.err_msg == "get_brand_wcpay_request:ok") {
                                 //alert("支付成功");
                                 vm.finishPay = true;
-                                vm.isSubmit=false;
+                                vm.isSubmit = false;
                                 $.post('http://bw.gcdzxfu.cn/api/WebApi/FinshOrder', { OrderId: vm.orderId, UserId: vm.user.UserId, TotalWeight: vm.totalProductWeight, OrderCopies: vm.totalNumber }, function (msg) {
                                     if (msg && msg.status) {
                                         window.location.href = "myOrder.html";

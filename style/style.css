@@ -87,7 +87,7 @@
                                     text-align: center; margin-left:-1px;}
    .fix-bot{ border-top: 1px solid #ddd; position: fixed; bottom: 0;
               height: 4.5rem; width: 100%;background-color:#666666;
-               z-index: 999999; padding-left:0.8rem; }
+               z-index: 999; padding-left:0.8rem; }
    .fix-bot-cart{ float: left; margin-left: 3%;  width: 50%; 
                   height: 5rem; background-size: contain;position: relative; top:2px;}
    .fix-bot-cart i{ 

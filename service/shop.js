@@ -158,7 +158,7 @@ var vm = new Vue({
         check(part) {
             let cart = this.partNumList;
             let index = _.findIndex(cart, { 'id': part.PartId });
-            console.info(index);
+            //console.info(index);
             if (index >= 0) {
                 //商品数量为0，则清空当前商品的信息
                 _.remove(this.partNumList, function (n) {
