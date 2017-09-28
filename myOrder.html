@@ -46,8 +46,11 @@
                         <span> 收货人: {{order.consignee}} {{order.telphone}}</span>
                     </div>
                     <div class="orderInfo">
-                        <span>总重量:{{order.TotalWeight}}kg 总价:{{order.ActualMoney}}元</span>
-                        <span v-if="order.OrderDelivery!=''">运单号: {{order.OrderDelivery}}</span>
+                        <span>总重量:{{order.TotalWeight}}kg 总价:{{order.ActualMoney}}元 份数:{{order.OrderCopies}}份</span>
+                        <!-- <span v-if="order.OrderDelivery!=''">运单号: {{order.OrderDelivery}}</span> -->
+                    </div>
+                    <div class="orderInfo" v-if="order.OrderDelivery!=''">
+                        <span >运单号: {{order.OrderDelivery}}</span>
                     </div>
                     <div class="orderAddress">
                         <span>{{order.OrderDate}}</span>

@@ -81,7 +81,7 @@
            margin-left: 0px;
        } 
        #mescroll ul li div.orderInfo span:first-child{
-           width: 55%;
+           width: 100%;
            margin-right: 2px;
            text-align: left;
        }
