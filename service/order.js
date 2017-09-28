@@ -221,8 +221,8 @@ var vm = new Vue({
         //快递费用
         expressPrice: function () {
             let price = 0;
-            //  let totalWeight =sendweight;
-            price = this.address.firstPrice + (this.sendweight - 1) * this.address.fllowPrice;
+            let singleWeight = this.totalProductWeight + this.totalPartWeight + this.totalPart1Weight;
+            price = (this.address.firstPrice + (singleWeight - 1) * this.address.fllowPrice) * this.totalNumber;
             return Number(price.toFixed(2));
         },
         //快递优惠后费用
