@@ -1,23 +1,16 @@
-
-/**
- * 存储localStorage
- */
 var setStore = function (name, content) {
-    if (!name) return;
+    if (!name)
+        return;
     if (typeof content !== 'string') {
         content = JSON.stringify(content);
     }
     window.localStorage.setItem(name, content);
-}
-
-/**
- * 获取localStorage
- */
+};
 var getStore = function (name) {
-    if (!name) return;
+    if (!name)
+        return;
     return window.localStorage.getItem(name);
-}
-
+};
 var vm = new Vue({
     el: "#app",
     data: {
@@ -26,22 +19,21 @@ var vm = new Vue({
         proList3: [],
         proList4: [],
         partList: [],
-        partList1:[],
-        menuList: [], //食品列表
-        menuIndex: 0, //已选菜单索引值，默认为0
-        partNumList: [], //以选择配件列表
-        totalPrice: 0, //总共价格
+        partList1: [],
+        menuList: [],
+        menuIndex: 0,
+        partNumList: [],
+        totalPrice: 0,
         totalNumber: 0,
-        cartFoodList: [], //购物车商品列表
-        showCartList: false,//显示购物车列表        
-        preventRepeatRequest: false,// 防止多次触发数据请求
-        choosedFoods: null, //当前选中食品数据
-        showDeleteTip: false, //多规格商品点击减按钮，弹出提示框
-        windowHeight: null, //屏幕的高度
+        cartFoodList: [],
+        showCartList: false,
+        preventRepeatRequest: false,
+        choosedFoods: null,
+        showDeleteTip: false,
+        windowHeight: null,
         imgBaseUrl: 'http://bw.gcdzxfu.cn/'
     },
     methods: {
-        //初始化数据
         initData: function () {
             var that = this;
             $.ajax({
@@ -49,7 +41,6 @@ var vm = new Vue({
                 url: "http://bw.gcdzxfu.cn/api/WebApi/GetProductList",
                 complete: function (d) {
                     var obj = JSON.parse(d.responseText);
-                    //console.info(obj);
                     that.proList1 = obj.proList1;
                     that.proList2 = obj.proList2;
                     that.proList3 = obj.proList3;
@@ -62,8 +53,7 @@ var vm = new Vue({
                 }
             });
         },
-        //点击左侧食品列表标题，相应列表移动到最顶层
-        chooseMenu(index) {
+        chooseMenu: function (index) {
             var $this = $(this);
             var $t = $this.index();
             $li.removeClass();
@@ -71,15 +61,14 @@ var vm = new Vue({
             $ul.css('display', 'none');
             $ul.eq($t).css('display', 'block');
         },
-        //添加到购物车
-        addToCart(product,index) {
+        addToCart: function (product, index) {
             if (product.ProductId < 10000) {
                 product.number++;
                 this.totalNumber++;
                 this.totalPrice += product.ProductPrice * product.ProductWeight * 2;
             }
-            let cart = this.cartFoodList;
-            let item = _.find(cart, { 'id': product.ProductId });
+            var cart = this.cartFoodList;
+            var item = _.find(cart, { 'id': product.ProductId });
             if (item) {
                 item.num++;
             } else {
@@ -90,167 +79,150 @@ var vm = new Vue({
                     "price": product.ProductPrice,
                     "weight": product.ProductWeight,
                     "tname": product.TypeName,
-                    "image":product.ProductImage,
-                    "index":index
-                }
+                    "image": product.ProductImage,
+                    "index": index
+                };
                 this.cartFoodList.push(item);
             }
-            //存入localStorage
             setStore('buyCart', this.cartFoodList);
         },
-        addCart(cart){
+        addCart: function (cart) {
             cart.num++;
             this.totalNumber++;
             this.totalPrice += cart.price * cart.weight * 2;
-            let proList = selectProList(cart.index);
-            let item = _.find(proList, { 'ProductId': cart.id });
+            var proList = selectProList(cart.index);
+            var item = _.find(proList, { 'ProductId': cart.id });
             if (item) {
                 item.number++;
             }
-             //存入localStorage
-             setStore('buyCart', this.cartFoodList);
+            setStore('buyCart', this.cartFoodList);
         },
-        //从购物车移出
-        removeOutCart(product) {
+        removeOutCart: function (product) {
             if (product.ProductId < 10000) {
                 product.number--;
                 this.totalNumber--;
                 this.totalPrice -= product.ProductPrice * product.ProductWeight * 2;
             }
-            let cart = this.cartFoodList;
-            let item = _.find(cart, { 'id': product.ProductId });
+            var cart = this.cartFoodList;
+            var item = _.find(cart, { 'id': product.ProductId });
             if (item) {
                 if (item.num > 1) {
                     item.num--;
                 } else {
-                    //商品数量为0，则清空当前商品的信息
                     _.remove(this.cartFoodList, function (n) {
-                        return n==item;
+                        return n == item;
                     });
-                    // console.info(this.cartFoodList);
-                    // this.cartFoodList.remove(item);
                     product.number = 0;
                 }
             }
             setStore('buyCart', this.cartFoodList);
         },
-        removeCart(cart)
-        {
-             this.totalNumber--;
-             this.totalPrice -= cart.price * cart.weight * 2;
-             let proList = selectProList(cart.index);
-             let item = _.find(proList, { 'ProductId': cart.id });
-             if (item) {
-                 item.number--;
-             }
-           // let item = _.find(this.cartFoodList, { 'id': cart.id });
-            if(cart.num>1){
+        removeCart: function (cart) {
+            this.totalNumber--;
+            this.totalPrice -= cart.price * cart.weight * 2;
+            var proList = selectProList(cart.index);
+            var item = _.find(proList, { 'ProductId': cart.id });
+            if (item) {
+                item.number--;
+            }
+            if (cart.num > 1) {
                 cart.num--;
-            }else{
-                //商品数量为0，则清空当前商品的信息
+            } else {
                 _.remove(this.cartFoodList, function (n) {
-                    return n==cart;
+                    return n == cart;
                 });
             }
             setStore('buyCart', this.cartFoodList);
         },
-
-        check(part) {
-            let cart = this.partNumList;
-            let index = _.findIndex(cart, { 'id': part.PartId });
-            //console.info(index);
+        check: function (part) {
+            var cart = this.partNumList;
+            var index = _.findIndex(cart, { 'id': part.PartId });
             if (index >= 0) {
-                //商品数量为0，则清空当前商品的信息
                 _.remove(this.partNumList, function (n) {
                     return n.id == part.PartId;
                 });
-            }
-            else {
-                let num=1;
-                if(part.PartId==10009)
-                {
-                        num =this.totalNumber;
+            } else {
+                var num = 1;
+                if (part.PartId == 10009) {
+                    num = this.totalNumber;
                 }
-                let item={
-                    "id":part.PartId,
+                var item = {
+                    "id": part.PartId,
                     "num": num,
                     "name": part.PartName,
                     "price": part.PartPrice,
                     "weight": part.PartWeight,
                     "tname": part.TypeName
-                }
+                };
                 this.partNumList.push(item);
             }
-            //存入localStorage
             setStore('buyPart', this.partNumList);
         },
-        showCart(){
-            $('#my-confirm').modal({
-		        relatedTarget: this
-		      });
+        showCart: function () {
+            $('#my-confirm').modal({ relatedTarget: this });
         },
-        //清空购物车
-        clearCart(){
-            this.cartFoodList=[];//清除已购买的物品
-            this.partNumList=[];//清除已购买的配件
-            this.totalNumber=0;//清除已购买数量
-            this.totalPrice=0;//清楚已购买总金额
-            //清楚螃蟹数量
-            this.proList1.forEach((n)=>{
-                n.number=0;
+        clearCart: function () {
+            this.cartFoodList = [];
+            this.partNumList = [];
+            this.totalNumber = 0;
+            this.totalPrice = 0;
+            this.proList1.forEach(function (n) {
+                n.number = 0;
             });
-            this.proList2.forEach((n)=>{
-                n.number=0;
+            this.proList2.forEach(function (n) {
+                n.number = 0;
             });
-            this.proList3.forEach((n)=>{n.number=0});
-            this.proList4.forEach((n)=>{n.number=0});
-            this.partList.forEach((n)=>{n.number=0});
-            window.localStorage.removeItem("buyCart"); 
-            window.localStorage.removeItem("buyPart"); 
+            this.proList3.forEach(function (n) {
+                n.number = 0;
+            });
+            this.proList4.forEach(function (n) {
+                n.number = 0;
+            });
+            this.partList.forEach(function (n) {
+                n.number = 0;
+            });
+            window.localStorage.removeItem("buyCart");
+            window.localStorage.removeItem("buyPart");
         }
     },
     computed: {
         totalNum: function () {
-            let num = 0;
-           for(var item in this.cartFoodList){
-               num+=item[num];
-           }
+            var num = 0;
+            for (var item in this.cartFoodList) {
+                num += item[num];
+            }
             return num;
         },
-        cartPrice:function(){
-            let price=0;
-            this.partList1.forEach((n)=>{
-                price +=n.PartPrice
+        cartPrice: function () {
+            var price = 0;
+            this.partList1.forEach(function (n) {
+                price += n.PartPrice;
             });
             return price;
         }
-
     },
-    watch: {
-
-    },
+    watch: {},
     mounted: function () {
         this.windowHeight = window.innerHeight;
         this.clearCart();
-        this.initData();        
+        this.initData();
     }
 });
-
-function selectProList(index){
-    let proList=[];
-    switch(index){
+function selectProList(index) {
+    var proList = [];
+    switch (index) {
         case 1:
-        proList = vm.proList1;
-        break;
+            proList = vm.proList1;
+            break;
         case 2:
-        proList = vm.proList2;
-        break;
+            proList = vm.proList2;
+            break;
         case 3:
-        proList = vm.proList3;
-        break;
+            proList = vm.proList3;
+            break;
         case 4:
-        proList = vm.proList4;
-        break;
+            proList = vm.proList4;
+            break;
     }
     return proList;
 }

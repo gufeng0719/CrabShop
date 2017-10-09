@@ -17,20 +17,19 @@
 </head>
 
 <body>
-    <!--top开始图片-->
     <div class="banner">
         <img src="images/header.jpg">
     </div>
-    <!-- /top图片-->
+
     <div id="app" v-cloak>
         <div class="shop_top"><a href="#">价格透明 一键代发 售后无忧</a></div>
         <div class="content-list" id="outer">
             <div class="list-left" id="tab">
-                <li :class="{current:menuIndex==0}" @click="menuIndex=0"><a>蟹塘直采母蟹</a></li>
-                <li :class="{current:menuIndex==1}" @click="menuIndex=1"><a>蟹塘直采公蟹</a></li>
-                <!-- <li :class="{current:menuIndex==2}" @click="menuIndex = 2"><a>大宗采购母蟹</a></li>
-                <li :class="{current:menuIndex==3}" @click="menuIndex=3">大宗采购公蟹</li> -->
-                <li :class="{current:menuIndex==3}" @click="menuIndex=3"><a>可选配件</a></li>
+                <ul>
+                    <li :class="{current:menuIndex==0}" @click="menuIndex=0"><a>蟹塘直采母蟹</a></li>
+                    <li :class="{current:menuIndex==1}" @click="menuIndex=1"><a>蟹塘直采公蟹</a></li>
+                    <li :class="{current:menuIndex==3}" @click="menuIndex=3"><a>可选配件</a></li>
+                </ul>
             </div>
             <div class="list-right" id="content">
                 <!--蟹塘直采母蟹 -->

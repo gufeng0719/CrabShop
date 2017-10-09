@@ -2,19 +2,19 @@ function loadOpen() {
     //获取本都缓存是否存在openid
     //var request = getRequest();
     var openid = getStore("openid");
-        getRequest();       
-    if (openid==undefined||openid=='undefined') {
+    getRequest();
+    if (openid == undefined || openid == 'undefined') {
         //console.info(req["openId"]);      
         if (req["openId"]) {
-            openid=req["openId"];
+            openid = req["openId"];
             setStore('openid', req["openId"]);
         } else {
-           // console.info('加载路径');
-           window.open('http://bw.gcdzxfu.cn/WeChatApi/GetOpenId/?currentPage=' + window.location.href, '_self');
-        //    getRequest();
-        //    openid=req["openId"];
-        //   console.info(openid);
-        //    setStore('openid',openid);
+            // console.info('加载路径');
+            window.open('http://bw.gcdzxfu.cn/WeChatApi/GetOpenId/?currentPage=' + window.location.href, '_self');
+            //    getRequest();
+            //    openid=req["openId"];
+            //   console.info(openid);
+            //    setStore('openid',openid);
         }
     }
     return openid;
