@@ -421,7 +421,7 @@ function Pay() {
                     prepayId: vm.prepayId
                 },
                 complete: function (d) {
-                    console.log(d.responseText)
+                    //console.log(d.responseText)
                     WeixinJSBridge.invoke('getBrandWCPayRequest',
                         JSON.parse(d.responseText)
                         , function (res) {
