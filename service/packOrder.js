@@ -150,7 +150,7 @@ function SubmitPlay() {
             $loading.modal('close');
             vm.isSubmit = true;
             Pay();
-           
+
         } else {
             if (vm.address.consignee === "" || vm.address.telphone === "") {
                 alert("请选择或填写收件者信息");
