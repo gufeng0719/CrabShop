@@ -256,6 +256,7 @@ function SubmitPlay() {
     if (!vm.isSubmit) {
         if (vm.orderId > 0) {
             vm.isSubmit = true;
+            $loading.modal('close');
             Pay();
         } else {
             if (vm.address.consignee === "" || vm.address.telphone === "") {

@@ -147,8 +147,10 @@ function SubmitPlay() {
     var $loading = $("#my-modal-loading");
     if (!vm.isSubmit) {
         if (vm.orderId > 0) {
-            Pay();
+            $loading.modal('close');
             vm.isSubmit = true;
+            Pay();
+           
         } else {
             if (vm.address.consignee === "" || vm.address.telphone === "") {
                 alert("请选择或填写收件者信息");
