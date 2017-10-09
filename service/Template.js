@@ -41,7 +41,7 @@ Vue.component("ddladdress", {
 
                     } else if (type == 1) {
                         that.cityList = d;
-                        Vue.nextTick(() => {
+                        Vue.nextTick(function () {
                             that.selectedCity = that.cityList[0];
                             that.$emit('input', that.info);
                         });
@@ -51,7 +51,7 @@ Vue.component("ddladdress", {
                             that.districtList = [];
                         } else {
                             that.districtList = d;
-                            Vue.nextTick(() => {
+                            Vue.nextTick(function () {
                                 that.selectedDistrict = that.districtList[0];
                                 that.$emit('input', that.info);
                             });
@@ -70,12 +70,12 @@ Vue.component("ddladdress", {
             //四个直辖市只有两级加上港澳台
             if (newValue.Id === 1 || newValue.Id === 2 || newValue.Id === 3 || newValue.Id === 4 || newValue.Id === 33 || newValue.Id === 34) {
                 that.ChooseAddress(newValue.Id, 2);
-                that.cityList=[];
-                that.address.province ="";
-                that.address.city=newValue.Name;
+                that.cityList = [];
+                that.address.province = "";
+                that.address.city = newValue.Name;
             } else {
                 that.ChooseAddress(newValue.Id, 1);
-            }            
+            }
             that.address.province = newValue.Name;
             that.address.firstPrice = newValue.FirstPrice;
             that.address.fllowPrice = newValue.FllowPrice;
@@ -84,7 +84,7 @@ Vue.component("ddladdress", {
             var that = this;
             if (newValue.Id === 337 || newValue.Id === 338 || newValue.Id === 357 || newValue.Id === 358) {
                 that.address.district = "";
-                that.districtList=[];
+                that.districtList = [];
                 //四个不设区的城市
             } else {
                 that.ChooseAddress(newValue.Id, 2);
@@ -96,7 +96,7 @@ Vue.component("ddladdress", {
             //console.info(newValue);
             var that = this;
             //that.district = newValue;
-            Vue.nextTick(() => {
+            Vue.nextTick(function () {
                 that.$emit('input', that.info);
             });
             that.address.district = newValue.Name;

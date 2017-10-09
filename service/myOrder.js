@@ -30,7 +30,7 @@ var vm = new Vue({
                 self.mescroll.endErr();
             });
         },
-        Pay:function(order){
+        Pay: function (order) {
             var that = this;
             $.ajax({
                 url: 'http://bw.gcdzxfu.cn/WeChatApi/GetBrandWcPay',
@@ -47,12 +47,12 @@ var vm = new Vue({
                             if (res.err_msg == "get_brand_wcpay_request:ok") {
                                 //alert("支付成功");
                                 vm.finishPay = true;
-                                $.post('http://bw.gcdzxfu.cn/api/WebApi/FinshOrder2', { '': order.OrderId}, function (msg) {
+                                $.post('http://bw.gcdzxfu.cn/api/WebApi/FinshOrder2', { '': order.OrderId }, function (msg) {
                                     if (msg && msg.status) {
-                                       that.upCallback(1);
+                                        that.upCallback(1);
                                     }
                                 });
-                            }else{
+                            } else {
                                 // //支付失败
                                 // $.post('http://bw.gcdzxfu.cn/api/WebApi/UpdateOrderState', { OrderId: order.OrderId,OrderState:0}, function (msg) {
                                 //     if (msg && msg.status) {
@@ -84,7 +84,7 @@ var vm = new Vue({
                 empty: { //配置列表无任何数据的提示
                     warpId: "app",
                     icon: "../images/mescroll-empty.png",
-                    
+
                 }
             }
         });

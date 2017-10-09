@@ -1,17 +1,17 @@
 var vm = new Vue({
     el: "#app",
     data: {
-        addressList: [],//地址列表
-        type:1//采购类型
+        addressList: [],
+        type: 1
     },
     methods: {
         getpage: function () {
             var that = this;
-            let userid = getStore('userid');
-            var url = location.search; //获取url中"?"符后的字串
+            var userid = getStore('userid');
+            var url = location.search;
             if (url.indexOf("?") !== -1) {
-                let str = url.substr(1);
-                let type = str.split('=')[1];
+                var str = url.substr(1);
+                var type = str.split('=')[1];
                 that.type = type;
             }
             $.ajax({
@@ -32,10 +32,10 @@ var vm = new Vue({
             var that = this;
             $.ajax({
                 url: "http://bw.gcdzxfu.cn/api/WebApi/ChooseDefault",
-                type:'post',
+                type: 'post',
                 data: { "": addressId },
                 success: function (msg) {
-                    if(msg.status){
+                    if (msg.status) {
                         that.getpage();
                     }
                 }
@@ -44,30 +44,29 @@ var vm = new Vue({
         DeleteAddress: function (addressId) {
             var that = this;
             $.post("http://bw.gcdzxfu.cn/api/WebApi/DeleteAddress", { '': addressId }, function (msg) {
-                if(msg){
+                if (msg) {
                     that.getpage();
                 }
-            })
+            });
         },
-        ChooseAddress:function(address){
-            let addressinfo=[{                        
-                firstPrice:address.FirstPrice,//首重单价
-                fllowPrice:address.FllowPrice,//续重单价
-                consignee:address.Consignee,//联系人
-                telphone:address.TelPhone,//联系号码
-                consex:address.ConSex,//性别
-                province:address.Province,
-                city:address.City,
-                district:address.District,
-                details:address.Detail//详细地址
+        ChooseAddress: function (address) {
+            var addressinfo = [{
+                firstPrice: address.FirstPrice,
+                fllowPrice: address.FllowPrice,
+                consignee: address.Consignee,
+                telphone: address.TelPhone,
+                consex: address.ConSex,
+                province: address.Province,
+                city: address.City,
+                district: address.District,
+                details: address.Detail
             }];
-            setStore('addressinfo',addressinfo);
-            if(vm.type==1){
-                window.location.href="order.html"
-            }else{
-                window.location.href="packOrder.html";
+            setStore('addressinfo', addressinfo);
+            if (vm.type == 1) {
+                window.location.href = "order.html";
+            } else {
+                window.location.href = "packOrder.html";
             }
-            
         }
     },
     mounted: function () {
