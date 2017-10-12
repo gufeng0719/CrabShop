@@ -17,9 +17,47 @@
     <link rel="stylesheet" type="text/css" href="style/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="style/myorder.css" />
     <style>
-        .am-btn{
-            font-size:1rem;
-            padding:0.5rem 0.2rem;
+        .am-btn {
+            font-size: 1rem;
+            padding: 0.5rem 0.2rem;
+        }
+
+        /* Tooltip -Styles */
+
+        .tooltip {
+            padding: 5px;
+            font-size: 11px;
+            opacity: 0.85;
+            filter: alpha(opacity=85);
+            background-repeat: no-repeat;
+            background-image: url('../images/tooltip.gif');
+        }
+
+        .tooltip-inner {
+            padding: 5px 10px;
+            max-width: 200px;
+            pointer-events: none;
+            color: white;
+            text-align: center;
+            background-color: black;
+            border-radius: 3px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+        }
+
+        .tooltip-bottom {
+            background-position: top center;
+        }
+
+        .tooltip-top {
+            background-position: bottom center;
+        }
+
+        .tooltip-left {
+            background-position: right center;
+        }
+
+        .tooltip-right {
+            background-position: left center;
         }
     </style>
 </head>
@@ -38,7 +76,7 @@
                 <li v-for="(order,index) in orderList">
                     <div class="ordernumber">
                         <a :href="'orderInfo.html?orderid='+order.OrderId">
-                           订单号: {{order.OrderNumber}}
+                            订单号: {{order.OrderNumber}}
                             <i class="fa fa-angle-right"></i>
                         </a>
                     </div>
@@ -50,7 +88,11 @@
                         <!-- <span v-if="order.OrderDelivery!=''">运单号: {{order.OrderDelivery}}</span> -->
                     </div>
                     <div class="orderInfo" v-if="order.OrderDelivery!=''">
-                        <span >运单号: {{order.OrderDelivery}}  <button class="deliverNum" data-clipboard-action="copy" :data-clipboard-text="order.OrderDelivery" ><i class="fa fa-copy fa-2x"></i></button></span>
+                        <span>运单号: {{order.OrderDelivery}}
+                            <button class="deliverNum" data-clipboard-action="copy" :data-clipboard-text="order.OrderDelivery">
+                                <i class="fa fa-copy fa-2x"></i>
+                            </button>
+                        </span>
                     </div>
                     <div class="orderAddress">
                         <span>{{order.OrderDate}}</span>
@@ -64,9 +106,24 @@
         <footer>
             <div id="indexFooterBox">
                 <ul id="indexFooter">
-                    <li class="bor"><a href="myOrder.html"><i class="fa fa-file-text-o fa-2x"></i><span>我的订单</span></a></li>
-                    <li class="bor"><a href="rebate.html"><i class="fa fa-folder-open-o fa-2x"></i><span>我的成果</span></a></li>
-                    <li><a href="shop.html"><i class="fa fa-cart-plus fa-2x"></i><span>立即购买</span></a></li>
+                    <li class="bor">
+                        <a href="myOrder.html">
+                            <i class="fa fa-file-text-o fa-2x"></i>
+                            <span>我的订单</span>
+                        </a>
+                    </li>
+                    <li class="bor">
+                        <a href="rebate.html">
+                            <i class="fa fa-folder-open-o fa-2x"></i>
+                            <span>我的成果</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="shop.html">
+                            <i class="fa fa-cart-plus fa-2x"></i>
+                            <span>立即购买</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </footer>
@@ -75,12 +132,18 @@
     <script src="scripts/mescroll.min.js" type="text/javascript"></script>
     <script src="scripts/vue.min.js" type="text/javascript"></script>
     <script src="scripts/clipboard.min.js" type="text/javascript"></script>
+    <script src="scripts/jquery.tooltip.js" type="text/javascript"></script>
     <script src="service/load.js" type="text/javascript"></script>
     <script src="scripts/lodash.min.js" type="text/javascript"></script>
     <script src="service/myOrder.js?v=1.2" type="text/javascript"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <script>
         var clipboard = new Clipboard('.deliverNum');
+        clipboard.on('success', function (e) {
+            //console.info('cs');
+            $('.deliverNum').tooltip({align: 'bottom',fallback: '复制成功!',delay:{show:150,hide:1000}});
+        });
+
     </script>
 </body>
 
