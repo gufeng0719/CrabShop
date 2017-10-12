@@ -253,89 +253,89 @@ var vm = new Vue({
 });
 function SubmitPlay() {
     var $loading = $("#my-modal-loading");
-    if (!vm.isSubmit) {
-        if (vm.orderId > 0) {
-            vm.isSubmit = true;
-            $loading.modal('close');
-            Pay();
-        } else {
-            if (vm.address.consignee === "" || vm.address.telphone === "") {
-                alert("请选择或填写收件者信息");
-                return;
-            }
-            if (vm.totalNum < 6) {
-                alert("请至少购买6只螃蟹才能下单");
-                return;
-            }
-            vm.isSubmit = true;
-            $.ajax({
-                url: "http://bw.gcdzxfu.cn/api/WebApi/AddOrder",
-                type: "post",
-                data: {
-                    userid: vm.user.UserId,
-                    totalmoney: vm.totalmoney,
-                    finalPrice: vm.totalmoney,
-                    orderaddress: '$' + vm.address.consignee + '(' + vm.address.consex + ')$$' + vm.address.telphone + '$' + vm.address.province + ' ' + vm.address.city + ' ' + vm.address.district + ' ' + vm.address.details,
-                    sendaddress: vm.send.person + '$' + vm.send.telphone,
-                    totalnumber: vm.totalNumber,
-                    totalweight: vm.totalweight,
-                    sendweight: vm.sendweight,
-                    cartFoodList: vm.cartFoodList,
-                    partList: vm.partList,
-                    partNumList: vm.partNumList,
-                    expressmoney: vm.expressFinalPrice,
-                    servicemoney: vm.shopPrice,
-                    isInvoice: vm.isInvoice,
-                    remarks: vm.remarks
-                },
-                success: function (d) {
-                    if (d.status) {
-                        vm.orderId = d.orderid;
-                        $.ajax({
-                            url: 'http://bw.gcdzxfu.cn/WeChatApi/GetPrepayId',
-                            type: 'post',
-                            data: {
-                                body: '购买大闸蟹支付',
-                                orderNumber: d.orderNumber,
-                                total: (vm.totalmoney * 100).toFixed(),
-                                notify: 'http://dzx.gcdzxfu.cn/myOrder.html',
-                                openId: vm.openId
-                            },
-                            complete: function (d) {
-                                var obj = JSON.parse(d.responseText);
-                                if (obj.code === 1) {
-                                    vm.prepayId = obj.data;
-                                    $.post('http://bw.gcdzxfu.cn/api/WebApi/UpdatePrepaymentId', {
-                                        OrderId: vm.orderId,
-                                        PrepaymentId: obj.data
-                                    }, function (msg) {
-                                        if (msg && msg.status) {
-                                            $loading.modal('close');
-                                            setStore('addressinfo', '');
-                                            Pay();
-                                        }
-                                    });
-                                } else {
-                                    $loading.modal('close');
-                                    alert(obj.msg);
-                                }
+
+    if (vm.orderId > 0) {
+
+        $loading.modal('close');
+        Pay();
+    } else {
+        if (vm.address.consignee === "" || vm.address.telphone === "") {
+            alert("请选择或填写收件者信息");
+            return;
+        }
+        if (vm.totalNum < 6) {
+            alert("请至少购买6只螃蟹才能下单");
+            return;
+        }
+
+        $.ajax({
+            url: "http://bw.gcdzxfu.cn/api/WebApi/AddOrder",
+            type: "post",
+            data: {
+                userid: vm.user.UserId,
+                totalmoney: vm.totalmoney,
+                finalPrice: vm.totalmoney,
+                orderaddress: '$' + vm.address.consignee + '(' + vm.address.consex + ')$$' + vm.address.telphone + '$' + vm.address.province + ' ' + vm.address.city + ' ' + vm.address.district + ' ' + vm.address.details,
+                sendaddress: vm.send.person + '$' + vm.send.telphone,
+                totalnumber: vm.totalNumber,
+                totalweight: vm.totalweight,
+                sendweight: vm.sendweight,
+                cartFoodList: vm.cartFoodList,
+                partList: vm.partList,
+                partNumList: vm.partNumList,
+                expressmoney: vm.expressFinalPrice,
+                servicemoney: vm.shopPrice,
+                isInvoice: vm.isInvoice,
+                remarks: vm.remarks
+            },
+            success: function (d) {
+                if (d.status) {
+                    vm.orderId = d.orderid;
+                    $.ajax({
+                        url: 'http://bw.gcdzxfu.cn/WeChatApi/GetPrepayId',
+                        type: 'post',
+                        data: {
+                            body: '购买大闸蟹支付',
+                            orderNumber: d.orderNumber,
+                            total: (vm.totalmoney * 100).toFixed(),
+                            notify: 'http://dzx.gcdzxfu.cn/myOrder.html',
+                            openId: vm.openId
+                        },
+                        complete: function (d) {
+                            var obj = JSON.parse(d.responseText);
+                            if (obj.code === 1) {
+                                vm.prepayId = obj.data;
+                                $.post('http://bw.gcdzxfu.cn/api/WebApi/UpdatePrepaymentId', {
+                                    OrderId: vm.orderId,
+                                    PrepaymentId: obj.data
+                                }, function (msg) {
+                                    if (msg && msg.status) {
+                                        $loading.modal('close');
+                                        setStore('addressinfo', '');
+                                        Pay();
+                                    }
+                                });
+                            } else {
+                                $loading.modal('close');
+                                alert(obj.msg);
                             }
-                        });
-                    } else {
-                        $loading.modal('close');
-                        vm.isSubmit = false;
-                        alert('对不起订单生成失败！');
-                    }
-                },
-                error: function (d) {
+                        }
+                    });
+                } else {
                     $loading.modal('close');
-                    vm.isSubmit = false;
+
                     alert('对不起订单生成失败！');
                 }
-            });
-        }
+            },
+            error: function (d) {
+                $loading.modal('close');
+
+                alert('对不起订单生成失败！');
+            }
+        });
     }
 }
+
 function Pay() {
     if (vm.finishPay) {
         alert('支付已经完成，无需再次支付');
@@ -357,7 +357,6 @@ function Pay() {
                             if (res.err_msg == "get_brand_wcpay_request:ok") {
                                 //alert("支付成功");
                                 vm.finishPay = true;
-                                vm.isSubmit = false;
                                 $.post('http://bw.gcdzxfu.cn/api/WebApi/FinshOrder', { OrderId: vm.orderId, UserId: vm.user.UserId, TotalWeight: vm.totalProductWeight, OrderCopies: vm.totalNumber }, function (msg) {
                                     if (msg && msg.status) {
                                         window.location.href = "myOrder.html";

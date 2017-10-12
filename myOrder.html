@@ -50,7 +50,7 @@
                         <!-- <span v-if="order.OrderDelivery!=''">运单号: {{order.OrderDelivery}}</span> -->
                     </div>
                     <div class="orderInfo" v-if="order.OrderDelivery!=''">
-                        <span >运单号: {{order.OrderDelivery}}</span>
+                        <span >运单号: {{order.OrderDelivery}}  <button class="deliverNum" data-clipboard-action="copy" :data-clipboard-text="order.OrderDelivery" ><i class="fa fa-copy fa-2x"></i></button></span>
                     </div>
                     <div class="orderAddress">
                         <span>{{order.OrderDate}}</span>
@@ -73,11 +73,15 @@
     </div>
     <script src="scripts/jquery.min.js" type="text/javascript"></script>
     <script src="scripts/mescroll.min.js" type="text/javascript"></script>
-    <script src="scripts/vue.js" type="text/javascript"></script>
+    <script src="scripts/vue.min.js" type="text/javascript"></script>
+    <script src="scripts/clipboard.min.js" type="text/javascript"></script>
     <script src="service/load.js" type="text/javascript"></script>
     <script src="scripts/lodash.min.js" type="text/javascript"></script>
     <script src="service/myOrder.js?v=1.2" type="text/javascript"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script>
+        var clipboard = new Clipboard('.deliverNum');
+    </script>
 </body>
 
 </html>
